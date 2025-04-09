@@ -7,33 +7,55 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>نورة سعد العبيد</h1>
-    </header>
+    <div class="container">
+        <header>
+            <div class="header-inner">
+                <div class="logo">
+                    <img src="images/mosque-logo.png" alt="شعار المسجد">
+                    <h1>نورة سعد العبيد</h1>
+                    <p>صرح إسلامي شامخ</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">عن المسجد</a></li>
+                        <li><a href="#">مكتبة الصور</a></li>
+                        <li><a href="#">تواصل معنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-    <section id="photo-album">
-        <div class="album-container">
-            <button id="prev-btn">السابق</button>
-            <img id="album-image" src="https://media.gemini.media/img/large/2018/3/2/2018_3_2_14_10_55_432.jpg" alt="صورة للمسجد">
-            <button id="next-btn">التالي</button>
-        </div>
-    </section>
+        <section id="photo-album">
+            <h2>مكتبة الصور</h2>
+            <div class="album-container">
+                <button id="prev-btn">&lt;</button>
+                <img id="album-image" src="mosque_images/image1.jpg" alt="صورة للمسجد">
+                <button id="next-btn">&gt;</button>
+            </div>
+        </section>
 
-    <section id="social-links">
-        <h2>تابعونا على</h2>
-        <div class="links-container">
-            <a href="#" target="_blank"><img src="images/youtube.png" alt="يوتيوب"></a>
-            <a href="#" target="_blank"><img src="images/tiktok.png" alt="تيك توك"></a>
-            <a href="#" target="_blank"><img src="images/telegram.png" alt="تليجرام"></a>
-            <a href="#" target="_blank"><img src="images/instagram.png" alt="انستقرام"></a>
-        </div>
-    </section>
+        <section id="social-links">
+            <h2>تابعونا على</h2>
+            <div class="links-container">
+                <a href="#" target="_blank"><img src="images/youtube.png" alt="يوتيوب"></a>
+                <a href="#" target="_blank"><img src="images/tiktok.png" alt="تيك توك"></a>
+                <a href="#" target="_blank"><img src="images/telegram.png" alt="تليجرام"></a>
+                <a href="#" target="_blank"><img src="images/instagram.png" alt="انستقرام"></a>
+            </div>
+        </section>
 
-    <section id="suggestions">
-        <h2>اقتراحاتكم تهمنا</h2>
-        <a href="#" target="_blank" class="suggestion-link">نموذج الاقتراحات</a>
-    </section>
+        <section id="azkar-app">
+            <h2>تطبيق أذكار</h2>
+            <p>استفد من تطبيق الأذكار الخاص بنا للمحافظة على ذكر الله.</p>
+            <a href="https://alazkar.netlify.app/" target="_blank" class="azkar-link">اذهب إلى تطبيق أذكار</a>
+        </section>
 
+        <section id="suggestions">
+            <h2>لديك اقتراح؟</h2>
+            <a href="#" target="_blank" class="suggestion-link">شاركنا رأيك</a>
+        </section>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
