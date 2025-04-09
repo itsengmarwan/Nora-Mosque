@@ -252,20 +252,39 @@ nav a:hover {
     background-color: #0056b3;
 }
 
-/* تصميم متجاوب */
+/* تصميم متجاوب لشاشات الجوال */
 @media (max-width: 768px) {
     body {
-        padding-top: 50px;
+        padding-top: 50px; /* قيمة مبدئية */
+        transition: padding-top 0.3s ease-in-out; /* إضافة انتقال سلس للحشو */
+    }
+
+    body.menu-open {
+        padding-top: 180px; /* قيمة حشو أكبر عند فتح القائمة (يمكن تعديلها حسب ارتفاع القائمة) */
     }
 
     header {
         padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed; /* يبقى الرأس ثابتاً */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        transition: transform 0.3s ease-in-out; /* إضافة انتقال سلس للتحويل */
+    }
+
+    header.menu-open {
+        transform: translateY(0); /* التأكد من عدم تحريك الرأس عمودياً عند فتح القائمة */
     }
 
     .header-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        width: 100%;
     }
 
     .logo {
@@ -296,7 +315,53 @@ nav a:hover {
     }
 
     nav {
-        display: none;
+        position: absolute;
+        top: 60px; /* أسفل الرأس مباشرة (يمكن تعديلها) */
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 98; /* أقل من الرأس */
+        padding: 15px 0;
+        display: none; /* مخفي افتراضياً */
+        transform: translateY(-100%); /* يبدأ من الأعلى */
+        transition: transform 0.3s ease-in-out; /* إضافة انتقال سلس للتحويل */
+    }
+
+    nav.open {
+        display: block;
+        transform: translateY(0); /* يظهر في مكانه */
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: block;
+        text-align: center;
+    }
+
+    nav li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    nav li:last-child {
+        margin-bottom: 0;
+    }
+
+    nav a {
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #555;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+        background-color: #eee;
+        color: #5cb85c;
     }
 
     .header-inner::after {

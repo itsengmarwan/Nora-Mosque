@@ -44,9 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // تفعيل/إخفاء قائمة التنقل على الجوال
-    if (nav && headerInner && window.innerWidth <= 768) {
+    if (nav && headerInner && body && window.innerWidth <= 768) {
         headerInner.addEventListener('click', () => {
-            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+            nav.classList.toggle('open');
+            body.classList.toggle('menu-open');
         });
     } else if (nav && window.innerWidth > 768) {
         nav.style.display = 'flex';
@@ -61,8 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', () => {
         if (nav && window.innerWidth > 768) {
             nav.style.display = 'flex';
-        } else if (nav && window.innerWidth <= 768) {
-            nav.style.display = 'none';
+            nav.classList.remove('open'); // إزالة الكلاس عند التحول إلى شاشة أكبر
+            body.classList.remove('menu-open');
+        } else if (nav && window.innerWidth <= 768 && !nav.classList.contains('open')) {
+            nav.style.display = 'none'; // التأكد من إخفاء القائمة عند التحول إلى شاشة أصغر
         }
+        adjustBodyPadding(); // إعادة ضبط الحشو
     });
 });
