@@ -3,10 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = document.getElementById('next-btn');
     const albumImage = document.getElementById('album-image');
     const images = [
-        'https://source.unsplash.com/random/600x400/?mosque&sig=1',
-        'https://source.unsplash.com/random/600x400/?mosque&sig=2',
-        'https://source.unsplash.com/random/600x400/?mosque&sig=3'
-        // يمكنك إضافة المزيد من الروابط هنا
+        'mosque_images/image1.jpg',
+        'mosque_images/image2.jpg'
+        // يمكنك إضافة المزيد من أسماء الصور هنا مثل 'mosque_images/image3.jpg'
     ];
     let currentIndex = 0;
 
