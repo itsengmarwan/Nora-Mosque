@@ -1,7 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
-    padding-top: 60px; /* القيمة الأصلية للشاشات الأكبر */
+    padding-top: 60px;
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
@@ -14,15 +14,15 @@ body {
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0.8); /* خلفية بيضاء شفافة */
+    background-color: rgba(255, 255, 255, 0.8);
     color: #333;
     padding: 15px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed; /* جعل الرأس ثابتاً */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100; /* التأكد من أن الرأس فوق العناصر الأخرى */
+    z-index: 100;
 }
 
 .header-inner {
@@ -38,21 +38,26 @@ header {
 }
 
 .logo img {
-    height: 40px; /* تحديد ارتفاع الشعار */
-    margin-left: 10px; /* مسافة بين الشعار والنص */
+    height: 50px;
+    margin-left: 10px;
 }
 
-.logo h1 {
+.logo-text {
+    margin-right: 8px;
+}
+
+.logo-text h1 {
     margin: 0;
     font-size: 2em;
     color: #5cb85c;
+    white-space: nowrap;
 }
 
-.logo p {
+.logo-text p {
     margin-top: 5px;
     font-size: 0.8em;
     color: #777;
-    margin-right: 10px; /* مسافة بين النص والشعار */
+    white-space: nowrap;
 }
 
 nav ul {
@@ -179,7 +184,7 @@ nav a:hover {
 }
 
 #azkar-app {
-    background-color: #e9f5e9; /* خلفية خفيفة لقسم الأذكار */
+    background-color: #e9f5e9;
     padding: 30px 20px;
     margin-bottom: 30px;
     border-radius: 8px;
@@ -188,7 +193,7 @@ nav a:hover {
 }
 
 #azkar-app h2 {
-    color: #5cb85c; /* نفس لون شعار المسجد */
+    color: #5cb85c;
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.8em;
@@ -201,7 +206,7 @@ nav a:hover {
 
 .azkar-link {
     display: inline-block;
-    background-color: #5cb85c; /* نفس لون شعار المسجد */
+    background-color: #5cb85c;
     color: white;
     padding: 12px 25px;
     text-decoration: none;
@@ -250,59 +255,54 @@ nav a:hover {
 /* تصميم متجاوب */
 @media (max-width: 768px) {
     body {
-        padding-top: 100px; /* قيمة مبدئية - سيتم تعديلها بواسطة JavaScript */
+        padding-top: 50px;
+    }
+
+    header {
+        padding: 10px 15px;
     }
 
     .header-inner {
-        flex-direction: column;
+        display: flex;
         align-items: center;
-        text-align: center;
-        padding: 10px 20px;
+        justify-content: space-between;
     }
 
     .logo {
-        flex-direction: column;
+        display: flex;
         align-items: center;
+        flex-wrap: nowrap;
     }
 
     .logo img {
-        margin-left: 0;
-        margin-bottom: 5px;
-    }
-
-    .logo p {
-        margin-right: 0;
-    }
-
-    nav ul {
-        margin-top: 10px;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav li {
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
-
-    .album-container {
-        max-width: 95%;
-    }
-
-    #prev-btn {
-        left: 5px;
-    }
-
-    #next-btn {
-        right: 5px;
-    }
-
-    .links-container {
-        gap: 15px;
-    }
-
-    .links-container img {
-        width: 35px;
         height: 35px;
+        margin-left: 8px;
+    }
+
+    .logo-text {
+        margin-right: 8px;
+    }
+
+    .logo-text h1 {
+        font-size: 1.1em;
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+
+    .logo-text p {
+        font-size: 0.7em;
+        margin-top: 2px;
+        white-space: nowrap;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .header-inner::after {
+        content: '☰';
+        font-size: 1.5em;
+        color: #555;
+        cursor: pointer;
     }
 }

@@ -10,13 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // يمكنك إضافة المزيد من أسماء الصور هنا مثل 'mosque_images/image3.jpg'
     ];
     let currentIndex = 0;
+    const nav = document.querySelector('nav');
+    const headerInner = document.querySelector('.header-inner');
 
     function adjustBodyPadding() {
         if (header && body && window.innerWidth <= 768) {
             const headerHeight = header.offsetHeight;
             body.style.paddingTop = `${headerHeight}px`;
         } else if (body) {
-            body.style.paddingTop = '60px'; // القيمة الأصلية للشاشات الأكبر
+            body.style.paddingTop = '60px';
         }
     }
 
@@ -40,4 +42,29 @@ document.addEventListener('DOMContentLoaded', function() {
             albumImage.src = images[currentIndex];
         });
     }
+
+    // تفعيل/إخفاء قائمة التنقل على الجوال
+    if (nav && headerInner && window.innerWidth <= 768) {
+        headerInner.addEventListener('click', (event) => {
+            if (event.target.matches('.header-inner::after')) {
+                nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+    } else if (nav && window.innerWidth > 768) {
+        nav.style.display = 'flex';
+    }
+
+    // عرض القائمة الرئيسية على الحاسوب عند التحميل
+    if (nav && window.innerWidth > 768) {
+        nav.style.display = 'flex';
+    }
+
+    // إعادة ضبط عرض القائمة عند تغيير حجم الشاشة
+    window.addEventListener('resize', () => {
+        if (nav && window.innerWidth > 768) {
+            nav.style.display = 'flex';
+        } else if (nav && window.innerWidth <= 768) {
+            nav.style.display = 'none';
+        }
+    });
 });
