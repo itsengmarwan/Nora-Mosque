@@ -5,6 +5,11 @@ body {
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
+    transition: padding-top 0.3s ease-in-out;
+}
+
+body.menu-open {
+    padding-top: 180px;
 }
 
 .container {
@@ -16,30 +21,36 @@ body {
 header {
     background-color: rgba(255, 255, 255, 0.8);
     color: #333;
-    padding: 15px 0;
+    padding: 10px 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
+    transition: transform 0.3s ease-in-out;
+}
+
+header.menu-open {
+    transform: translateY(0);
 }
 
 .header-inner {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .logo {
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
 }
 
 .logo img {
-    height: 50px;
-    margin-left: 10px;
+    height: 35px;
+    margin-left: 8px;
 }
 
 .logo-text {
@@ -47,39 +58,64 @@ header {
 }
 
 .logo-text h1 {
-    margin: 0;
-    font-size: 2em;
-    color: #5cb85c;
+    font-size: 1.1em;
+    margin-bottom: 0;
     white-space: nowrap;
 }
 
 .logo-text p {
-    margin-top: 5px;
-    font-size: 0.8em;
-    color: #777;
+    font-size: 0.7em;
+    margin-top: 2px;
     white-space: nowrap;
+}
+
+nav {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 98;
+    padding: 15px 0;
+    display: none;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+nav.open {
+    display: block;
+    transform: translateY(0);
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    display: block;
+    text-align: center;
 }
 
 nav li {
-    margin-left: 15px;
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+nav li:last-child {
+    margin-bottom: 0;
 }
 
 nav a {
+    display: block;
+    padding: 10px 20px;
     text-decoration: none;
     color: #555;
     font-weight: bold;
-    transition: color 0.3s ease;
-    font-size: 0.9em;
+    transition: background-color 0.3s ease;
 }
 
 nav a:hover {
+    background-color: #eee;
     color: #5cb85c;
 }
 
@@ -144,7 +180,7 @@ nav a:hover {
 
 #social-links {
     background-color: #fff;
-    padding: 30px 20px;
+    padding:30px 20px;
     margin-bottom: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -252,39 +288,123 @@ nav a:hover {
     background-color: #0056b3;
 }
 
-/* تصميم متجاوب لشاشات الجوال */
+.contact-form {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.contact-form div {
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.contact-form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.contact-info {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+}
+
+.news-item {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.news-item h3 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.news-item .date {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.news-item p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.news-item a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.news-item a:hover {
+    color: #0056b3;
+}
+
+#gallery-page .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* تخطيط افتراضي لعدة أعمدة */
+    gap: 20px;
+    padding: 20px;
+}
+
+#gallery-page .gallery-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* تصميم متجاوب */
 @media (max-width: 768px) {
     body {
-        padding-top: 50px; /* قيمة مبدئية */
-        transition: padding-top 0.3s ease-in-out; /* إضافة انتقال سلس للحشو */
-    }
-
-    body.menu-open {
-        padding-top: 180px; /* قيمة حشو أكبر عند فتح القائمة (يمكن تعديلها حسب ارتفاع القائمة) */
+        padding-top: 50px;
     }
 
     header {
         padding: 10px 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed; /* يبقى الرأس ثابتاً */
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 100;
-        transition: transform 0.3s ease-in-out; /* إضافة انتقال سلس للتحويل */
-    }
-
-    header.menu-open {
-        transform: translateY(0); /* التأكد من عدم تحريك الرأس عمودياً عند فتح القائمة */
     }
 
     .header-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
     }
 
     .logo {
@@ -315,22 +435,21 @@ nav a:hover {
     }
 
     nav {
+        display: none;
         position: absolute;
-        top: 60px; /* أسفل الرأس مباشرة (يمكن تعديلها) */
+        top: 50px;
         left: 0;
         width: 100%;
         background-color: rgba(255, 255, 255, 0.9);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 98; /* أقل من الرأس */
+        z-index: 99;
         padding: 15px 0;
-        display: none; /* مخفي افتراضياً */
-        transform: translateY(-100%); /* يبدأ من الأعلى */
-        transition: transform 0.3s ease-in-out; /* إضافة انتقال سلس للتحويل */
+        transform: translateY(-100%);
     }
 
     nav.open {
         display: block;
-        transform: translateY(0); /* يظهر في مكانه */
+        transform: translateY(0);
     }
 
     nav ul {
@@ -344,10 +463,6 @@ nav a:hover {
     nav li {
         margin-left: 0;
         margin-bottom: 10px;
-    }
-
-    nav li:last-child {
-        margin-bottom: 0;
     }
 
     nav a {
@@ -369,5 +484,137 @@ nav a:hover {
         font-size: 1.5em;
         color: #555;
         cursor: pointer;
+    }
+
+    #photo-album .album-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #prev-btn, #next-btn {
+        position: static;
+        transform: translateY(0);
+        margin: 10px 0;
+        display: block;
+        text-align: center;
+    }
+
+    #photo-album .album-container img {
+        max-width: 95%;
+    }
+
+    .links-container {
+        justify-content: space-around;
+    }
+
+    #gallery-page .gallery-container {
+        grid-template-columns: 1fr; /* عرض الصور في عمود واحد على الجوال */
+        gap: 15px;
+        padding: 15px;
+    }
+
+    #gallery-page .gallery-container img {
+        width: 100%;
+    }
+
+    #about-page {
+        padding: 15px;
+    }
+
+    #about-page h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    #about-page p {
+        font-size: 1em;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    #contact-page {
+        padding: 15px;
+    }
+
+    #contact-page h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .contact-form {
+        padding: 15px;
+    }
+
+    .contact-form div {
+        margin-bottom: 10px;
+    }
+
+    .contact-form label {
+        font-size: 1em;
+    }
+
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+        font-size: 1em;
+        padding: 8px;
+    }
+
+    .contact-form button[type="submit"] {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+
+    .contact-info {
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .contact-info h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .contact-info ul {
+        padding-left: 20px;
+    }
+
+    .contact-info li {
+        font-size: 1em;
+        margin-bottom: 8px;
+    }
+
+    #news-page {
+        padding: 15px;
+    }
+
+    #news-page h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .news-item {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .news-item h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .news-item .date {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+
+    .news-item p {
+        font-size: 1em;
+        line-height: 1.7;
+        margin-bottom: 12px;
+    }
+
+    .news-item a {
+        font-size: 1em;
     }
 }

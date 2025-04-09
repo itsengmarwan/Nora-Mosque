@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تواصل معنا - جامع نورة سعد العبيد</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="contact.css"> </head>
+</head>
 <body>
     <div class="container">
         <header>
@@ -32,7 +32,7 @@
         <main id="contact-page">
             <h2>تواصل معنا</h2>
             <p>يمكنكم التواصل معنا عبر النموذج التالي أو عبر وسائل الاتصال المتاحة.</p>
-            <form action="#" method="post">
+            <form action="#" method="post" class="contact-form">
                 <div>
                     <label for="name">الاسم:</label>
                     <input type="text" id="name" name="name" required>
@@ -47,12 +47,14 @@
                 </div>
                 <button type="submit">إرسال</button>
             </form>
-            <p>أو يمكنكم التواصل عبر:</p>
-            <ul>
-                <li>الهاتف: [رقم الهاتف]</li>
-                <li>البريد الإلكتروني: [البريد الإلكتروني]</li>
-                <li>العنوان: [العنوان]</li>
-            </ul>
+            <div class="contact-info">
+                <p>أو يمكنكم التواصل عبر:</p>
+                <ul>
+                    <li>الهاتف: [رقم الهاتف]</li>
+                    <li>البريد الإلكتروني: [البريد الإلكتروني]</li>
+                    <li>العنوان: [العنوان]</li>
+                </ul>
+            </div>
         </main>
     </div>
     <script src="script.js"></script>
