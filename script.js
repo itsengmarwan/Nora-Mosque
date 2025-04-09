@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header');
+    const body = document.querySelector('body');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const albumImage = document.getElementById('album-image');
@@ -9,8 +11,24 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     let currentIndex = 0;
 
-    if (prevBtn && nextBtn && albumImage) {
-        albumImage.src = images[currentIndex]; // عرض الصورة الأولى عند التحميل
+    function adjustBodyPadding() {
+        if (header && body && window.innerWidth <= 768) {
+            const headerHeight = header.offsetHeight;
+            body.style.paddingTop = `${headerHeight}px`;
+        } else if (body) {
+            body.style.paddingTop = '60px'; // القيمة الأصلية للشاشات الأكبر
+        }
+    }
+
+    // ضبط الحشو عند تحميل الصفحة
+    adjustBodyPadding();
+
+    // ضبط الحشو عند تغيير حجم النافذة
+    window.addEventListener('resize', adjustBodyPadding);
+
+    // وظيفة ألبوم الصور
+    if (prevBtn && nextBtn && albumImage && images.length > 0) {
+        albumImage.src = images[currentIndex];
 
         prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + images.length) % images.length;

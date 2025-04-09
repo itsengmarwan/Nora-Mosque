@@ -1,7 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
-    padding-top: 60px; /* لإفساح المجال للرأس الثابت */
+    padding-top: 60px; /* القيمة الأصلية للشاشات الأكبر */
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
@@ -250,7 +250,7 @@ nav a:hover {
 /* تصميم متجاوب */
 @media (max-width: 768px) {
     body {
-        padding-top: 100px; /* زيادة المساحة للرأس الثابت على الشاشات الصغيرة */
+        padding-top: 100px; /* قيمة مبدئية - سيتم تعديلها بواسطة JavaScript */
     }
 
     .header-inner {
