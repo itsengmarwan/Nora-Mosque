@@ -45,10 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // تفعيل/إخفاء قائمة التنقل على الجوال
     if (nav && headerInner && window.innerWidth <= 768) {
-        headerInner.addEventListener('click', (event) => {
-            if (event.target.matches('.header-inner::after')) {
-                nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
-            }
+        headerInner.addEventListener('click', () => {
+            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
         });
     } else if (nav && window.innerWidth > 768) {
         nav.style.display = 'flex';
