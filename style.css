@@ -398,9 +398,6 @@ nav a:hover {
     }
 
     header {
-        width: 90%; /* تقليل عرض الرأس إلى 90% */
-        left: 5%; /* توسيط الرأس (5% من اليسار) */
-        transform: translateX(0); /* تأكد من عدم وجود إزاحة أفقية */
         padding: 10px 15px;
     }
 
@@ -570,3 +567,13 @@ nav a:hover {
 
     .contact-info {
         padding: 15px;
+        margin-top: 20px;
+    }
+
+    .contact-info h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .contact-info ul {
+        padding-
