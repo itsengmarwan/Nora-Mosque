@@ -307,7 +307,7 @@ main {
 }
 #prayer-times-page .prayer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* تغيير هنا */
     align-items: center;
     padding: 15px;
     background: #f9f9f9;
@@ -315,6 +315,7 @@ main {
     font-size: 1.1em;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    direction: rtl; /* تأكد من وجود هذا أو ما يعادله لاتجاه النص الرئيسي */
 }
 #prayer-times-page .prayer:last-child {
     border-bottom: none;
@@ -322,11 +323,18 @@ main {
 #prayer-times-page .prayer .label {
     color: #333;
     font-weight: bold;
+    margin-left: auto; /* لدفع الاسم إلى اليمين */
 }
+
 #prayer-times-page .prayer .time {
     color: #b8860b;
     font-weight: bold;
     font-size: 1.1em;
+    direction: ltr;
+    text-align: left;
+    display: inline-block;
+    min-width: 80px; /* أو قيمة أكبر حسب الحاجة */
+    margin-right: auto; /* لدفع الوقت إلى اليسار */
 }
 
 /* Style for the next prayer */

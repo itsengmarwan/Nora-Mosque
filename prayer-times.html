@@ -1,113 +1,112 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="اطلع على مواقيت الصلاة الدقيقة لليوم في السالمية، الكويت (حسب توقيت وزارة الأوقاف) - الفجر، الشروق، الظهر، العصر، المغرب، العشاء.">
-  <title>مواقيت الصلاة - مسجد نورة سعد العبيد</title>
-  <link rel="icon" href="images/mosque-logo.png" type="image/png">
-  <link rel="stylesheet" href="style.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="اطلع على مواقيت الصلاة الدقيقة لليوم في السالمية، الكويت (حسب توقيت وزارة الأوقاف) - الفجر، الشروق، الظهر، العصر، المغرب، العشاء.">
+    <title>مواقيت الصلاة - مسجد نورة سعد العبيد</title>
+    <link rel="icon" href="images/mosque-logo.png" type="image/png">
+    <link rel="stylesheet" href="style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 <body id="prayer-times-page">
 
-  <header>
-    <div class="header-inner">
-         <div class="logo">
-             <a href="index.html" class="logo-link">
-                <img src="images/mosque-logo.png" alt="شعار المسجد">
-                <div class="logo-text">
-                    <h1>مسجد نورة سعد العبيد</h1>
-                    <p>صرح إسلامي شامخ</p>
-                </div>
-            </a>
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/mosque-logo.png" alt="شعار المسجد">
+                    <div class="logo-text">
+                        <h1>مسجد نورة سعد العبيد</h1>
+                        <p>صرح إسلامي شامخ</p>
+                    </div>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">عن المسجد</a></li>
+                    <li><a href="gallery.html">مكتبة الصور</a></li>
+                    <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
+                    <li><a href="quran.html">المصحف الشريف</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
         </div>
-        <nav>
-             <ul>
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="about.html">عن المسجد</a></li>
-                <li><a href="gallery.html">مكتبة الصور</a></li>
-                <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
-                <li><a href="quran.html">المصحف الشريف</a></li>
-                <li><a href="contact.html">تواصل معنا</a></li>
-            </ul>
-        </nav>
-        <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
-    </div>
-</header>
+    </header>
 
-<main>
-    <h2 style="color: #333; margin-top: 0; margin-bottom: 15px;">مواقيت الصلاة اليوم</h2>
-    <div class="date" id="today"></div>
-    <div class="times" id="prayer-times">
-        <div class="loading-indicator">جاري تحميل مواقيت الصلاة...</div>
-    </div>
-</main>
+    <main>
+        <h2 style="color: #333; margin-top: 0; margin-bottom: 15px;">مواقيت الصلاة اليوم</h2>
+        <div class="date" id="today"></div>
+        <div class="times" id="prayer-times">
+            <div class="loading-indicator">جاري تحميل مواقيت الصلاة...</div>
+        </div>
+    </main>
 
-  <script>
-    function timeToMinutes(time) {
-        if (!time || !time.includes(':')) return 0;
-        const [hours, minutes] = time.split(':').map(Number);
-        return hours * 60 + minutes;
-    }
-    function convertTo12Hour(time24) {
-        if (!time24 || !time24.includes(':')) return '';
-        const [hour, minute] = time24.split(":").map(Number);
-        const period = hour >= 12 ? 'م' : 'ص';
-        const hour12 = ((hour + 11) % 12 + 1);
-        return `<span class="math-inline">\{hour12\}\:</span>{minute.toString().padStart(2, '0')} ${period}`;
-    }
-    function fetchPrayerTimes() {
-        const today = new Date();
-        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kuwait' };
-        document.getElementById("today").textContent = today.toLocaleDateString('ar-KW', dateOptions);
+    <script>
+        function timeToMinutes(time) {
+            if (!time || !time.includes(':')) return 0;
+            const [hours, minutes] = time.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+        function convertTo12Hour(time24) {
+            if (!time24 || !time24.includes(':')) return '';
+            const [hour, minute] = time24.split(":").map(Number);
+            const period = hour >= 12 ? 'م' : 'ص';
+            const hour12 = ((hour + 11) % 12 + 1);
+            return `<span class="math-inline">${hour12}:${minute.toString().padStart(2, '0')} ${period}</span>`;
+        }
+        function fetchPrayerTimes() {
+            const today = new Date();
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kuwait' };
+            document.getElementById("today").textContent = today.toLocaleDateString('ar-KW', dateOptions);
 
-        fetch("https://api.aladhan.com/v1/timingsByCity?city=Salmiya&country=Kuwait&method=3")
-          .then(response => {
-              if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-              return response.json();
-           })
-          .then(data => {
-                if (data.code === 200 && data.data && data.data.timings) {
-                    const timings = data.data.timings;
-                    const prayerMap = {"Fajr": "الفجر", "Sunrise": "الشروق", "Dhuhr": "الظهر", "Asr": "العصر", "Maghrib": "المغرب", "Isha": "العشاء"};
-                    const container = document.getElementById("prayer-times");
-                    container.innerHTML = '';
-                    const now = new Date();
-                    const nowMinutes = now.getHours() * 60 + now.getMinutes();
-                    let nextPrayerFound = false;
+            fetch("https://api.aladhan.com/v1/timingsByCity?city=Salmiya&country=Kuwait&method=3")
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.code === 200 && data.data && data.data.timings) {
+                        const timings = data.data.timings;
+                        const prayerMap = {"Fajr": "الفجر", "Sunrise": "الشروق", "Dhuhr": "الظهر", "Asr": "العصر", "Maghrib": "المغرب", "Isha": "العشاء"};
+                        const container = document.getElementById("prayer-times");
+                        container.innerHTML = '';
+                        const now = new Date();
+                        const nowMinutes = now.getHours() * 60 + now.getMinutes();
+                        let nextPrayerFound = false;
 
-                    for (const [key, label] of Object.entries(prayerMap)) {
-                        const time24 = timings[key];
-                        if (time24) {
-                            const div = document.createElement("div");
-                            div.className = "prayer";
-                            div.dataset.time = time24;
-                            div.innerHTML = `<span class="label"><span class="math-inline">\{label\}</span\><span class\="time"\></span>{convertTo12Hour(time24)}</span>`;
-                            container.appendChild(div);
-                            if (!nextPrayerFound) {
-                                const prayerMinutes = timeToMinutes(time24);
-                                if (prayerMinutes > nowMinutes && key !== "Sunrise") {
-                                    div.classList.add("next-prayer");
-                                    nextPrayerFound = true;
+                        for (const [key, label] of Object.entries(prayerMap)) {
+                            const time24 = timings[key];
+                            if (time24) {
+                                const div = document.createElement("div");
+                                div.className = "prayer";
+                                div.dataset.time = time24;
+                                div.innerHTML = `<span class="label"><span class="math-inline">${label}</span><span class="time" style="direction: ltr; text-align: left; display: inline-block; min-width: 80px;">${convertTo12Hour(time24)}</span></span>`;                                container.appendChild(div);
+                                if (!nextPrayerFound) {
+                                    const prayerMinutes = timeToMinutes(time24);
+                                    if (prayerMinutes > nowMinutes && key !== "Sunrise") {
+                                        div.classList.add("next-prayer");
+                                        nextPrayerFound = true;
+                                    }
                                 }
                             }
                         }
+                    } else {
+                        throw new Error("Invalid data received from API.");
                     }
-                } else {
-                    throw new Error("Invalid data received from API.");
-                }
-          })
-          .catch(error => {
-                console.error("Error fetching prayer times:", error);
-                document.getElementById("prayer-times").innerHTML = '<div class="loading-indicator" style="color: red;">حدث خطأ أثناء تحميل المواقيت. يرجى المحاولة مرة أخرى.</div>';
-          });
-    }
-    fetchPrayerTimes();
-  </script>
-  <script src="script.js"></script>
+                })
+                .catch(error => {
+                    console.error("Error fetching prayer times:", error);
+                    document.getElementById("prayer-times").innerHTML = '<div class="loading-indicator" style="color: red;">حدث خطأ أثناء تحميل المواقيت. يرجى المحاولة مرة أخرى.</div>';
+                });
+        }
+        fetchPrayerTimes();
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
