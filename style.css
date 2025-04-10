@@ -268,6 +268,46 @@ main {
     background-color: #a17509; /* لون أغمق عند الhover */
 }
 
+
+#mosque-location .location-map iframe {
+    max-width: 100%;
+    width: 100%;
+    height: 300px;
+  }
+  .azkar-app-like {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.azkar-app-like h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.azkar-app-like p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.azkar-app-like .prayer-times-link {
+    display: inline-block;
+    background-color: #c08400;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.azkar-app-like .prayer-times-link:hover {
+    background-color: #9e6d00;
+}
+
 #suggestions {
     background-color: #fff;
     padding: 30px 20px;
