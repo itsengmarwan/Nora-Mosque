@@ -10,8 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <style> body { font-family: 'Tajawal', sans-serif; } </style>
-</head>
+    </head>
 <body>
     <div class="container">
         <header>
@@ -33,7 +32,7 @@
                         <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
                         <li><a href="quran.html">المصحف الشريف</a></li>
                         <li><a href="contact.html">تواصل معنا</a></li>
-                        <li><a href="news.html">الأخبار والفعاليات</a></li>
+                        <li><a href="news.php">الأخبار والفعاليات</a></li>
                     </ul>
                 </nav>
                 <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
@@ -45,34 +44,42 @@
 
             <div id="news-list">
                 <?php
-                // --- PHP code placeholder for dynamic news ---
-                // This section should be replaced with actual PHP code
-                // that fetches news from a database when hosted on a PHP server.
+                // --- تنبيه: هذا مجرد محتوى ثابت للمثال ---
+                // --- يجب استبدال هذا الجزء بكود PHP حقيقي لجلب الأخبار من قاعدة بيانات ---
 
-                // --- Example static content (replace with dynamic PHP loop later) ---
+                // --- مثال لخبر 1 ---
                 echo '<div class="news-item">';
                 echo '<h3>محاضرة إيمانية بعنوان فضائل شهر شعبان</h3>';
-                echo '<p class="date">تاريخ النشر: 15 فبراير 2025</p>';
+                // تم تعديل التاريخ ليكون أكثر واقعية أو يمكن إزالته
+                echo '<p class="date">تاريخ النشر: 15 فبراير</p>';
                 echo '<p>ينظم الجامع محاضرة قيمة يلقيها الشيخ [اسم الشيخ] حول فضائل شهر شعبان وكيفية الاستعداد لرمضان...</p>';
-                echo '<a href="#" class="read-more">اقرأ المزيد</a>'; // Link should go to news details page
+                // الرابط يجب أن يؤدي لصفحة تفاصيل الخبر عند برمجتها
+                echo '<a href="#" class="read-more">اقرأ المزيد</a>';
                 echo '</div>';
 
+                // --- مثال لخبر 2 ---
                 echo '<div class="news-item">';
                 echo '<h3>بدء التسجيل في حلقات تحفيظ القرآن الصيفية</h3>';
-                echo '<p class="date">تاريخ النشر: 10 أبريل 2025</p>';
+                // تم تعديل التاريخ ليكون أكثر واقعية أو يمكن إزالته (تاريخ اليوم كمثال)
+                echo '<p class="date">تاريخ النشر: 11 أبريل</p>';
                 echo '<p>يعلن الجامع عن فتح باب التسجيل في حلقات تحفيظ القرآن الكريم للصغار والكبار خلال العطلة الصيفية. المقاعد محدودة...</p>';
+                // الرابط يجب أن يؤدي لصفحة تفاصيل الخبر عند برمجتها
                 echo '<a href="#" class="read-more">اقرأ المزيد</a>';
                 echo '</div>';
 
-                 echo '<div class="news-item">';
+                 // --- مثال لخبر 3 ---
+                echo '<div class="news-item">';
                 echo '<h3>استعدادات الجامع لاستقبال شهر رمضان المبارك</h3>';
-                echo '<p class="date">تاريخ النشر: 20 مارس 2025</p>';
+                 // تم تعديل التاريخ ليكون أكثر واقعية أو يمكن إزالته
+                echo '<p class="date">تاريخ النشر: 20 مارس</p>';
                 echo '<p>يقوم الجامع بوضع اللمسات الأخيرة على خطته لاستقبال شهر رمضان، بما في ذلك تجهيز المصليات وتنظيم برامج إيمانية متنوعة...</p>';
+                // الرابط يجب أن يؤدي لصفحة تفاصيل الخبر عند برمجتها
                 echo '<a href="#" class="read-more">اقرأ المزيد</a>';
                 echo '</div>';
-                // --- End of example static content ---
+                // --- نهاية الأمثلة الثابتة ---
                 ?>
             </div>
+             <p style="margin-top: 30px; color: #777;">(ملاحظة: هذه مجرد أمثلة للأخبار، سيتم عرض الأخبار الفعلية قريباً بعد برمجة النظام.)</p>
 
         </main>
     </div>

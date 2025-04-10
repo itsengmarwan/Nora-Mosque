@@ -1,15 +1,13 @@
-/* Nora-Mosque/style.css */
+/* Nora-Mosque/style.css (Improved, Unminified) */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Tajawal', sans-serif; /* Applied Tajawal globally */
     margin: 0;
-    padding-top: 60px; /* Adjusted dynamically by JS if menu opens */
+    padding-top: 60px; /* Initial padding, adjusted by JS */
     background-color: #f4f4f4;
     color: #000000;
     line-height: 1.6;
     transition: padding-top 0.3s ease-in-out;
 }
-
-/* Removed body.menu-open rule as JS will handle padding */
 
 .container {
     max-width: 1200px;
@@ -18,66 +16,65 @@ body {
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly less transparent */
+    background-color: rgba(255, 255, 255, 0.95);
     color: #000000;
-    padding: 10px 0; /* Removed side padding, handled by header-inner */
+    padding: 10px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Increased z-index */
+    z-index: 1000;
     transition: transform 0.3s ease-in-out;
 }
-
-/* Removed header.menu-open rule */
 
 .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px; /* Consistent with .container */
-    margin: 0 auto; /* Center header content */
-    padding: 0 15px; /* Padding inside the centered container */
-    position: relative; /* Needed for hamburger positioning */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
 }
 
 .logo {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    /* Removed negative margin */
     margin-right: 10px;
 }
 
 .logo img {
     height: 40px;
-    margin-left: 8px; /* Swapped margin side */
+    margin-left: 8px;
     transition: height 0.3s ease-in-out;
 }
 
 .logo-text {
-    margin-right: 8px; /* Swapped margin side */
+    margin-right: 8px;
 }
 
 .logo-text h1 {
     font-size: 1.1em;
-    margin: 0; /* Adjusted margin */
+    margin: 0;
     white-space: nowrap;
-    color: #b8860b; /* DarkGoldenrod */
+    color: #b8860b;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-family: 'Tajawal', sans-serif; /* Ensure font */
 }
 
 .logo-text p {
     font-size: 0.7em;
-    margin: 2px 0 0 0; /* Adjusted margin */
+    margin: 2px 0 0 0;
     white-space: nowrap;
+    font-family: 'Tajawal', sans-serif; /* Ensure font */
 }
 
 /* Hamburger Menu Button */
 .menu-toggle {
-    display: none; /* Hidden by default */
+    display: none;
     font-size: 1.8em;
     color: #555;
     cursor: pointer;
@@ -85,11 +82,11 @@ header {
     border: none;
     padding: 5px;
     line-height: 1;
-    margin-left: 15px; /* Space between logo and button */
+    margin-left: 15px;
 }
 
 nav {
-    display: flex; /* Use flexbox for desktop */
+    display: flex;
     align-items: center;
 }
 
@@ -97,37 +94,37 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Horizontal list on desktop */
+    display: flex;
 }
 
 nav li {
-    margin-left: 15px; /* Spacing between items on desktop */
-    margin-bottom: 0; /* Reset margin bottom */
+    margin-left: 15px;
+    margin-bottom: 0;
 }
 
 nav li:first-child {
-    margin-left: 0; /* No margin for the first item */
+    margin-left: 0;
 }
 
 nav a {
     display: block;
-    padding: 10px 15px; /* Adjusted padding */
+    padding: 10px 15px;
     text-decoration: none;
     color: #3c3c3c;
     font-weight: bold;
     transition: background-color 0.3s ease, color 0.3s ease;
-    white-space: nowrap; /* Prevent wrapping */
+    white-space: nowrap;
+    font-family: 'Tajawal', sans-serif; /* Ensure font */
 }
 
-nav a:hover, nav a.active { /* Added active class style */
+nav a:hover, nav a.active {
     background-color: #eee;
     color: #5cb85c;
-    border-radius: 4px; /* Slight rounding on hover */
+    border-radius: 4px;
 }
 
-/* Main content adjustment */
 main {
-    padding-top: 80px; /* Increased default top padding */
+    padding-top: 80px;
 }
 
 /* --- Section Styles --- */
@@ -137,18 +134,18 @@ main {
     padding: 30px 20px;
     margin-bottom: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Slightly adjusted shadow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
     text-align: center;
 }
 
 #photo-album h2, #social-links h2, #azkar-app h2, #suggestions h2,
 #mosque-location h2, #prayer-times-link h2, .azkar-app-like h2,
 #contact-page h2, #gallery-page h2, #news-page h2, #about-page h2, #quran-page h1 {
-    color: #333; /* Darker heading color */
+    color: #333;
     margin-top: 0;
-    margin-bottom: 25px; /* Increased bottom margin */
-    font-size: 1.8em; /* Slightly larger heading */
-    font-weight: bold; /* Ensure headings are bold */
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: bold;
 }
 
 /* Photo Album */
@@ -158,21 +155,21 @@ main {
     justify-content: center;
     position: relative;
     width: 90%;
-    max-width: 700px; /* Limit max width */
+    max-width: 700px;
     margin: 20px auto;
-    overflow: hidden; /* Hide parts of image during transition */
+    overflow: hidden;
 }
 
 #album-image {
-    max-width: 100%; /* Allow image to fill container */
+    max-width: 100%;
     height: auto;
-    max-height: 450px; /* Set a max height */
-    display: block; /* Remove extra space below image */
+    max-height: 450px;
+    display: block;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 0; /* Remove margin */
+    margin: 0;
     opacity: 1;
-    transition: opacity 0.6s ease-in-out; /* Fade transition */
+    transition: opacity 0.6s ease-in-out;
 }
 
 #album-image.fade-out {
@@ -180,20 +177,20 @@ main {
 }
 
 #prev-btn, #next-btn {
-    background: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+    background: rgba(0, 0, 0, 0.4);
     border: none;
-    font-size: 1.8em; /* Larger icons */
-    color: #fff; /* White icon color */
+    font-size: 1.8em;
+    color: #fff;
     cursor: pointer;
-    padding: 10px 12px; /* Adjusted padding */
-    border-radius: 50%; /* Circular buttons */
+    padding: 10px 12px;
+    border-radius: 50%;
     z-index: 10;
     opacity: 0.7;
     transition: opacity 0.3s ease, background-color 0.3s ease;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    line-height: 1; /* Ensure icon vertical centering */
+    line-height: 1;
 }
 
 #prev-btn:hover, #next-btn:hover {
@@ -202,11 +199,11 @@ main {
 }
 
 #prev-btn {
-    left: 15px; /* Position from edge */
+    left: 15px;
 }
 
 #next-btn {
-    right: 15px; /* Position from edge */
+    right: 15px;
 }
 
 
@@ -214,22 +211,22 @@ main {
 .links-container {
     display: flex;
     justify-content: center;
-    gap: 25px; /* Increased gap */
+    gap: 25px;
     align-items: center;
     flex-wrap: wrap;
 }
 
 .links-container a {
     text-decoration: none;
-    transition: transform 0.2s ease; /* Add hover effect */
+    transition: transform 0.2s ease;
 }
 
 .links-container a:hover {
-    transform: scale(1.1); /* Scale up on hover */
+    transform: scale(1.1);
 }
 
 .links-container img {
-    width: 45px; /* Slightly larger icons */
+    width: 45px;
     height: 45px;
     object-fit: cover;
 }
@@ -240,27 +237,27 @@ main {
     display: inline-block;
     background-color: #b8860b;
     color: white;
-    padding: 12px 28px; /* Adjusted padding */
+    padding: 12px 28px;
     text-decoration: none;
     border-radius: 8px;
     font-size: 1.1em;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    border: none; /* Ensure no border */
-    cursor: pointer; /* Make it look clickable */
+    border: none;
+    cursor: pointer;
 }
 
 .azkar-link:hover, .suggestion-link:hover, .prayer-times-link:hover {
     background-color: #a17509;
-    transform: translateY(-2px); /* Lift effect on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #azkar-app p, #suggestions p, #prayer-times-link p, .azkar-app-like p {
     color: #555;
     margin-bottom: 20px;
-    font-size: 1.1em; /* Slightly larger text */
+    font-size: 1.1em;
 }
 
 
@@ -268,64 +265,64 @@ main {
 #mosque-location .location-map iframe {
     max-width: 100%;
     width: 100%;
-    height: 350px; /* Increased height */
-    border-radius: 8px; /* Match section radius */
-    border: 1px solid #ddd; /* Add subtle border */
+    height: 350px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 }
 
 /* Prayer Times Page Specific Styles */
-#prayer-times-page .date { /* Added page ID for specificity */
+#prayer-times-page .date {
     margin: 25px 0;
-    font-size: 1.2em; /* Larger date */
+    font-size: 1.2em;
     color: #555;
 }
-#prayer-times-page .times { /* Added page ID */
+#prayer-times-page .times {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Increased gap */
-    max-width: 400px; /* Slightly wider box */
-    width: 90%; /* Responsive width */
+    gap: 12px;
+    max-width: 400px;
+    width: 90%;
     background: #fff;
-    padding: 25px; /* More padding */
-    border: 1px solid #ddd; /* Standard border */
+    padding: 25px;
+    border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    margin: 0 auto; /* Center the box */
-    text-align: right; /* Align text to right */
+    margin: 0 auto;
+    text-align: right;
 }
-#prayer-times-page .prayer { /* Added page ID */
+#prayer-times-page .prayer {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Vertically center */
-    padding: 15px; /* More padding */
+    align-items: center;
+    padding: 15px;
     background: #f9f9f9;
     border-bottom: 1px solid #eee;
-    font-size: 1.1em; /* Larger font */
+    font-size: 1.1em;
     border-radius: 5px;
-    transition: background-color 0.3s ease; /* Smooth transition */
+    transition: background-color 0.3s ease;
 }
 #prayer-times-page .prayer:last-child {
     border-bottom: none;
 }
-#prayer-times-page .prayer .label { /* Added page ID */
+#prayer-times-page .prayer .label {
     color: #333;
     font-weight: bold;
 }
-#prayer-times-page .prayer .time { /* Added page ID */
+#prayer-times-page .prayer .time {
     color: #b8860b;
     font-weight: bold;
-    font-size: 1.1em; /* Slightly larger time */
+    font-size: 1.1em;
 }
 
 /* Style for the next prayer */
 #prayer-times-page .prayer.next-prayer {
-    background-color: #e8f5e9; /* Light green background */
-    border-left: 5px solid #4CAF50; /* Green indicator bar on the left */
-    padding-left: 10px; /* Adjust padding for the border */
+    background-color: #e8f5e9;
+    border-left: 5px solid #4CAF50;
+    padding-left: 10px;
 }
 #prayer-times-page .prayer.next-prayer .label,
 #prayer-times-page .prayer.next-prayer .time {
-    color: #2e7d32; /* Darker green text */
+    color: #2e7d32;
     font-weight: bold;
 }
 
@@ -338,57 +335,57 @@ main {
 
 /* Contact Form */
 .contact-form {
-    padding: 30px; /* Increased padding */
+    padding: 30px;
     background-color: #f9f9f9;
-    border-radius: 8px; /* Match section radius */
-    margin-bottom: 30px; /* Increased margin */
-    max-width: 600px; /* Limit width */
+    border-radius: 8px;
+    margin-bottom: 30px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    text-align: right; /* Align labels right */
-    border: 1px solid #eee; /* Subtle border */
+    text-align: right;
+    border: 1px solid #eee;
 }
 
 .contact-form div {
-    margin-bottom: 20px; /* Increased spacing */
+    margin-bottom: 20px;
 }
 
 .contact-form label {
     display: block;
-    margin-bottom: 8px; /* Increased spacing */
+    margin-bottom: 8px;
     font-weight: bold;
-    color: #444; /* Slightly darker label color */
+    color: #444;
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
     width: 100%;
-    padding: 12px; /* Increased padding */
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 1em; /* Ensure consistent font size */
+    font-size: 1em;
 }
 
 .contact-form textarea {
-    resize: vertical; /* Allow vertical resize only */
+    resize: vertical;
 }
 
 .contact-form button[type="submit"] {
-    background-color: #5cb85c; /* Green color */
+    background-color: #5cb85c;
     color: white;
     padding: 12px 25px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.1em; /* Larger font */
+    font-size: 1.1em;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .contact-form button[type="submit"]:hover {
-    background-color: #4cae4c; /* Darker green */
+    background-color: #4cae4c;
     transform: translateY(-1px);
 }
 
@@ -397,8 +394,8 @@ main {
     background-color: #f9f9f9;
     border-radius: 8px;
     max-width: 600px;
-    margin: 0 auto; /* Center it */
-    text-align: center; /* Center text */
+    margin: 0 auto;
+    text-align: center;
     border: 1px solid #eee;
 }
 
@@ -409,7 +406,7 @@ main {
 }
 
 .contact-info li {
-    margin-bottom: 12px; /* Increased spacing */
+    margin-bottom: 12px;
     color: #555;
 }
 .contact-info li:last-child {
@@ -423,22 +420,22 @@ main {
     margin-bottom: 25px;
     border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
-    text-align: right; /* Align text right */
-    border: 1px solid #f0f0f0; /* Lighter border */
+    text-align: right;
+    border: 1px solid #f0f0f0;
 }
 
 .news-item h3 {
-    color: #b8860b; /* Gold color for title */
+    color: #b8860b;
     margin-top: 0;
     margin-bottom: 8px;
     font-size: 1.4em;
 }
 
 .news-item .date {
-    color: #888; /* Lighter date color */
+    color: #888;
     font-size: 0.9em;
     margin-bottom: 15px;
-    display: block; /* Ensure it takes full width */
+    display: block;
 }
 
 .news-item p {
@@ -447,30 +444,30 @@ main {
     margin-bottom: 15px;
 }
 
-.news-item a.read-more { /* Specific class for read more */
-    color: #5cb85c; /* Green color */
+.news-item a.read-more {
+    color: #5cb85c;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .news-item a.read-more:hover {
-    color: #4cae4c; /* Darker green */
+    color: #4cae4c;
     text-decoration: underline;
 }
 
 /* Gallery Page */
 #gallery-page .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Slightly larger min size */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
-    padding: 20px 0; /* Remove side padding */
+    padding: 20px 0;
 }
 
-#gallery-page .gallery-item { /* Wrap image and link */
-    overflow: hidden; /* Ensure border radius applies correctly */
+#gallery-page .gallery-item {
+    overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -482,23 +479,23 @@ main {
 
 #gallery-page .gallery-container img {
     width: 100%;
-    height: 200px; /* Fixed height for uniformity */
-    object-fit: cover; /* Crop images nicely */
-    display: block; /* Remove extra space */
-    border-radius: 8px; /* Match container */
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
 }
 
 /* About Page */
 #about-page p, #about-page ul {
-    text-align: right; /* Justify text */
+    text-align: right;
     line-height: 1.8;
     font-size: 1.1em;
     color: #444;
     margin-bottom: 18px;
 }
 #about-page ul {
-    padding-right: 20px; /* Indent list */
-    list-style: disc; /* Standard bullets */
+    padding-right: 20px;
+    list-style: disc;
 }
 #about-page li {
     margin-bottom: 10px;
@@ -507,99 +504,99 @@ main {
 /* Quran Page */
 #quran-page iframe {
     width: 100%;
-    height: 75vh; /* Adjust height as needed */
+    height: 75vh;
     border: 1px solid #ddd;
-    border-radius: 8px; /* Match section style */
+    border-radius: 8px;
 }
 
 
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
     body {
-        padding-top: 60px; /* Fixed padding top for mobile */
+        padding-top: 60px;
     }
 
     .header-inner {
-        padding: 0 10px; /* Less padding on mobile */
-        justify-content: space-between; /* Ensure space between items */
+        padding: 0 10px;
+        justify-content: space-between;
     }
 
     .logo img {
-        height: 35px; /* Smaller logo */
+        height: 35px;
     }
 
     .logo-text h1 {
-        font-size: 1em; /* Smaller text */
+        font-size: 1em;
     }
     .logo-text p {
-        font-size: 0.6em; /* Smaller text */
+        font-size: 0.6em;
     }
 
 
     .menu-toggle {
-        display: block; /* Show hamburger button */
-        order: 3; /* Move hamburger to the right */
+        display: block;
+        order: 3;
     }
 
     nav {
         position: absolute;
-        top: 100%; /* Position below header */
+        top: 100%;
         left: 0;
         width: 100%;
-        background-color: rgba(255, 255, 255, 0.98); /* More opaque */
+        background-color: rgba(255, 255, 255, 0.98);
         box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
-        z-index: 999; /* Below header but above content */
-        padding: 10px 0; /* Padding top/bottom */
-        flex-direction: column; /* Stack items vertically */
-        align-items: stretch; /* Stretch items full width */
-        max-height: 0; /* Start hidden */
-        overflow: hidden; /* Hide content */
-        transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Smooth transition */
+        z-index: 999;
+        padding: 10px 0;
+        flex-direction: column;
+        align-items: stretch;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, padding 0.4s ease-out;
     }
 
     nav.open {
-        max-height: 500px; /* Arbitrary large height to show all items */
-        padding: 15px 0; /* Add padding when open */
+        max-height: 500px;
+        padding: 15px 0;
     }
 
     nav ul {
-        flex-direction: column; /* Stack list items */
+        flex-direction: column;
         width: 100%;
     }
 
     nav li {
         margin-left: 0;
-        margin-bottom: 5px; /* Spacing between vertical items */
-        text-align: center; /* Center text */
-        width: 100%; /* Full width */
+        margin-bottom: 5px;
+        text-align: center;
+        width: 100%;
     }
      nav li:last-child {
         margin-bottom: 0;
      }
 
     nav a {
-        padding: 12px 20px; /* Larger touch target */
-        color: #444; /* Slightly darker color */
-        border-bottom: 1px solid #eee; /* Separator */
-        border-radius: 0; /* Remove radius */
+        padding: 12px 20px;
+        color: #444;
+        border-bottom: 1px solid #eee;
+        border-radius: 0;
     }
     nav a:hover, nav a.active {
-        background-color: #e0e0e0; /* Different hover for mobile */
-        color: #b8860b; /* Gold highlight */
+        background-color: #e0e0e0;
+        color: #b8860b;
     }
      nav li:last-child a {
-         border-bottom: none; /* No border for last item */
+         border-bottom: none;
      }
 
     main {
-        padding-top: 70px; /* Adjust main content padding */
+        padding-top: 70px;
     }
 
     #photo-album .album-container {
-        width: 100%; /* Full width on mobile */
+        width: 100%;
     }
     #album-image {
-         max-height: 300px; /* Limit height on mobile */
+         max-height: 300px;
     }
     #prev-btn, #next-btn {
         font-size: 1.5em;
@@ -610,7 +607,7 @@ main {
 
 
     #prayer-times-page .times {
-        width: 95%; /* Near full width */
+        width: 95%;
         padding: 15px;
     }
      #prayer-times-page .prayer {
@@ -627,15 +624,15 @@ main {
     }
 
     #gallery-page .gallery-container {
-       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Smaller columns */
+       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
        gap: 10px;
     }
     #gallery-page .gallery-container img {
-        height: 120px; /* Adjust fixed height */
+        height: 120px;
     }
 
     #about-page p, #about-page ul {
-        font-size: 1em; /* Adjust font size */
+        font-size: 1em;
     }
 
 }
