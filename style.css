@@ -230,6 +230,44 @@ main {
     opacity: 1;
 }
 
+#azkar-app {
+    background-color: #fff; /* رجعنا الخلفية أبيض */
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+#azkar-app h2 {
+    color: #000; /* خلينا لون العنوان أسود */
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+#azkar-app p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.azkar-link {
+    display: inline-block;
+    background-color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* ظل خفيف للمعة */
+}
+
+.azkar-link:hover {
+    background-color: #a17509; /* لون أغمق عند الhover */
+}
+
 #suggestions {
     background-color: #fff;
     padding: 30px 20px;
@@ -476,38 +514,3 @@ main {
         justify-content: center; /* توسيط العناصر أفقياً */
         align-items: center; /* توسيط العناصر عموديًا */
         padding: 0 10px; /* إضافة مسافة داخلية */
-    }
-
-    #album-image {
-        max-width: 70%; /* تكبير حجم الصورة */
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        margin: 0 10px; /* إضافة هوامش جانبية للصورة */
-    }
-
-    #prev-btn, #next-btn {
-        position: static; /* عشان يتبع تخطيط الفليكس */
-        transform: translateY(0); /* إعادة تعيين التحويل */
-        margin: 10px; /* إضافة هوامش للأزرار */
-    }
-
-    #social-links .links-container {
-        justify-content: center;
-        gap: 15px;
-    }
-
-    #social-links .links-container img {
-        width: 35px;
-        height: 35px;
-    }
-
-    #suggestions h2 {
-        font-size: 1.4em;
-    }
-
-    .suggestion-link {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
-}
