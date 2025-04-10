@@ -1,112 +1,113 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مواقيت الصلاة - السالمية</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #2e2e2e;
-            color: #fff;
-            text-align: center;
-            padding: 50px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مواقيت الصلاة - السالمية</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fff;
+      color: #000;
+      text-align: center;
+      padding: 50px;
+      direction: rtl;
+    }
 
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
+    h1, h2 {
+      color: #000;
+    }
 
-        h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    h2 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
 
-        li {
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
+    .date {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: #555;
+    }
 
-        .time {
-            color: #ffcc00;
-        }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
 
-        .container {
-            display: inline-block;
-            background-color: #333;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-        }
+    li {
+      font-size: 1.5em;
+      margin: 15px 0;
+      color: #000;
+    }
 
-        .date {
-            font-size: 1.2em;
-            color: #ccc;
-        }
+    .time {
+      color: #d4af37; /* اللون الذهبي */
+      font-weight: bold;
+    }
 
-    </style>
+    .container {
+      max-width: 600px;
+      margin: auto;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      padding: 30px;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>مسجد نورة سعد العبيد</h1>
+    <h2>مواقيت الصلاة - السالمية</h2>
+    <div class="date" id="current-date"></div>
+    <div id="prayer-times"></div>
+  </div>
 
-    <div class="container">
-        <h1>مسجد نورة سعد العبيد</h1>
-        <h2>مواقيت الصلاة - السالمية</h2>
-        <div class="date" id="current-date"></div>
-        <div id="prayer-times"></div>
-    </div>
+  <script>
+    function formatTime24to12(hour, minute) {
+      let ampm = hour >= 12 ? 'م' : 'ص';
+      hour = hour % 12;
+      hour = hour ? hour : 12;
+      minute = minute < 10 ? '0' + minute : minute;
+      return hour + ':' + minute + ' ' + ampm;
+    }
 
-    <script>
-        // تحويل الوقت بتنسيق 24 ساعة إلى 12 ساعة مع AM/PM
-        function formatTime24to12(hour, minute) {
-            let ampm = hour >= 12 ? 'PM' : 'AM';
-            hour = hour % 12;
-            hour = hour ? hour : 12;  // الساعة 0 تصبح 12
-            minute = minute < 10 ? '0' + minute : minute;
-            return hour + ':' + minute + ' ' + ampm;
-        }
+    fetch("https://api.aladhan.com/v1/timingsByCity?city=Salmiya&country=Kuwait&method=2")
+      .then(response => response.json())
+      .then(data => {
+        const timings = data.data.timings;
+        const container = document.getElementById("prayer-times");
+        const dateContainer = document.getElementById("current-date");
 
-        // جلب مواقيت الصلاة وتاريخ اليوم
-        fetch("https://api.aladhan.com/v1/timingsByCity?city=Salmiya&country=Kuwait&method=2")
-            .then(response => response.json())
-            .then(data => {
-                const timings = data.data.timings;
-                const container = document.getElementById("prayer-times");
-                const dateContainer = document.getElementById("current-date");
+        const today = new Date();
+        const daysOfWeek = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+        const monthsOfYear = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+        const dayOfWeek = daysOfWeek[today.getDay()];
+        const month = monthsOfYear[today.getMonth()];
+        const date = today.getDate();
+        const year = today.getFullYear();
+        const formattedDate = `${dayOfWeek}، ${date} ${month} ${year}`;
 
-                // عرض اليوم والتاريخ
-                const today = new Date();
-                const daysOfWeek = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
-                const monthsOfYear = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
-                const dayOfWeek = daysOfWeek[today.getDay()];
-                const month = monthsOfYear[today.getMonth()];
-                const date = today.getDate();
-                const year = today.getFullYear();
-                const formattedDate = `${dayOfWeek}, ${date} ${month} ${year}`;
+        dateContainer.textContent = formattedDate;
 
-                dateContainer.innerHTML = `${formattedDate}`;
-
-                // عرض مواقيت الصلاة
-                container.innerHTML = `
-                    <ul>
-                        <li>الفجر: <span class="time">${formatTime24to12(...timings.Fajr.split(':').map(Number))}</span></li>
-                        <li>الشروق: <span class="time">${formatTime24to12(...timings.Sunrise.split(':').map(Number))}</span></li>
-                        <li>الظهر: <span class="time">${formatTime24to12(...timings.Dhuhr.split(':').map(Number))}</span></li>
-                        <li>العصر: <span class="time">${formatTime24to12(...timings.Asr.split(':').map(Number))}</span></li>
-                        <li>المغرب: <span class="time">${formatTime24to12(...timings.Maghrib.split(':').map(Number))}</span></li>
-                        <li>العشاء: <span class="time">${formatTime24to12(...timings.Isha.split(':').map(Number))}</span></li>
-                    </ul>
-                `;
-            })
-            .catch(error => {
-                console.error("Error fetching prayer times:", error);
-            });
-    </script>
-
+        container.innerHTML = `
+          <ul>
+            <li>الفجر: <span class="time">${formatTime24to12(...timings.Fajr.split(':').map(Number))}</span></li>
+            <li>الشروق: <span class="time">${formatTime24to12(...timings.Sunrise.split(':').map(Number))}</span></li>
+            <li>الظهر: <span class="time">${formatTime24to12(...timings.Dhuhr.split(':').map(Number))}</span></li>
+            <li>العصر: <span class="time">${formatTime24to12(...timings.Asr.split(':').map(Number))}</span></li>
+            <li>المغرب: <span class="time">${formatTime24to12(...timings.Maghrib.split(':').map(Number))}</span></li>
+            <li>العشاء: <span class="time">${formatTime24to12(...timings.Isha.split(':').map(Number))}</span></li>
+          </ul>
+        `;
+      })
+      .catch(error => {
+        console.error("خطأ في تحميل المواقيت:", error);
+      });
+  </script>
 </body>
 </html>
