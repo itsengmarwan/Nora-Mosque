@@ -40,15 +40,15 @@ header.menu-open {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0 15px; /* إضافة بعض المسافة الداخلية للرأس من الجانبين */
+    padding: 0 15px;
 }
 
 .logo {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    margin-left: -5px; /* تحريك الشعار جهة الشمال بمقدار بسيط (لو لسه محتاجها) */
-    margin-right: 10px; /* إضافة مسافة على اليمين عشان الشعار ميكونش لازق في الحافة */
+    margin-left: -5px;
+    margin-right: 10px;
 }
 
 .logo img {
@@ -402,7 +402,7 @@ main {
 /* تصميم متجاوب */
 @media (max-width: 768px) {
     body {
-        padding-top: 50px; /* هامش علوي لجعل الرأس يظهر بشكل صحيح على الجوال */
+        padding-top: 50px;
     }
 
     header {
@@ -410,7 +410,7 @@ main {
         width: 100%;
         left: 0;
         transform: translateX(0);
-        padding: 0 10px; /* إضافة مسافة داخلية للرأس على الجوال أيضًا */
+        padding: 0 10px;
     }
 
     .header-inner {
@@ -423,8 +423,8 @@ main {
         display: flex;
         align-items: center;
         flex-wrap: nowrap;
-        margin-left: -10px; /* تحريك الشعار جهة الشمال بمقدار أكبر على الجوال */
-        margin-right: 5px; /* إضافة مسافة على اليمين للشعار على الجوال */
+        margin-left: -10px;
+        margin-right: 5px;
     }
 
     .logo img {
@@ -498,6 +498,9 @@ main {
         font-size: 1.5em;
         color: #555;
         cursor: pointer;
+        /* هنرجع مكان الأيقونة دي */
+        margin-left: auto; /* دفع الأيقونة لأقصى اليسار */
+        margin-right: 0; /* التأكد من عدم وجود مسافة على اليمين */
     }
 
     #photo-album .album-container {
@@ -522,7 +525,7 @@ main {
     }
 
     #gallery-page .gallery-container {
-        grid-template-columns: 1fr; /* عرض الصور في عمود واحد على الجوال */
+        grid-template-columns: 1fr;
         gap: 15px;
         padding: 15px;
     }
@@ -531,4 +534,17 @@ main {
         width: 100%;
     }
 
-    /* هامش علوي لعناصر <main> داخل الصفحات على الجوال */
+    #index-page main {
+        padding-top: 60px;
+    }
+
+    #about-page main {
+        padding-top: 60px;
+    }
+
+    #contact-page main {
+        padding-top: 60px;
+    }
+
+    #news-page main {
+        padding-top: 60px;
