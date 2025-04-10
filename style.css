@@ -65,6 +65,7 @@ header.menu-open {
     font-size: 1.1em;
     margin-bottom: 0;
     white-space: nowrap;
+    color: #007bff; /* تغيير لون اسم المسجد للأزرق */
 }
 
 .logo-text p {
@@ -137,7 +138,7 @@ main {
 }
 
 #photo-album h2 {
-    color: #555; /* رجعنا لون عنوان مكتبة الصور للأسود */
+    color: #555;
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 1.6em;
@@ -164,7 +165,7 @@ main {
     background: none;
     border: none;
     font-size: 1.5em; /* تصغير حجم الأزرار */
-    color: #007bff; /* خليناه أزرق زي ما اتفقنا */
+    color: #555;
     cursor: pointer;
     padding: 8px; /* تقليل المساحة الداخلية للأزرار */
     z-index: 10;
@@ -441,6 +442,7 @@ main {
         font-size: 1em;
         margin-bottom: 0;
         white-space: nowrap;
+        color: #007bff; /* تغيير لون اسم المسجد للأزرق */
     }
 
     .logo-text p {
@@ -522,4 +524,5 @@ main {
         position: static; /* عشان يتبع تخطيط الفليكس */
         transform: translateY(0); /* إلغاء التحويل الرأسي */
         margin: 0 5px;
-        display:
+        display: block;
+        text
