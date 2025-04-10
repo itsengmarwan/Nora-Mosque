@@ -231,7 +231,7 @@ main {
 }
 
 #azkar-app {
-    background-color: rgba(255, 215, 0, 0.3); /* ذهبي مع شفافية 30% */
+    background-color: rgba(184, 134, 11, 0.15); /* نفس درجة الذهبي مع شفافية 15% */
     padding: 30px 20px;
     margin-bottom: 30px;
     border-radius: 8px;
@@ -505,4 +505,3 @@ main {
         font-size: 1.5em;
         color: #555;
         cursor: pointer;
-        margin-left: 30px;
