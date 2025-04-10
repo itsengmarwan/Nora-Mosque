@@ -231,7 +231,7 @@ main {
 }
 
 #azkar-app {
-    background-color: #FFD700; /* ذهبي */
+    background-color: rgba(255, 215, 0, 0.3); /* ذهبي مع شفافية 30% */
     padding: 30px 20px;
     margin-bottom: 30px;
     border-radius: 8px;
@@ -506,8 +506,3 @@ main {
         color: #555;
         cursor: pointer;
         margin-left: 30px;
-        margin-right: auto;
-    }
-
-    #photo-album .album-container {
-        flex-direction: row; /*
