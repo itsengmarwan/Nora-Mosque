@@ -1,99 +1,318 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مواقيت الصلاة - جامع نورة سعد العبيد</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* تنسيقات خاصة بصفحة مواقيت الصلاة */
-        #prayer-times-page {
-            padding-top: 80px;
-            padding-bottom: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-            text-align: center;
-        }
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding-top: 60px;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    transition: padding-top 0.3s ease-in-out;
+}
 
-        #q8prayers {
-            max-width: 600px;
-            width: 100%;
-            margin-top: 30px;
-        }
+body.menu-open {
+    padding-top: 180px;
+}
 
-        #q8prayers table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        #q8prayers th,
-        #q8prayers td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    padding: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: transform 0.3s ease-in-out;
+}
 
-        #q8prayers th {
-            font-weight: bold;
-            color: #555;
-        }
+header.menu-open {
+    transform: translateY(0);
+}
 
-        #q8prayers td:first-child {
-            font-weight: bold;
-            color: #333;
-        }
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 15px;
+}
 
-        #q8prayers td:last-child {
-            color: #b8860b;
-            font-weight: bold;
-        }
+.logo {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-left: -5px;
+    margin-right: 10px;
+}
 
-        body {
-            color: #333;
-        }
+.logo img {
+    height: 40px;
+    margin-left: 8px;
+    transition: height 0.3s ease-in-out;
+}
 
-        #prayer-times-page h2 {
-            color: #555;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="header-inner">
-                <div class="logo">
-                    <img src="images/mosque-logo.png" alt="شعار المسجد">
-                    <div class="logo-text">
-                        <h1>جامع نورة سعد العبيد</h1>
-                        <p>مواقيت الصلاة</p>
-                    </div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="about.html">عن المسجد</a></li>
-                        <li><a href="gallery.html">مكتبة الصور</a></li>
-                        <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
-                        <li><a href="contact.html">تواصل معنا</a></li>
-                        <li><a href="news.html">الأخبار والفعاليات</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+.logo-text {
+    margin-right: 8px;
+}
 
-        <main id="prayer-times-page">
-            <h2>مواقيت الصلاة - السالمية</h2>
-            <div id="q8prayers" data-lang="ar" data-theme="light" data-size="md" data-date="gregorian"></div>
-        </main>
-    </div>
-    <script src="https://q8p.io/js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+.logo-text h1 {
+    font-size: 1.1em;
+    margin-bottom: 0;
+    white-space: nowrap;
+    color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logo-text p {
+    font-size: 0.7em;
+    margin-top: 2px;
+    white-space: nowrap;
+}
+
+nav {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 98;
+    padding: 15px 0;
+    display: none;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+nav.open {
+    display: block;
+    transform: translateY(0);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    text-align: center;
+}
+
+nav li {
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+nav li:last-child {
+    margin-bottom: 0;
+}
+
+nav a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #eee;
+    color: #5cb85c;
+}
+
+main {
+    padding-top: 70px; /* هامش علوي عام لعناصر <main> */
+}
+
+#photo-album {
+    background-color: #fff;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#photo-album h2 {
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+}
+
+.album-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* توسيط العناصر أفقياً */
+    position: relative;
+    width: 90%; /* جعل حاوية الألبوم تأخذ كامل عرض الأب */
+    margin: 20px auto;
+}
+
+#album-image {
+    max-width: 70%; /* تكبير حجم الصورة */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0 15px; /* تقليل الهوامش الجانبية للصورة */
+}
+
+#prev-btn, #next-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em; /* تصغير حجم الأزرار */
+    color: #555;
+    cursor: pointer;
+    padding: 8px; /* تقليل المساحة الداخلية للأزرار */
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    position: absolute; /* عشان نقدر نتحكم في مكانهم */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#prev-btn:hover, #next-btn:hover {
+    opacity: 1;
+}
+
+#prev-btn {
+    left: 5px; /* تقليل المسافة من الجانب الأيسر */
+}
+
+#next-btn {
+    right: 5px; /* تقليل المسافة من الجانب الأيمن */
+}
+
+#social-links {
+    background-color: #fff;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#social-links h2 {
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+}
+
+.links-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.links-container a {
+    text-decoration: none;
+}
+
+.links-container img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.links-container img:hover {
+    opacity: 1;
+}
+
+#suggestions {
+    background-color: #fff;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+#suggestions h2 {
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+}
+
+.suggestion-link {
+    display: inline-block;
+    background-color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* ظل خفيف للمعة */
+}
+
+.suggestion-link:hover {
+    background-color: #a17509; /* لون أغمق عند الhover */
+}
+
+.contact-form {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.contact-form div {
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.contact-form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.contact-info {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+}
+
+.news-
