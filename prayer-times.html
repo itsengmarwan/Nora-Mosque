@@ -1,113 +1,55 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>مواقيت الصلاة - السالمية</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مواقيت الصلاة - مسجد نورا</title>
+  <link rel="stylesheet" href="https://q8p.io/css" />
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fff;
+      font-family: 'Cairo', sans-serif;
+      background-color: #ffffff;
       color: #000;
-      text-align: center;
-      padding: 50px;
-      direction: rtl;
-    }
-
-    h1, h2 {
-      color: #000;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      font-size: 1.8em;
-      margin-bottom: 20px;
-    }
-
-    .date {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-      color: #555;
-    }
-
-    ul {
-      list-style-type: none;
+      margin: 0;
       padding: 0;
+      text-align: center;
     }
-
-    li {
-      font-size: 1.5em;
-      margin: 15px 0;
-      color: #000;
+    header {
+      background-color: #000;
+      color: #FFD700;
+      padding: 1rem 0;
     }
-
-    .time {
-      color: #d4af37; /* اللون الذهبي */
-      font-weight: bold;
+    h1 {
+      margin: 0;
+      font-size: 2rem;
     }
-
-    .container {
-      max-width: 600px;
-      margin: auto;
-      border: 2px solid #d4af37;
-      border-radius: 12px;
-      padding: 30px;
+    #q8prayers {
+      margin: 2rem auto;
+      max-width: 500px;
+    }
+    footer {
+      background-color: #000;
+      color: #FFD700;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>مسجد نورة سعد العبيد</h1>
-    <h2>مواقيت الصلاة - السالمية</h2>
-    <div class="date" id="current-date"></div>
-    <div id="prayer-times"></div>
-  </div>
+  <header>
+    <h1>مواقيت الصلاة</h1>
+    <p>السالمية - الكويت</p>
+  </header>
 
-  <script>
-    function formatTime24to12(hour, minute) {
-      let ampm = hour >= 12 ? 'م' : 'ص';
-      hour = hour % 12;
-      hour = hour ? hour : 12;
-      minute = minute < 10 ? '0' + minute : minute;
-      return hour + ':' + minute + ' ' + ampm;
-    }
+  <div id="q8prayers" data-lang="ar" data-theme="light" data-size="md" data-date="gregorian"></div>
 
-    fetch("https://api.aladhan.com/v1/timingsByCity?city=Salmiya&country=Kuwait&method=2")
-      .then(response => response.json())
-      .then(data => {
-        const timings = data.data.timings;
-        const container = document.getElementById("prayer-times");
-        const dateContainer = document.getElementById("current-date");
+  <footer>
+    &copy; 2025 مسجد نورا - جميع الحقوق محفوظة
+  </footer>
 
-        const today = new Date();
-        const daysOfWeek = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
-        const monthsOfYear = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
-        const dayOfWeek = daysOfWeek[today.getDay()];
-        const month = monthsOfYear[today.getMonth()];
-        const date = today.getDate();
-        const year = today.getFullYear();
-        const formattedDate = `${dayOfWeek}، ${date} ${month} ${year}`;
-
-        dateContainer.textContent = formattedDate;
-
-        container.innerHTML = `
-          <ul>
-            <li>الفجر: <span class="time">${formatTime24to12(...timings.Fajr.split(':').map(Number))}</span></li>
-            <li>الشروق: <span class="time">${formatTime24to12(...timings.Sunrise.split(':').map(Number))}</span></li>
-            <li>الظهر: <span class="time">${formatTime24to12(...timings.Dhuhr.split(':').map(Number))}</span></li>
-            <li>العصر: <span class="time">${formatTime24to12(...timings.Asr.split(':').map(Number))}</span></li>
-            <li>المغرب: <span class="time">${formatTime24to12(...timings.Maghrib.split(':').map(Number))}</span></li>
-            <li>العشاء: <span class="time">${formatTime24to12(...timings.Isha.split(':').map(Number))}</span></li>
-          </ul>
-        `;
-      })
-      .catch(error => {
-        console.error("خطأ في تحميل المواقيت:", error);
-      });
-  </script>
+  <script src="https://q8p.io/js"></script>
 </body>
 </html>
