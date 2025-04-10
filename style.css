@@ -65,7 +65,7 @@ header.menu-open {
     font-size: 1.1em;
     margin-bottom: 0;
     white-space: nowrap;
-    color: #007bff; /* تغيير لون اسم المسجد للأزرق */
+    color: #FFC107; /* تغيير لون اسم المسجد للأزرق */
 }
 
 .logo-text p {
