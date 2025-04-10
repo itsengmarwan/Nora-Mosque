@@ -137,7 +137,7 @@ main {
 }
 
 #photo-album h2 {
-    color: #007bff; /* إضافة اللون الأزرق لعنوان مكتبة الصور */
+    color: #555; /* رجعنا لون عنوان مكتبة الصور للأسود */
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 1.6em;
@@ -164,7 +164,7 @@ main {
     background: none;
     border: none;
     font-size: 1.5em; /* تصغير حجم الأزرار */
-    color: #007bff; /* إضافة اللون الأزرق لأزرار التنقل */
+    color: #007bff; /* خليناه أزرق زي ما اتفقنا */
     cursor: pointer;
     padding: 8px; /* تقليل المساحة الداخلية للأزرار */
     z-index: 10;
@@ -522,3 +522,4 @@ main {
         position: static; /* عشان يتبع تخطيط الفليكس */
         transform: translateY(0); /* إلغاء التحويل الرأسي */
         margin: 0 5px;
+        display:
