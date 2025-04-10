@@ -1,103 +1,103 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مواقيت الصلاة - مسجد نورة سعد العبيد</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* تنسيقات خاصة بصفحة مواقيت الصلاة */
-        #prayer-times-page {
-            padding-top: 80px;
-            padding-bottom: 30px;
-            position: relative; /* عشان يكون الأب للعنصر اللي هيتوسط بشكل مطلق */
-            text-align: center; /* توسيط عام للنص كاحتياط */
-        }
-
-        .prayer-times-wrapper {
-            max-width: 600px;
-            width: 100%;
-            margin-top: 30px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .prayer-times-wrapper table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
-
-        .prayer-times-wrapper th,
-        .prayer-times-wrapper td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        .prayer-times-wrapper th {
-            font-weight: bold;
-            color: #555;
-        }
-
-        .prayer-times-wrapper td:first-child {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .prayer-times-wrapper td:last-child {
-            color: #b8860b;
-            font-weight: bold;
-        }
-
-        body {
-            color: #333;
-            text-align: center;
-        }
-
-        #prayer-times-page h2 {
-            color: #555;
-            text-align: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مواقيت الصلاة - مسجد نورا</title>
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #fff;
+      color: #000;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #000;
+      color: #ffd700;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .date {
+      margin: 15px 0;
+      font-size: 18px;
+      color: #444;
+    }
+    .times {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+      margin: auto;
+      background: #f9f9f9;
+      padding: 20px;
+      border: 2px solid #000;
+      border-radius: 10px;
+    }
+    .prayer {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+    .label {
+      color: #000;
+    }
+    .time {
+      color: #d4af37;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-inner">
-                <div class="logo">
-                    <img src="images/mosque-logo.png" alt="شعار المسجد">
-                    <div class="logo-text">
-                        <h1>جامع نورة سعد العبيد</h1>
-                        <p></p>
-                    </div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="about.html">عن المسجد</a></li>
-                        <li><a href="gallery.html">مكتبة الصور</a></li>
-                        <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
-                        <li><a href="contact.html">تواصل معنا</a></li>
-                        <li><a href="news.html">الأخبار والفعاليات</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
 
-        <main id="prayer-times-page">
-            <h2>مواقيت الصلاة للمسجد</h2>
-            <div class="prayer-times-wrapper">
-                <div id="q8prayers" data-lang="ar" data-theme="light" data-size="md" data-date="gregorian"></div>
-            </div>
-        </main>
-    </div>
-    <script src="https://q8p.io/js"></script>
-    <script src="script.js"></script>
+  <header>مواقيت الصلاة - السالمية، الكويت</header>
+  <div class="date" id="today"></div>
+  <div class="times" id="prayer-times">
+    جاري التحميل...
+  </div>
+
+  <script>
+    const today = new Date();
+    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("today").textContent = today.toLocaleDateString('ar-EG', dateOptions);
+
+    fetch("https://api.aladhan.com/v1/timingsByCity?city=Salmiya&country=Kuwait&method=3")
+      .then(response => response.json())
+      .then(data => {
+        const timings = data.data.timings;
+        const prayerList = {
+          "الفجر": timings.Fajr,
+          "الشروق": timings.Sunrise,
+          "الظهر": timings.Dhuhr,
+          "العصر": timings.Asr,
+          "المغرب": timings.Maghrib,
+          "العشاء": timings.Isha
+        };
+
+        const container = document.getElementById("prayer-times");
+        container.innerHTML = '';
+
+        for (const [label, time] of Object.entries(prayerList)) {
+          const div = document.createElement("div");
+          div.className = "prayer";
+          div.innerHTML = `<span class="label">${label}</span><span class="time">${convertTo12Hour(time)}</span>`;
+          container.appendChild(div);
+        }
+      });
+
+    function convertTo12Hour(time24) {
+      const [hour, minute] = time24.split(":").map(Number);
+      const ampm = hour >= 12 ? 'م' : 'ص';
+      const hour12 = ((hour + 11) % 12 + 1);
+      return `${hour12}:${minute.toString().padStart(2, '0')} ${ampm}`;
+    }
+  </script>
+
 </body>
 </html>
