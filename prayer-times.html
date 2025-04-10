@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مواقيت الصلاة - مسجد نورا</title>
-  <link rel="stylesheet" href="https://q8p.io/css" />
-  <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background-color: #ffffff;
-      color: #000;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background-color: #000;
-      color: #FFD700;
-      padding: 1rem 0;
-    }
-    h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    #q8prayers {
-      margin: 2rem auto;
-      max-width: 500px;
-    }
-    footer {
-      background-color: #000;
-      color: #FFD700;
-      padding: 1rem;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مواقيت الصلاة - جامع نورة سعد العبيد</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* هنضيف هنا أي تنسيقات خاصة بصفحة مواقيت الصلاة لو احتاجنا */
+        #q8prayers {
+            margin: 30px auto;
+            max-width: 600px;
+            text-align: center; /* توسيط جدول q8prayers لو كان فيه عناصر داخلية */
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>مواقيت الصلاة</h1>
-    <p>السالمية - الكويت</p>
-  </header>
+    <div class="container">
+        <header>
+            <div class="header-inner">
+                <div class="logo">
+                    <img src="images/mosque-logo.png" alt="شعار المسجد">
+                    <div class="logo-text">
+                        <h1>جامع نورة سعد العبيد</h1>
+                        <p>مواقيت الصلاة</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">عن المسجد</a></li>
+                        <li><a href="gallery.html">مكتبة الصور</a></li>
+                        <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                        <li><a href="news.html">الأخبار والفعاليات</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-  <div id="q8prayers" data-lang="ar" data-theme="light" data-size="md" data-date="gregorian"></div>
+        <main id="prayer-times-page">
+            <h2>مواقيت الصلاة - السالمية</h2>
+            <div id="q8prayers" data-lang="ar" data-theme="light" data-size="md" data-date="gregorian"></div>
+        </main>
 
-  <footer>
-    &copy; 2025 مسجد نورا - جميع الحقوق محفوظة
-  </footer>
-
-  <script src="https://q8p.io/js"></script>
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 جامع نورة سعد العبيد - جميع الحقوق محفوظة</p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://q8p.io/js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
