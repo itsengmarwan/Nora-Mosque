@@ -498,9 +498,9 @@ main {
         font-size: 1.5em;
         color: #555;
         cursor: pointer;
-        /* هنرجع مكان الأيقونة دي */
-        margin-left: auto; /* دفع الأيقونة لأقصى اليسار */
-        margin-right: 0; /* التأكد من عدم وجود مسافة على اليمين */
+        /* هنرجع مكان الأيقونة دي بشكل صحيح */
+        margin-left: 0; /* نخليها تبدأ من أقصى اليسار */
+        margin-right: auto; /* وندفعها لأقصى اليمين عشان العناصر اللي قبلها تاخد مكانها */
     }
 
     #photo-album .album-container {
@@ -548,3 +548,6 @@ main {
 
     #news-page main {
         padding-top: 60px;
+    }
+
+    #gallery-page main {
