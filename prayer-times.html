@@ -8,20 +8,29 @@
     <style>
         /* تنسيقات خاصة بصفحة مواقيت الصلاة */
         #prayer-times-page {
-            padding-top: 80px; /* عشان المحتوى مينزلش تحت الهيدر الثابت */
-            padding-bottom: 30px; /* مساحة بسيطة من تحت */
-            text-align: center; /* توسيط عام للنص داخل main */
+            padding-top: 80px;
+            padding-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            text-align: center;
         }
 
         #q8prayers {
-            margin: 30px auto; /* توسيط أفقي - دي المفروض تكون كافية */
-            max-width: 600px; /* تحديد عرض أقصى */
+            max-width: 600px;
+            width: 100%;
+            margin-top: 30px;
         }
 
         #q8prayers table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
 
         #q8prayers th,
@@ -33,33 +42,23 @@
 
         #q8prayers th {
             font-weight: bold;
-            color: #555; /* لون عناوين الجدول */
+            color: #555;
         }
 
         #q8prayers td:first-child {
             font-weight: bold;
-            color: #333; /* لون أسماء الصلوات */
+            color: #333;
         }
 
         #q8prayers td:last-child {
-            color: #b8860b; /* لون مواقيت الصلاة الذهبي */
+            color: #b8860b;
             font-weight: bold;
         }
 
-        /* ممكن نضيف لون خلفية فاتح للجدول عشان ميكونش كله أبيض */
-        #q8prayers table {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            overflow: hidden; /* عشان الـ border-radius يشتغل كويس */
-        }
-
-        /* لون الخط الرئيسي في الصفحة */
         body {
             color: #333;
         }
 
-        /* لون العنوان الرئيسي للصفحة */
         #prayer-times-page h2 {
             color: #555;
         }
