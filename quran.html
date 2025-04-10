@@ -1,40 +1,200 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>المصحف الشريف</title>
-  <style>
-    body {
-      background-color: #fff;
-      color: #000;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المصحف الشريف</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f4f4; /* لون خلفية فاتح */
+            color: #333; /* لون نص أساسي */
+            margin: 0;
+            padding-top: 80px; /* عشان الهيدر الثابت مَيغطيش المحتوى */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* لجعل الخلفية تغطي كامل ارتفاع الشاشة */
+        }
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 10px 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            transition: transform 0.3s ease-in-out;
+        }
 
-    header {
-      background-color: #000;
-      color: #FFD700; /* ذهبي */
-      text-align: center;
-      padding: 1rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+        header.menu-open {
+            transform: translateY(0);
+        }
 
-    iframe {
-      width: 100%;
-      height: 90vh;
-      border: none;
-    }
-  </style>
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            margin-left: -5px;
+            margin-right: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-left: 8px;
+            transition: height 0.3s ease-in-out;
+        }
+
+        .logo-text {
+            margin-right: 8px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.1em;
+            margin-bottom: 0;
+            white-space: nowrap;
+            color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text p {
+            font-size: 0.7em;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+
+        nav {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 98;
+            padding: 15px 0;
+            display: none;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        nav.open {
+            display: block;
+            transform: translateY(0);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: block;
+            text-align: center;
+        }
+
+        nav li {
+            margin-left: 0;
+            margin-bottom: 10px;
+        }
+
+        nav li:last-child {
+            margin-bottom: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #eee;
+            color: #5cb85c;
+        }
+
+        main {
+            width: 90%;
+            max-width: 900px;
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #b8860b; /* ذهبي */
+            margin-bottom: 15px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 70vh; /* تقليل الارتفاع قليلاً عشان يكون فيه مساحة للعنوان */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
 
-  <header>المصحف الشريف - قراءة مباشرة</header>
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <img src="images/mosque-logo.png" alt="شعار المسجد">
+                <div class="logo-text">
+                    <h1>مسجد نورة سعد العبيد</h1>
+                    <p></p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">عن المسجد</a></li>
+                    <li><a href="gallery.html">مكتبة الصور</a></li>
+                    <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
+                    <li><a href="quran.html">المصحف الشريف</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                    <li><a href="news.html">الأخبار والفعاليات</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <iframe src="https://drive.google.com/file/d/1BUy4_nHp6nFbQv0H9OemnEez-mNQvJZC/preview" allow="autoplay"></iframe>
+    <main>
+        <h1>المصحف الشريف - قراءة مباشرة</h1>
+        <iframe src="https://drive.google.com/file/d/1BUy4_nHp6nFbQv0H9OemnEez-mNQvJZC/preview" allow="autoplay"></iframe>
+    </main>
 
+    <footer>
+        <p>© 2025 - جميع الحقوق محفوظة لـ مسجد نورة</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
