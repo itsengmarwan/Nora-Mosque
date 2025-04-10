@@ -125,6 +125,9 @@ nav a:hover {
 
 main {
     padding-top: 70px; /* هامش علوي عام لعناصر <main> */
+    display: flex; /* إضافة تخطيط فليكس للمحتوى الرئيسي */
+    flex-direction: column; /* ترتيب العناصر عموديًا */
+    align-items: center; /* توسيط العناصر أفقياً */
 }
 
 #photo-album {
@@ -134,6 +137,8 @@ main {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 90%; /* تحديد عرض مناسب لعنصر الألبوم */
+    max-width: 600px; /* تحديد أقصى عرض عشان ميكبرش أوي */
 }
 
 #photo-album h2 {
@@ -148,7 +153,7 @@ main {
     align-items: center;
     justify-content: space-between; /* توزيع العناصر بالتساوي مع مسافات بينها */
     position: relative;
-    max-width: 90%;
+    width: 100%; /* جعل حاوية الألبوم تأخذ كامل عرض الأب */
     margin: 20px auto;
 }
 
@@ -195,6 +200,8 @@ main {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 90%; /* تحديد عرض مناسب */
+    max-width: 600px; /* تحديد أقصى عرض */
 }
 
 #social-links h2 {
@@ -236,6 +243,8 @@ main {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     text-align: center;
+    width: 90%; /* تحديد عرض مناسب */
+    max-width: 600px; /* تحديد أقصى عرض */
 }
 
 #azkar-app h2 {
@@ -273,6 +282,8 @@ main {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     text-align: center;
+    width: 90%; /* تحديد عرض مناسب */
+    max-width: 600px; /* تحديد أقصى عرض */
 }
 
 #suggestions h2 {
@@ -303,6 +314,8 @@ main {
     background-color: #f9f9f9;
     border-radius: 5px;
     margin-bottom: 20px;
+    width: 90%; /* تحديد عرض مناسب */
+    max-width: 600px; /* تحديد أقصى عرض */
 }
 
 .contact-form div {
@@ -339,6 +352,8 @@ main {
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 5px;
+    width: 90%; /* تحديد عرض مناسب */
+    max-width: 600px; /* تحديد أقصى عرض */
 }
 
 .contact-info ul {
@@ -356,6 +371,8 @@ main {
     margin-bottom: 20px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    width: 90%; /* تحديد عرض مناسب */
+    max-width: 600px; /* تحديد أقصى عرض */
 }
 
 .news-item h3 {
@@ -498,32 +515,4 @@ main {
     .header-inner::after {
         content: '☰';
         font-size: 1.5em;
-        color: #555;
-        cursor: pointer;
-        margin-left: 30px;
-        margin-right: auto;
-    }
-
-    #photo-album .album-container {
-        flex-direction: row; /* ترتيب العناصر أفقيًا */
-        justify-content: space-between; /* توزيع العناصر مع مسافات بينها */
-        align-items: center; /* توسيط العناصر عموديًا */
-        padding: 0 10px; /* إضافة مسافة داخلية */
-    }
-
-    #album-image {
-        max-width: 80%; /* تصغير حجم الصورة */
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        order: 2; /* وضع الصورة في المنتصف */
-        margin: 0 10px; /* إضافة هوامش جانبية للصورة */
-    }
-
-    #prev-btn, #next-btn {
-        background: none;
-        border: none;
-        font-size: 2em;
-        color: #555;
-        cursor: pointer;
-        padding:
+        color
