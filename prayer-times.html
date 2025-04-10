@@ -5,64 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مواقيت الصلاة - جامع نورة سعد العبيد</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* تنسيقات خاصة بصفحة مواقيت الصلاة */
-        #prayer-times-page {
-            padding-top: 80px;
-            padding-bottom: 30px;
-            display: flex;
-            justify-content: center; /* توسيط أفقي للعناصر المباشرة داخل main */
-            align-items: flex-start; /* محاذاة العناصر من الأعلى */
-            flex-direction: column;
-            text-align: center; /* توسيط النص بشكل افتراضي */
-        }
+<style>
+    /* تنسيقات خاصة بصفحة مواقيت الصلاة */
+    #prayer-times-page {
+        padding-top: 80px;
+        padding-bottom: 30px;
+        display: flex;
+        justify-content: center; /* توسيط أفقي للعناصر المباشرة داخل main */
+        align-items: flex-start; /* محاذاة العناصر من الأعلى */
+        flex-direction: column;
+        text-align: center; /* توسيط النص بشكل افتراضي */
+    }
 
-        #q8prayers {
-            max-width: 600px;
-            width: 100%; /* عشان ياخد المساحة المتاحة في الـ flex container */
-            margin-top: 30px;
-        }
+    #q8prayers {
+        max-width: 600px;
+        width: 100%; /* عشان ياخد المساحة المتاحة في الـ flex container */
+        margin-top: 30px;
+        margin-left: auto; /* إضافة التوسيط الأخير */
+        margin-right: auto; /* إضافة التوسيط الأخير */
+    }
 
-        #q8prayers table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
+    #q8prayers table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
 
-        #q8prayers th,
-        #q8prayers td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
+    #q8prayers th,
+    #q8prayers td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
 
-        #q8prayers th {
-            font-weight: bold;
-            color: #555;
-        }
+    #q8prayers th {
+        font-weight: bold;
+        color: #555;
+    }
 
-        #q8prayers td:first-child {
-            font-weight: bold;
-            color: #333;
-        }
+    #q8prayers td:first-child {
+        font-weight: bold;
+        color: #333;
+    }
 
-        #q8prayers td:last-child {
-            color: #b8860b;
-            font-weight: bold;
-        }
+    #q8prayers td:last-child {
+        color: #b8860b;
+        font-weight: bold;
+    }
 
-        body {
-            color: #333;
-        }
+    body {
+        color: #333;
+    }
 
-        #prayer-times-page h2 {
-            color: #555;
-        }
-    </style>
+    #prayer-times-page h2 {
+        color: #555;
+    }
+</style>
+
 </head>
 <body>
     <div class="container">
