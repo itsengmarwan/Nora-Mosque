@@ -6,11 +6,21 @@
     <title>مواقيت الصلاة - جامع نورة سعد العبيد</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* هنضيف هنا أي تنسيقات خاصة بصفحة مواقيت الصلاة لو احتاجنا */
+        /* تنسيقات خاصة بصفحة مواقيت الصلاة */
+        #prayer-times-page {
+            padding-top: 80px; /* عشان المحتوى مينزلش تحت الهيدر الثابت */
+            padding-bottom: 30px; /* مساحة بسيطة من تحت */
+            text-align: center; /* توسيط عام للنص داخل main */
+        }
+
         #q8prayers {
-            margin: 30px auto;
-            max-width: 600px;
-            text-align: center; /* توسيط جدول q8prayers لو كان فيه عناصر داخلية */
+            margin: 30px auto; /* توسيط أفقي */
+            max-width: 600px; /* تحديد عرض أقصى */
+            /* ممكن نضيف هنا بعض التنسيقات الإضافية لو عايزين نغير ألوان معينة في الثيم الخفيف */
+            /* مثال: */
+            /* --q8p-light-background: #f9f9f9; */
+            /* --q8p-light-text: #333; */
+            /* حاول تعدل في المتغيرات دي لو عايز تغير الألوان بشكل مباشر (ممكن تحتاج تشوف دوكومنتషన్ q8p.io) */
         }
     </style>
 </head>
@@ -42,12 +52,6 @@
             <h2>مواقيت الصلاة - السالمية</h2>
             <div id="q8prayers" data-lang="ar" data-theme="light" data-size="md" data-date="gregorian"></div>
         </main>
-
-        <footer>
-            <div class="container">
-                <p>&copy; 2025 جامع نورة سعد العبيد - جميع الحقوق محفوظة</p>
-            </div>
-        </footer>
     </div>
     <script src="https://q8p.io/js"></script>
     <script src="script.js"></script>
