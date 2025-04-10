@@ -231,7 +231,7 @@ main {
 }
 
 #azkar-app {
-    background-color: rgba(184, 134, 11, 0.15); /* نفس درجة الذهبي مع شفافية 15% */
+    background-color: #fff; /* رجعنا الخلفية أبيض */
     padding: 30px 20px;
     margin-bottom: 30px;
     border-radius: 8px;
@@ -240,7 +240,7 @@ main {
 }
 
 #azkar-app h2 {
-    color: #5cb85c; /* هنخلي عنوان أذكار زي ما هو أخضر عشان يميزه */
+    color: #5cb85c;
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.8em;
@@ -269,7 +269,7 @@ main {
 }
 
 #suggestions {
-    background-color: #f9f9f9;
+    background-color: #fff; /* رجعنا الخلفية أبيض */
     padding: 30px 20px;
     margin-bottom: 30px;
     border-radius: 8px;
@@ -505,3 +505,4 @@ main {
         font-size: 1.5em;
         color: #555;
         cursor: pointer;
+        margin-left: 30px;
