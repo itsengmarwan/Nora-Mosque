@@ -2,9 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerInner = document.querySelector('.header-inner');
     const nav = document.querySelector('nav');
     const body = document.querySelector('body');
-    // const menuToggle = headerInner ? headerInner.querySelector('::after') : null; // تعليق أو حذف محاولة استهداف ::after
-
-    // وظيفة ألبوم الصور في الصفحة الرئيسية
+    const menuToggle = headerInner ? headerInner.querySelector('::after') : null; // محاولة استهداف عنصر ::after (قد لا يعمل بشكل مباشر)
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const albumImage = document.getElementById('album-image');
@@ -20,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     let currentIndex = 0;
 
+    // وظيفة ألبوم الصور في الصفحة الرئيسية
     if (prevBtn && nextBtn && albumImage && images.length > 0) {
         albumImage.src = images[currentIndex];
 
@@ -42,43 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // إغلاق القائمة وإزالة تأثير الخلفية عند تغيير حجم الشاشة
+    // إغلاق القائمة وإزالة تأثير الخلفية عند تغيير حجم الشاشة إلى أكبر من 768 بكسل
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             nav.classList.remove('open');
             body.classList.remove('menu-open');
         }
     });
-
-    // كود تفعيل أنيميشن الظهور عند التمرير
-    const elementsToAnimate = document.querySelectorAll('.element-to-animate');
-
-    function checkVisibility() {
-        elementsToAnimate.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementBottom = element.getBoundingClientRect().bottom;
-            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
-            // لو العنصر ظاهر جزئياً في الشاشة (80% من الأسفل)
-            if (elementTop < viewportHeight * 0.8 && elementBottom > 0) {
-                element.classList.add('animate__animated'); // تأكد من وجود هذا الكلاس
-                element.classList.add('animate__delay-0.2s'); // إضافة تأخير بسيط (اختياري)
-                element.classList.add('animate__fast'); // سرعة أسرع شوية (اختياري)
-                // يمكنك إضافة تأثيرات أنيميشن مختلفة هنا بناءً على العنصر إذا أردت
-                if (element.id === 'photo-album') {
-                    element.classList.add('animate__fadeInUp');
-                } else if (element.id === 'social-links') {
-                    element.classList.add('animate__slideInLeft');
-                } else if (element.id === 'azkar-app') {
-                    element.classList.add('animate__fadeIn');
-                } else if (element.id === 'suggestions') {
-                    element.classList.add('animate__slideInRight');
-                }
-                // يمكنك إضافة المزيد من الشروط للعناصر الأخرى
-            }
-        });
-    }
-
-    window.addEventListener('scroll', checkVisibility);
-    checkVisibility(); // عشان نشيك أول مرة عند تحميل الصفحة
 });

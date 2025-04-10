@@ -3,77 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اسم موقعك</title>
+    <title>مسجد نورة سعد العبيد</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <header>
-        <div class="header-inner">
-            <div class="logo">
-                <img src="images/mosque-logo.png" alt="شعار المسجد">
-                <div class="logo-text">
-                    <h1>مسجد نورة سعد العبيد</h1>
-                    <p>صرح إسلامي شامخ</p>
+    <div class="container">
+        <header>
+            <div class="header-inner">
+                <div class="logo">
+                    <img src="images/mosque-logo.png" alt="شعار المسجد">
+                    <div class="logo-text">
+                        <h1>مسجد نورة سعد العبيد</h1>
+                        <p>صرح إسلامي شامخ</p>
+                    </div>
                 </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">عن المسجد</a></li>
+                        <li><a href="gallery.html">مكتبة الصور</a></li>
+                        <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
+                        <li><a href="quran.html">المصحف الشريف</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                        <li><a href="news.html">الأخبار والفعاليات</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="about.html">عن المسجد</a></li>
-                    <li><a href="gallery.html">مكتبة الصور</a></li>
-                    <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
-                    <li><a href="quran.html">المصحف الشريف</a></li>
-                    <li><a href="contact.html">تواصل معنا</a></li>
-                    <li><a href="news.html">الأخبار والفعاليات</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <section id="photo-album" class="element-to-animate animate__animated animate__fadeInUp">
-            <h2>صور المسجد</h2>
-            <div class="album-container">
-                <button id="prev-btn">السابق</button>
-                <img id="album-image" src="https://via.placeholder.com/300" alt="صورة للمسجد">
-                <button id="next-btn">التالي</button>
-            </div>
-        </section>
+        <main id="index-page">
+            <section id="photo-album">
+                <h2>صور المسجد</h2>
+                <div class="album-container">
+                    <button id="prev-btn">></button>
+                    <img id="album-image" src="mosque_images/image1.jpg" alt="صورة للمسجد">
+                    <button id="next-btn"><</button>
+                </div>
+            </section>
 
-        <section id="social-links" class="element-to-animate animate__animated animate__slideInLeft">
-            <h2>تابعونا على</h2>
-            <div class="links-container">
-                <a href="#"><img src="images/facebook.png" alt="فيسبوك"></a>
-                <a href="#"><img src="images/twitter.png" alt="تويتر"></a>
-                <a href="#"><img src="images/instagram.png" alt="انستجرام"></a>
-                <a href="#"><img src="images/youtube.png" alt="يوتيوب"></a>
-            </div>
-        </section>
+            <section id="social-links">
+                <h2>تابعونا على</h2>
+                <div class="links-container">
+                    <a href="https://youtube.com/@nsom_15?si=39FLXhqxA1Z3KwKD" target="_blank"><img src="images/youtube.png" alt="يوتيوب"></a>
+                    <a href="#" target="_blank"><img src="images/tiktok.png" alt="تيك توك"></a>
+                    <a href="https://t.me/nsom_15" target="_blank"><img src="images/telegram.png" alt="تليجرام"></a>
+                    <a href="https://www.instagram.com/nsom_15?igsh=MWo0d3g2em9heWMwYw==" target="_blank"><img src="images/instagram.png" alt="انستقرام"></a>
+                </div>
+            </section>
 
-        <section id="azkar-app" class="element-to-animate animate__animated animate__fadeIn">
-            <h2>تطبيق الأذكار</h2>
-            <p>حمل تطبيق الأذكار واستمتع بذكر الله في كل وقت.</p>
-            <a href="#" class="azkar-link">تحميل التطبيق</a>
-        </section>
+            <section id="azkar-app">
+                <h2>موقع أذكار</h2>
+                <p>استفد من موقع الأذكار الخاص بنا</p>
+                <a href="https://alazkar.netlify.app/" target="_blank" class="azkar-link">اذهب إلى موقع أذكار</a>
+            </section>
 
-        <section id="suggestions" class="element-to-animate animate__animated animate__slideInRight">
-            <h2>اقتراحات وملاحظات</h2>
-            <p>يسعدنا استقبال اقتراحاتكم وملاحظاتكم لتطوير المسجد وخدماته.</p>
-            <a href="contact.html" class="suggestion-link">إرسال اقتراح</a>
-        </section>
-    </main>
+            <section id="suggestions">
+                <h2>لديك اقتراح؟</h2>
+                <a href="https://forms.gle/vqLbACky9q39rVa78" target="_blank" class="suggestion-link">شاركنا رأيك</a>
+            </section>
+        </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 مسجد نورة سعد العبيد. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
-
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
