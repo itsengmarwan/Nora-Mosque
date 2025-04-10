@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مواقيت الصلاة - مسجد نورا</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* تنسيقات خاصة بصفحة مواقيت الصلاة */
     body {
       font-family: 'Tajawal', sans-serif;
       background-color: #f4f4f4; /* لون خلفية فاتح */
       color: #333; /* لون نص أساسي */
       margin: 0;
-      padding: 20px; /* إضافة بعض المساحة حول المحتوى */
+      padding-top: 120px; /* عشان الهيدر الثابت مَيغطيش المحتوى */
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -21,17 +23,114 @@
       min-height: 100vh; /* لجعل الخلفية تغطي كامل ارتفاع الشاشة */
     }
     header {
-      background-color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
-      color: #fff; /* لون نص العنوان أبيض */
-      padding: 20px;
-      font-size: 28px;
-      font-weight: bold;
-      border-radius: 8px;
-      margin-bottom: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+      padding: 10px 15px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: transform 0.3s ease-in-out;
     }
+
+    header.menu-open {
+        transform: translateY(0);
+    }
+
+    .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        margin-left: -5px;
+        margin-right: 10px;
+    }
+
+    .logo img {
+        height: 40px;
+        margin-left: 8px;
+        transition: height 0.3s ease-in-out;
+    }
+
+    .logo-text {
+        margin-right: 8px;
+    }
+
+    .logo-text h1 {
+        font-size: 1.1em;
+        margin-bottom: 0;
+        white-space: nowrap;
+        color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo-text p {
+        font-size: 0.7em;
+        margin-top: 2px;
+        white-space: nowrap;
+    }
+
+    nav {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 98;
+        padding: 15px 0;
+        display: none;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    nav.open {
+        display: block;
+        transform: translateY(0);
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: block;
+        text-align: center;
+    }
+
+    nav li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    nav li:last-child {
+        margin-bottom: 0;
+    }
+
+    nav a {
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #555;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+        background-color: #eee;
+        color: #5cb85c;
+    }
+
     .date {
-      margin: 15px 0;
+      margin: 25px 0; /* زيادة الهامش عشان يكون فيه مساحة تحت الهيدر */
       font-size: 18px;
       color: #555; /* لون التاريخ أغمق قليلاً */
     }
@@ -43,7 +142,7 @@
       width: 100%;
       background: #fff; /* خلفية بيضاء لقائمة الأوقات */
       padding: 20px;
-      border: 1px solid #ddd; /* حدود رمادية خفيفة */
+      border: 2px solid #b8860b; /* إضافة إطار ذهبي */
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
@@ -74,7 +173,28 @@
 </head>
 <body>
 
-  <header>مواقيت الصلاة - السالمية، الكويت</header>
+  <header>
+    <div class="header-inner">
+        <div class="logo">
+            <img src="images/mosque-logo.png" alt="شعار المسجد">
+            <div class="logo-text">
+                <h1>مسجد نورة سعد العبيد</h1>
+                <p></p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">عن المسجد</a></li>
+                <li><a href="gallery.html">مكتبة الصور</a></li>
+                <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+                <li><a href="news.html">الأخبار والفعاليات</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
+
   <div class="date" id="today"></div>
   <div class="times" id="prayer-times">
     جاري التحميل...
