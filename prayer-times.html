@@ -16,11 +16,52 @@
         #q8prayers {
             margin: 30px auto; /* توسيط أفقي */
             max-width: 600px; /* تحديد عرض أقصى */
-            /* ممكن نضيف هنا بعض التنسيقات الإضافية لو عايزين نغير ألوان معينة في الثيم الخفيف */
-            /* مثال: */
-            /* --q8p-light-background: #f9f9f9; */
-            /* --q8p-light-text: #333; */
-            /* حاول تعدل في المتغيرات دي لو عايز تغير الألوان بشكل مباشر (ممكن تحتاج تشوف دوكومنتషన్ q8p.io) */
+        }
+
+        #q8prayers table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #q8prayers th,
+        #q8prayers td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        #q8prayers th {
+            font-weight: bold;
+            color: #555; /* لون عناوين الجدول */
+        }
+
+        #q8prayers td:first-child {
+            font-weight: bold;
+            color: #333; /* لون أسماء الصلوات */
+        }
+
+        #q8prayers td:last-child {
+            color: #b8860b; /* لون مواقيت الصلاة الذهبي */
+            font-weight: bold;
+        }
+
+        /* ممكن نضيف لون خلفية فاتح للجدول عشان ميكونش كله أبيض */
+        #q8prayers table {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            overflow: hidden; /* عشان الـ border-radius يشتغل كويس */
+        }
+
+        /* لون الخط الرئيسي في الصفحة */
+        body {
+            color: #333;
+        }
+
+        /* لون العنوان الرئيسي للصفحة */
+        #prayer-times-page h2 {
+            color: #555;
         }
     </style>
 </head>
