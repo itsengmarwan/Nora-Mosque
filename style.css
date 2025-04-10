@@ -514,3 +514,5 @@ main {
         justify-content: center; /* توسيط العناصر أفقياً */
         align-items: center; /* توسيط العناصر عموديًا */
         padding: 0 10px; /* إضافة مسافة داخلية */
+    }
+}
