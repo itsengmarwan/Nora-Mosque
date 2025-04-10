@@ -220,10 +220,7 @@ main {
 .links-container img {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     object-fit: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
 }
 
 .links-container img:hover {
