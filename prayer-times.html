@@ -10,16 +10,17 @@
         #prayer-times-page {
             padding-top: 80px;
             padding-bottom: 30px;
-            display: flex;
-            justify-content: center; /* توسيط أفقي للعناصر المباشرة داخل main */
-            align-items: flex-start; /* محاذاة العناصر من الأعلى */
-            flex-direction: column;
+            position: relative; /* عشان يكون الأب للعنصر اللي هيتوسط بشكل مطلق */
+            text-align: center; /* توسيط عام للنص كاحتياط */
         }
 
         .prayer-times-wrapper {
             max-width: 600px;
             width: 100%;
             margin-top: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .prayer-times-wrapper table {
@@ -56,12 +57,12 @@
 
         body {
             color: #333;
-            text-align: center; /* توسيط عام للنص في body */
+            text-align: center;
         }
 
         #prayer-times-page h2 {
             color: #555;
-            text-align: center; /* توسيط عنوان الصفحة */
+            text-align: center;
         }
     </style>
 </head>
