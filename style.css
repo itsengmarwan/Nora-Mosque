@@ -498,7 +498,7 @@ main {
         font-size: 1.5em;
         color: #555;
         cursor: pointer;
-        margin-left: 20px; /* زودنا المسافة من اليسار كمان */
+        margin-left: 25px; /* زودنا المسافة من اليسار كمان */
         margin-right: auto;
     }
 
