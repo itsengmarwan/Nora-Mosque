@@ -7,7 +7,7 @@
     <title>مكتبة الصور - مسجد نورة سعد العبيد</title>
     <link rel="icon" href="images/mosque-logo.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.min.css">
+    <link rel="stylesheet" href="style.min.css"> {/* تأكد من إعادة توليد هذا الملف */}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
@@ -18,7 +18,8 @@
         <header>
             <div class="header-inner">
                  <div class="logo">
-                     <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                     {/* تم إزالة الـ style المباشر وإضافة class="logo-link" */}
+                     <a href="index.html" class="logo-link">
                         <img src="images/mosque-logo.png" alt="شعار المسجد">
                         <div class="logo-text">
                             <h1>مسجد نورة سعد العبيد</h1>
@@ -34,6 +35,7 @@
                         <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
                         <li><a href="quran.html">المصحف الشريف</a></li>
                         <li><a href="contact.html">تواصل معنا</a></li>
+                         {/* تم حذف رابط الأخبار من هنا */}
                     </ul>
                 </nav>
                 <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
@@ -45,28 +47,33 @@
             <p style="color: #555; margin-bottom: 25px;">اضغط على الصورة لعرضها بحجم أكبر.</p>
             <div class="gallery-container">
                 <div class="gallery-item">
-                    <a href="mosque_images/image1.jpg" data-lightbox="mosque-gallery" data-title="وصف للصورة الأولى (اختياري)">
-                        <img src="mosque_images/image1.jpg" alt="صورة 1 للمسجد" loading="lazy">
+                    {/* تم تحديث النص البديل Alt Text */}
+                    <a href="mosque_images/image1.jpg" data-lightbox="mosque-gallery" data-title="الواجهة الخارجية لمسجد نورة سعد العبيد">
+                        <img src="mosque_images/image1.jpg" alt="صورة خارجية لمسجد نورة سعد العبيد" loading="lazy">
                     </a>
                 </div>
                 <div class="gallery-item">
-                    <a href="mosque_images/image2.jpg" data-lightbox="mosque-gallery" data-title="صورة داخلية للمسجد">
-                        <img src="mosque_images/image2.jpg" alt="صورة 2 للمسجد" loading="lazy">
+                     {/* تم تحديث النص البديل Alt Text */}
+                    <a href="mosque_images/image2.jpg" data-lightbox="mosque-gallery" data-title="قاعة الصلاة الداخلية للمسجد">
+                        <img src="mosque_images/image2.jpg" alt="صورة داخلية لقاعة الصلاة في مسجد نورة" loading="lazy">
                     </a>
                 </div>
                 <div class="gallery-item">
-                    <a href="mosque_images/image3.jpg" data-lightbox="mosque-gallery" data-title="صورة خارجية للمسجد ليلاً">
-                        <img src="mosque_images/image3.jpg" alt="صورة 3 للمسجد" loading="lazy">
+                     {/* تم تحديث النص البديل Alt Text */}
+                    <a href="mosque_images/image3.jpg" data-lightbox="mosque-gallery" data-title="مئذنة المسجد مضاءة ليلاً">
+                        <img src="mosque_images/image3.jpg" alt="صورة لمئذنة المسجد مضاءة ليلاً" loading="lazy">
                     </a>
                 </div>
                 <div class="gallery-item">
-                    <a href="mosque_images/image4.jpg" data-lightbox="mosque-gallery">
-                        <img src="mosque_images/image4.jpg" alt="صورة 4 للمسجد" loading="lazy">
+                     {/* تم تحديث النص البديل Alt Text */}
+                    <a href="mosque_images/image4.jpg" data-lightbox="mosque-gallery" data-title="تفاصيل زخرفية من داخل المسجد">
+                        <img src="mosque_images/image4.jpg" alt="صورة تفصيلية للزخارف في المسجد" loading="lazy">
                     </a>
                 </div>
                  <div class="gallery-item">
-                    <a href="mosque_images/image5.jpg" data-lightbox="mosque-gallery">
-                        <img src="mosque_images/image5.jpg" alt="صورة 5 للمسجد" loading="lazy">
+                     {/* تم تحديث النص البديل Alt Text */}
+                    <a href="mosque_images/image5.jpg" data-lightbox="mosque-gallery" data-title="لقطة عامة للمسجد">
+                        <img src="mosque_images/image5.jpg" alt="صورة عامة للمسجد مع المصلين" loading="lazy">
                     </a>
                 </div>
                 </div>

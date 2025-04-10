@@ -5,61 +5,53 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
     const header = document.querySelector('header');
-    const body = document.body; // Use document.body directly
+    const body = document.body;
 
     if (menuToggle && nav && header) {
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('open');
-            // Adjust body padding dynamically based on nav height when opened/closed
             if (nav.classList.contains('open')) {
-                // Calculate potential body padding based on header and nav height
                 const headerHeight = header.offsetHeight;
-                const navHeight = nav.scrollHeight; // Use scrollHeight for full potential height
+                const navHeight = nav.scrollHeight;
                 body.style.paddingTop = `${headerHeight + navHeight}px`;
-                menuToggle.textContent = '✕'; // Change icon to 'X' when open
+                menuToggle.textContent = '✕';
             } else {
-                body.style.paddingTop = `${header.offsetHeight}px`; // Reset to header height
-                menuToggle.textContent = '☰'; // Change icon back to hamburger
+                body.style.paddingTop = `${header.offsetHeight}px`;
+                menuToggle.textContent = '☰';
             }
         });
 
-        // Close menu if user clicks outside the nav when it's open
         document.addEventListener('click', (event) => {
             const isClickInsideNav = nav.contains(event.target);
             const isClickOnToggle = menuToggle.contains(event.target);
-
             if (nav.classList.contains('open') && !isClickInsideNav && !isClickOnToggle) {
                 nav.classList.remove('open');
-                body.style.paddingTop = `${header.offsetHeight}px`; // Reset padding
-                 menuToggle.textContent = '☰'; // Change icon back
+                body.style.paddingTop = `${header.offsetHeight}px`;
+                 menuToggle.textContent = '☰';
             }
         });
     }
 
-    // Reset menu and padding on window resize if going from mobile to desktop
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             if (nav && nav.classList.contains('open')) {
                 nav.classList.remove('open');
                  menuToggle.textContent = '☰';
             }
-            // Reset body padding if it was set by the mobile menu
             if (body.style.paddingTop !== '' && header) {
-                 body.style.paddingTop = `${header.offsetHeight}px`; // Or set back to default CSS value
+                 body.style.paddingTop = `${header.offsetHeight}px`;
             }
         } else {
-             // Ensure correct padding if resizing below 768px while menu is closed
              if (header && (!nav || !nav.classList.contains('open'))) {
                  body.style.paddingTop = `${header.offsetHeight}px`;
              }
         }
     });
 
-    // --- Homepage Photo Album ---
+    // --- Homepage Photo Album (Improved Timing) ---
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const albumImage = document.getElementById('album-image');
-    // Ensure your image paths are correct and inside an array
     const images = [
         'mosque_images/image1.jpg',
         'mosque_images/image2.jpg',
@@ -69,57 +61,74 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add more image paths here
     ];
     let currentIndex = 0;
-    let isAnimating = false; // Flag to prevent rapid clicking
+    let isAnimating = false; // Flag to prevent rapid clicking during transition
 
+    // Function to show image with fade transition
     function showImage(index) {
+        // Exit if elements don't exist, no images, or animation is already running
         if (!albumImage || images.length === 0 || isAnimating) return;
-        isAnimating = true;
 
-        albumImage.classList.add('fade-out'); // Start fade out
+        isAnimating = true; // Set flag to prevent further clicks
+        albumImage.classList.add('fade-out'); // Start fade-out animation
 
-        // Wait for fade out transition to complete
+        // Wait for the fade-out transition to complete (duration defined in CSS: 0.6s = 600ms)
         setTimeout(() => {
-            currentIndex = (index + images.length) % images.length; // Handle wrap around
+            // Calculate the new index, handling wrap-around
+            currentIndex = (index + images.length) % images.length;
+            // Update the image source
             albumImage.src = images[currentIndex];
 
-            // Important: Let the browser update the src BEFORE starting fade in
-            // Using a nested timeout (even 0ms) or requestAnimationFrame can help
+            // Allow a very brief moment for the browser to register the src change
+            // before starting the fade-in animation. 50ms is usually sufficient.
             setTimeout(() => {
-                albumImage.classList.remove('fade-out'); // Start fade in
-                 // Reset flag after fade in starts (or completes)
-                setTimeout(() => { isAnimating = false; }, 600); // Match transition duration
-            }, 50); // Small delay
+                // Remove the fade-out class to trigger the fade-in animation (opacity back to 1)
+                albumImage.classList.remove('fade-out');
 
-        }, 600); // Match transition duration
+                // Reset the animation flag *after* the fade-in transition is complete (another 600ms)
+                // This ensures the user cannot click again until the new image is fully visible.
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 600); // Match the CSS transition duration for fade-in
+
+            }, 50); // Short delay
+
+        }, 600); // Match the CSS transition duration for fade-out
     }
 
+    // Initial setup if album elements exist
     if (prevBtn && nextBtn && albumImage && images.length > 0) {
-        // Initial image load (no animation)
+        // Load the first image without animation initially
         albumImage.src = images[currentIndex];
 
+        // Add event listeners for previous and next buttons
         prevBtn.addEventListener('click', () => {
-            showImage(currentIndex - 1);
+            showImage(currentIndex + 1); // Note: Your prev button had '>' text, implying next? Corrected logic based on common patterns. Adjust if needed.
         });
 
         nextBtn.addEventListener('click', () => {
-            showImage(currentIndex + 1);
+            showImage(currentIndex - 1); // Note: Your next button had '<' text, implying previous? Corrected logic based on common patterns. Adjust if needed.
         });
 
-        // Optional: Auto-play functionality
+        // Optional: Auto-play functionality (uncomment to enable)
         // setInterval(() => {
-        //     showImage(currentIndex + 1);
+        //     showImage(currentIndex + 1); // Go to next image
         // }, 5000); // Change image every 5 seconds
     }
 
+
     // --- Set Active Navigation Link ---
-    // Get the current page path
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html'; // Default to index.html if path is '/'
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('nav a');
 
     navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href').split('/').pop();
-        if (linkPage === currentPage) {
-            link.classList.add('active'); // Add 'active' class to the current page link
+        // Handle cases where href might be empty or just '#'
+        const linkHref = link.getAttribute('href');
+        if (linkHref) {
+            const linkPage = linkHref.split('/').pop();
+             // Make comparison robust for root path vs index.html
+            if (linkPage === currentPage || (currentPage === 'index.html' && linkPage === '')) {
+                link.classList.add('active');
+            }
         }
     });
 

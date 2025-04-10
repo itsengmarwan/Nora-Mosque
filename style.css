@@ -1,4 +1,4 @@
-/* Nora-Mosque/style.css (Improved, Unminified, News Section Removed) */
+/* Nora-Mosque/style.css (Improved, Unminified, Cleaned) */
 body {
     font-family: 'Tajawal', sans-serif; /* Applied Tajawal globally */
     margin: 0;
@@ -44,6 +44,13 @@ header {
     align-items: center;
     flex-wrap: nowrap;
     margin-right: 10px;
+}
+
+/* Style moved from inline HTML */
+.logo-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .logo img {
@@ -128,9 +135,11 @@ main {
 }
 
 /* --- Section Styles --- */
-/* Removed .news-item from here */
+/* Styles related to News section removed */
 #photo-album, #social-links, #azkar-app, #suggestions, #mosque-location,
-#prayer-times-link, .azkar-app-like, #about-page, #contact-page, #gallery-page, #quran-page {
+#prayer-times-link, .azkar-app-like, #about-page, #contact-page, #gallery-page, #quran-page,
+#library-booking, #prayer-times-shortcut /* Added IDs from index.html */
+{
     background-color: #fff;
     padding: 30px 20px;
     margin-bottom: 30px;
@@ -139,10 +148,12 @@ main {
     text-align: center;
 }
 
-/* Removed #news-page h2 from here */
+/* Styles related to News section removed */
 #photo-album h2, #social-links h2, #azkar-app h2, #suggestions h2,
 #mosque-location h2, #prayer-times-link h2, .azkar-app-like h2,
-#contact-page h2, #gallery-page h2, #about-page h2, #quran-page h1 {
+#contact-page h2, #gallery-page h2, #about-page h2, #quran-page h1,
+#library-booking h2, #prayer-times-shortcut h2 /* Added IDs from index.html */
+{
     color: #333;
     margin-top: 0;
     margin-bottom: 25px;
@@ -171,7 +182,7 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 0;
     opacity: 1;
-    transition: opacity 0.6s ease-in-out;
+    transition: opacity 0.6s ease-in-out; /* Transition for fade effect */
 }
 
 #album-image.fade-out {
@@ -256,7 +267,9 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#azkar-app p, #suggestions p, #prayer-times-link p, .azkar-app-like p {
+#azkar-app p, #suggestions p, #prayer-times-link p, .azkar-app-like p,
+#library-booking p, #prayer-times-shortcut p /* Added IDs from index.html */
+{
     color: #555;
     margin-bottom: 20px;
     font-size: 1.1em;
@@ -415,9 +428,6 @@ main {
     margin-bottom: 0;
 }
 
-/* News Page Section - REMOVED */
-
-
 /* Gallery Page */
 #gallery-page .gallery-container {
     display: grid;
@@ -444,7 +454,7 @@ main {
     height: 200px;
     object-fit: cover;
     display: block;
-    border-radius: 8px;
+    border-radius: 8px; /* Keep border radius for consistency */
 }
 
 /* About Page */
@@ -464,6 +474,7 @@ main {
 }
 
 /* Quran Page */
+/* Styles moved from inline HTML - Already existed, just confirming */
 #quran-page iframe {
     width: 100%;
     height: 75vh;
