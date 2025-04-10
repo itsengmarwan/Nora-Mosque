@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding-top: 60px;
     background-color: #f4f4f4;
-    color: #333;
+    color: #000000;
     line-height: 1.6;
     transition: padding-top 0.3s ease-in-out;
 }
@@ -20,7 +20,7 @@ body.menu-open {
 
 header {
     background-color: rgba(255, 255, 255, 0.8);
-    color: #333;
+    color: #000000;
     padding: 10px 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -115,7 +115,7 @@ nav a {
     display: block;
     padding: 10px 20px;
     text-decoration: none;
-    color: #555;
+    color: #3c3c3c;
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
