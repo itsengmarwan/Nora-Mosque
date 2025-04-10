@@ -40,18 +40,20 @@ header.menu-open {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    padding: 0 15px; /* إضافة بعض المسافة الداخلية للرأس من الجانبين */
 }
 
 .logo {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    margin-left: -5px; /* تحريك الشعار جهة الشمال بمقدار بسيط */
+    margin-left: -5px; /* تحريك الشعار جهة الشمال بمقدار بسيط (لو لسه محتاجها) */
+    margin-right: 10px; /* إضافة مسافة على اليمين عشان الشعار ميكونش لازق في الحافة */
 }
 
 .logo img {
     height: 40px;
-    margin-left: 8px; /* دي القيمة الأصلية للمسافة بين الشعار والنص */
+    margin-left: 8px;
     transition: height 0.3s ease-in-out;
 }
 
@@ -408,6 +410,7 @@ main {
         width: 100%;
         left: 0;
         transform: translateX(0);
+        padding: 0 10px; /* إضافة مسافة داخلية للرأس على الجوال أيضًا */
     }
 
     .header-inner {
@@ -421,6 +424,7 @@ main {
         align-items: center;
         flex-wrap: nowrap;
         margin-left: -10px; /* تحريك الشعار جهة الشمال بمقدار أكبر على الجوال */
+        margin-right: 5px; /* إضافة مسافة على اليمين للشعار على الجوال */
     }
 
     .logo img {
@@ -528,21 +532,3 @@ main {
     }
 
     /* هامش علوي لعناصر <main> داخل الصفحات على الجوال */
-    #index-page main {
-        padding-top: 60px;
-    }
-
-    #about-page main {
-        padding-top: 60px;
-    }
-
-    #contact-page main {
-        padding-top: 60px;
-    }
-
-    #news-page main {
-        padding-top: 60px;
-    }
-
-    #gallery-page main {
-        padding-top: 60px
