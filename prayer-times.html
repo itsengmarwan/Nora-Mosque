@@ -4,53 +4,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مواقيت الصلاة - مسجد نورا</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Tajawal', sans-serif;
-      background-color: #fff;
-      color: #000;
+      background-color: #f4f4f4; /* لون خلفية فاتح */
+      color: #333; /* لون نص أساسي */
       margin: 0;
-      padding: 0;
+      padding: 20px; /* إضافة بعض المساحة حول المحتوى */
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh; /* لجعل الخلفية تغطي كامل ارتفاع الشاشة */
     }
     header {
-      background-color: #000;
-      color: #ffd700;
+      background-color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
+      color: #fff; /* لون نص العنوان أبيض */
       padding: 20px;
-      font-size: 24px;
+      font-size: 28px;
       font-weight: bold;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     .date {
       margin: 15px 0;
       font-size: 18px;
-      color: #444;
+      color: #555; /* لون التاريخ أغمق قليلاً */
     }
     .times {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 10px; /* تقليل المسافة بين أوقات الصلاة */
       max-width: 400px;
-      margin: auto;
-      background: #f9f9f9;
+      width: 100%;
+      background: #fff; /* خلفية بيضاء لقائمة الأوقات */
       padding: 20px;
-      border: 2px solid #000;
-      border-radius: 10px;
+      border: 1px solid #ddd; /* حدود رمادية خفيفة */
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
     .prayer {
       display: flex;
       justify-content: space-between;
-      padding: 10px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+      padding: 12px 15px; /* مساحة داخلية أكبر قليلاً */
+      background: #f9f9f9; /* لون خلفية أفتح لكل وقت صلاة */
+      border-bottom: 1px solid #eee; /* خط فاصل خفيف */
       font-size: 18px;
+      border-radius: 5px;
+    }
+    .prayer:last-child {
+      border-bottom: none; /* إزالة الخط الفاصل عن آخر وقت */
     }
     .label {
-      color: #000;
+      color: #333; /* لون اسم الصلاة */
+      font-weight: bold;
     }
     .time {
-      color: #d4af37;
+      color: #b8860b; /* لون وقت الصلاة ذهبي */
       font-weight: bold;
+    }
+    #prayer-times {
+      padding: 0; /* إزالة أي مساحة داخلية افتراضية */
     }
   </style>
 </head>
