@@ -153,20 +153,20 @@ main {
 }
 
 #album-image {
-    max-width: 80%; /* تصغير حجم الصورة عشان الأزرار تاخد مكان */
+    max-width: 70%; /* تكبير حجم الصورة */
     height: auto;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 0 20px; /* إضافة بعض الهوامش الجانبية للصورة */
+    margin: 0 15px; /* تقليل الهوامش الجانبية للصورة */
 }
 
 #prev-btn, #next-btn {
     background: none;
     border: none;
-    font-size: 2em;
+    font-size: 1.5em; /* تصغير حجم الأزرار */
     color: #555;
     cursor: pointer;
-    padding: 10px;
+    padding: 8px; /* تقليل المساحة الداخلية للأزرار */
     z-index: 10;
     opacity: 0.7;
     transition: opacity 0.3s ease;
@@ -180,11 +180,11 @@ main {
 }
 
 #prev-btn {
-    left: 10px;
+    left: 5px; /* تقليل المسافة من الجانب الأيسر */
 }
 
 #next-btn {
-    right: 10px;
+    right: 5px; /* تقليل المسافة من الجانب الأيمن */
 }
 
 #social-links {
@@ -511,7 +511,7 @@ main {
     }
 
     #album-image {
-        max-width: 60%; /* تصغير حجم الصورة عشان الأزرار تبان */
+        max-width: 70%; /* تكبير حجم الصورة */
         height: auto;
         border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -521,8 +521,6 @@ main {
     #prev-btn, #next-btn {
         position: static; /* عشان يتبع تخطيط الفليكس */
         transform: translateY(0); /* إلغاء التحويل الرأسي */
-        margin: 0 10px; /* إضافة هوامش جانبية للأزرار */
+        margin: 0 5px; /* تقليل الهوامش الجانبية للأزرار */
         display: block; /* عرض كعنصر بلوك */
-        text-align: center; /* توسيط النص داخل الأزرار */
-    }
-}
+        text
