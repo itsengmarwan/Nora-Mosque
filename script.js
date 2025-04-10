@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('header');
+    const headerInner = document.querySelector('.header-inner');
+    const nav = document.querySelector('nav');
     const body = document.querySelector('body');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
@@ -10,25 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // يمكنك إضافة المزيد من أسماء الصور هنا مثل 'mosque_images/image3.jpg'
     ];
     let currentIndex = 0;
-    const nav = document.querySelector('nav');
-    const headerInner = document.querySelector('.header-inner');
+    let isMenuOpen = false; // حالة القائمة
 
-    function adjustBodyPadding() {
-        if (header && body && window.innerWidth <= 768) {
-            const headerHeight = header.offsetHeight;
-            body.style.paddingTop = `${headerHeight}px`;
-        } else if (body) {
-            body.style.paddingTop = '60px';
-        }
-    }
-
-    // ضبط الحشو عند تحميل الصفحة
-    adjustBodyPadding();
-
-    // ضبط الحشو عند تغيير حجم النافذة
-    window.addEventListener('resize', adjustBodyPadding);
-
-    // وظيفة ألبوم الصور
+    // وظيفة ألبوم الصور في الصفحة الرئيسية
     if (prevBtn && nextBtn && albumImage && images.length > 0) {
         albumImage.src = images[currentIndex];
 
@@ -44,29 +29,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // تفعيل/إخفاء قائمة التنقل على الجوال
-    if (nav && headerInner && body && window.innerWidth <= 768) {
-        headerInner.addEventListener('click', () => {
-            nav.classList.toggle('open');
-            body.classList.toggle('menu-open');
+    if (headerInner && nav && body && window.innerWidth <= 768) {
+        headerInner.addEventListener('click', function(event) {
+            if (event.target.matches('.header-inner::after')) {
+                nav.classList.toggle('open');
+                body.classList.toggle('menu-open');
+                isMenuOpen = !isMenuOpen; // تحديث حالة القائمة
+            }
         });
-    } else if (nav && window.innerWidth > 768) {
-        nav.style.display = 'flex';
     }
 
-    // عرض القائمة الرئيسية على الحاسوب عند التحميل
-    if (nav && window.innerWidth > 768) {
-        nav.style.display = 'flex';
-    }
-
-    // إعادة ضبط عرض القائمة عند تغيير حجم الشاشة
+    // إغلاق القائمة وإزالة تأثير الخلفية عند تغيير حجم الشاشة إلى أكبر من 768 بكسل
     window.addEventListener('resize', () => {
-        if (nav && window.innerWidth > 768) {
-            nav.style.display = 'flex';
-            nav.classList.remove('open'); // إزالة الكلاس عند التحول إلى شاشة أكبر
+        if (window.innerWidth > 768 && isMenuOpen) {
+            nav.classList.remove('open');
             body.classList.remove('menu-open');
-        } else if (nav && window.innerWidth <= 768 && !nav.classList.contains('open')) {
-            nav.style.display = 'none'; // التأكد من إخفاء القائمة عند التحول إلى شاشة أصغر
+            isMenuOpen = false; // إعادة تعيين حالة القائمة
         }
-        adjustBodyPadding(); // إعادة ضبط الحشو
     });
 });
