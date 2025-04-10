@@ -498,7 +498,7 @@ main {
         font-size: 1.5em;
         color: #555;
         cursor: pointer;
-        margin-left: 10px; /* إضافة مسافة بسيطة من اليسار */
+        margin-left: 15px; /* زودنا المسافة من اليسار شوية */
         margin-right: auto;
     }
 
