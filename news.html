@@ -3,23 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تابع آخر أخبار وفعاليات جامع نورة سعد العبيد في السالمية، بما في ذلك المحاضرات، الدروس الدينية، والأنشطة المجتمعية.">
     <title>الأخبار والفعاليات - مسجد نورة سعد العبيد</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/mosque-logo.png" type="image/png">
+     <link rel="stylesheet" href="style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Tajawal', sans-serif; } </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="header-inner">
-                <div class="logo">
-                    <img src="images/mosque-logo.png" alt="شعار المسجد">
-                    <div class="logo-text">
-                        <h1>مسجد نورة سعد العبيد</h1>
-                        <p>صرح إسلامي شامخ</p>
-                    </div>
+             <div class="header-inner">
+                 <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="images/mosque-logo.png" alt="شعار المسجد">
+                        <div class="logo-text">
+                            <h1>مسجد نورة سعد العبيد</h1>
+                            <p>صرح إسلامي شامخ</p>
+                        </div>
+                    </a>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.html">الرئيسية</a></li>
+                         <li><a href="index.html">الرئيسية</a></li>
                         <li><a href="about.html">عن المسجد</a></li>
                         <li><a href="gallery.html">مكتبة الصور</a></li>
                         <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
@@ -28,25 +36,45 @@
                         <li><a href="news.html">الأخبار والفعاليات</a></li>
                     </ul>
                 </nav>
+                <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
             </div>
         </header>
 
         <main id="news-page">
-            <h2>الأخبار والفعاليات</h2>
-            <div class="news-item">
-                <h3>فعالية إيمانية في رحاب الجامع</h3>
-                <p class="date">تاريخ النشر: 2025-04-15</p>
-                <p>سيقيم الجامع فعالية إيمانية مميزة تتضمن محاضرات وندوات ...</p>
-                <a href="#">اقرأ المزيد</a>
+            <h2>آخر الأخبار والفعاليات</h2>
+
+            <div id="news-list">
+                <?php
+                // --- PHP code placeholder for dynamic news ---
+                // This section should be replaced with actual PHP code
+                // that fetches news from a database when hosted on a PHP server.
+
+                // --- Example static content (replace with dynamic PHP loop later) ---
+                echo '<div class="news-item">';
+                echo '<h3>محاضرة إيمانية بعنوان فضائل شهر شعبان</h3>';
+                echo '<p class="date">تاريخ النشر: 15 فبراير 2025</p>';
+                echo '<p>ينظم الجامع محاضرة قيمة يلقيها الشيخ [اسم الشيخ] حول فضائل شهر شعبان وكيفية الاستعداد لرمضان...</p>';
+                echo '<a href="#" class="read-more">اقرأ المزيد</a>'; // Link should go to news details page
+                echo '</div>';
+
+                echo '<div class="news-item">';
+                echo '<h3>بدء التسجيل في حلقات تحفيظ القرآن الصيفية</h3>';
+                echo '<p class="date">تاريخ النشر: 10 أبريل 2025</p>';
+                echo '<p>يعلن الجامع عن فتح باب التسجيل في حلقات تحفيظ القرآن الكريم للصغار والكبار خلال العطلة الصيفية. المقاعد محدودة...</p>';
+                echo '<a href="#" class="read-more">اقرأ المزيد</a>';
+                echo '</div>';
+
+                 echo '<div class="news-item">';
+                echo '<h3>استعدادات الجامع لاستقبال شهر رمضان المبارك</h3>';
+                echo '<p class="date">تاريخ النشر: 20 مارس 2025</p>';
+                echo '<p>يقوم الجامع بوضع اللمسات الأخيرة على خطته لاستقبال شهر رمضان، بما في ذلك تجهيز المصليات وتنظيم برامج إيمانية متنوعة...</p>';
+                echo '<a href="#" class="read-more">اقرأ المزيد</a>';
+                echo '</div>';
+                // --- End of example static content ---
+                ?>
             </div>
 
-            <div class="news-item">
-                <h3>استقبال شهر رمضان المبارك</h3>
-                <p class="date">تاريخ النشر: 2025-03-20</p>
-                <p>استعدادات مكثفة في الجامع لاستقبال شهر رمضان الفضيل ...</p>
-                <a href="#">اقرأ المزيد</a>
-            </div>
-            </main>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>

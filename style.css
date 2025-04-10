@@ -1,16 +1,15 @@
+/* Nora-Mosque/style.css */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
-    padding-top: 60px;
+    padding-top: 60px; /* Adjusted dynamically by JS if menu opens */
     background-color: #f4f4f4;
     color: #000000;
     line-height: 1.6;
     transition: padding-top 0.3s ease-in-out;
 }
 
-body.menu-open {
-    padding-top: 180px;
-}
+/* Removed body.menu-open rule as JS will handle padding */
 
 .container {
     max-width: 1200px;
@@ -19,395 +18,427 @@ body.menu-open {
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly less transparent */
     color: #000000;
-    padding: 10px 15px;
+    padding: 10px 0; /* Removed side padding, handled by header-inner */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 1000; /* Increased z-index */
     transition: transform 0.3s ease-in-out;
 }
 
-header.menu-open {
-    transform: translateY(0);
-}
+/* Removed header.menu-open rule */
 
 .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0 15px;
+    max-width: 1200px; /* Consistent with .container */
+    margin: 0 auto; /* Center header content */
+    padding: 0 15px; /* Padding inside the centered container */
+    position: relative; /* Needed for hamburger positioning */
 }
 
 .logo {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    margin-left: -5px;
+    /* Removed negative margin */
     margin-right: 10px;
 }
 
 .logo img {
     height: 40px;
-    margin-left: 8px;
+    margin-left: 8px; /* Swapped margin side */
     transition: height 0.3s ease-in-out;
 }
 
 .logo-text {
-    margin-right: 8px;
+    margin-right: 8px; /* Swapped margin side */
 }
 
 .logo-text h1 {
     font-size: 1.1em;
-    margin-bottom: 0;
+    margin: 0; /* Adjusted margin */
     white-space: nowrap;
-    color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
+    color: #b8860b; /* DarkGoldenrod */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .logo-text p {
     font-size: 0.7em;
-    margin-top: 2px;
+    margin: 2px 0 0 0; /* Adjusted margin */
     white-space: nowrap;
 }
 
-nav {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 98;
-    padding: 15px 0;
-    display: none;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease-in-out;
+/* Hamburger Menu Button */
+.menu-toggle {
+    display: none; /* Hidden by default */
+    font-size: 1.8em;
+    color: #555;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+    line-height: 1;
+    margin-left: 15px; /* Space between logo and button */
 }
 
-nav.open {
-    display: block;
-    transform: translateY(0);
+nav {
+    display: flex; /* Use flexbox for desktop */
+    align-items: center;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: block;
-    text-align: center;
+    display: flex; /* Horizontal list on desktop */
 }
 
 nav li {
-    margin-left: 0;
-    margin-bottom: 10px;
+    margin-left: 15px; /* Spacing between items on desktop */
+    margin-bottom: 0; /* Reset margin bottom */
 }
 
-nav li:last-child {
-    margin-bottom: 0;
+nav li:first-child {
+    margin-left: 0; /* No margin for the first item */
 }
 
 nav a {
     display: block;
-    padding: 10px 20px;
+    padding: 10px 15px; /* Adjusted padding */
     text-decoration: none;
     color: #3c3c3c;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap; /* Prevent wrapping */
 }
 
-nav a:hover {
+nav a:hover, nav a.active { /* Added active class style */
     background-color: #eee;
     color: #5cb85c;
+    border-radius: 4px; /* Slight rounding on hover */
 }
 
+/* Main content adjustment */
 main {
-    padding-top: 70px; /* هامش علوي عام لعناصر <main> */
+    padding-top: 80px; /* Increased default top padding */
 }
 
-#photo-album {
+/* --- Section Styles --- */
+#photo-album, #social-links, #azkar-app, #suggestions, #mosque-location,
+#prayer-times-link, .azkar-app-like, .news-item, #about-page, #contact-page, #gallery-page, #quran-page {
     background-color: #fff;
     padding: 30px 20px;
     margin-bottom: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Slightly adjusted shadow */
     text-align: center;
 }
 
-#photo-album h2 {
-    color: #555;
+#photo-album h2, #social-links h2, #azkar-app h2, #suggestions h2,
+#mosque-location h2, #prayer-times-link h2, .azkar-app-like h2,
+#contact-page h2, #gallery-page h2, #news-page h2, #about-page h2, #quran-page h1 {
+    color: #333; /* Darker heading color */
     margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.6em;
+    margin-bottom: 25px; /* Increased bottom margin */
+    font-size: 1.8em; /* Slightly larger heading */
+    font-weight: bold; /* Ensure headings are bold */
 }
 
+/* Photo Album */
 .album-container {
     display: flex;
     align-items: center;
-    justify-content: center; /* توسيط العناصر أفقياً */
+    justify-content: center;
     position: relative;
-    width: 90%; /* جعل حاوية الألبوم تأخذ كامل عرض الأب */
+    width: 90%;
+    max-width: 700px; /* Limit max width */
     margin: 20px auto;
+    overflow: hidden; /* Hide parts of image during transition */
 }
 
 #album-image {
-    max-width: 70%; /* تكبير حجم الصورة */
+    max-width: 100%; /* Allow image to fill container */
     height: auto;
+    max-height: 450px; /* Set a max height */
+    display: block; /* Remove extra space below image */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 0 15px; /* تقليل الهوامش الجانبية للصورة */
+    margin: 0; /* Remove margin */
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out; /* Fade transition */
+}
+
+#album-image.fade-out {
+    opacity: 0;
 }
 
 #prev-btn, #next-btn {
-    background: none;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
     border: none;
-    font-size: 1.5em; /* تصغير حجم الأزرار */
-    color: #555;
+    font-size: 1.8em; /* Larger icons */
+    color: #fff; /* White icon color */
     cursor: pointer;
-    padding: 8px; /* تقليل المساحة الداخلية للأزرار */
+    padding: 10px 12px; /* Adjusted padding */
+    border-radius: 50%; /* Circular buttons */
     z-index: 10;
     opacity: 0.7;
-    transition: opacity 0.3s ease;
-    position: absolute; /* عشان نقدر نتحكم في مكانهم */
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    line-height: 1; /* Ensure icon vertical centering */
 }
 
 #prev-btn:hover, #next-btn:hover {
     opacity: 1;
+    background: rgba(0, 0, 0, 0.6);
 }
 
 #prev-btn {
-    left: 5px; /* تقليل المسافة من الجانب الأيسر */
+    left: 15px; /* Position from edge */
 }
 
 #next-btn {
-    right: 5px; /* تقليل المسافة من الجانب الأيمن */
+    right: 15px; /* Position from edge */
 }
 
-#social-links {
-    background-color: #fff;
-    padding: 30px 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
 
-#social-links h2 {
-    color: #555;
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.6em;
-}
-
+/* Social Links */
 .links-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px; /* Increased gap */
     align-items: center;
     flex-wrap: wrap;
 }
 
 .links-container a {
     text-decoration: none;
+    transition: transform 0.2s ease; /* Add hover effect */
+}
+
+.links-container a:hover {
+    transform: scale(1.1); /* Scale up on hover */
 }
 
 .links-container img {
-    width: 40px;
-    height: 40px;
+    width: 45px; /* Slightly larger icons */
+    height: 45px;
     object-fit: cover;
 }
 
-.links-container img:hover {
-    opacity: 1;
-}
 
-#azkar-app {
-    background-color: #fff; /* رجعنا الخلفية أبيض */
-    padding: 30px 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-#azkar-app h2 {
-    color: #000; /* خلينا لون العنوان أسود */
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.8em;
-}
-
-#azkar-app p {
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.azkar-link {
+/* Azkar App & Suggestion Button Styles */
+.azkar-link, .suggestion-link, .prayer-times-link {
     display: inline-block;
-    background-color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
+    background-color: #b8860b;
     color: white;
-    padding: 12px 25px;
+    padding: 12px 28px; /* Adjusted padding */
     text-decoration: none;
     border-radius: 8px;
     font-size: 1.1em;
     font-weight: bold;
-    transition: background-color 0.3s ease;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* ظل خفيف للمعة */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    border: none; /* Ensure no border */
+    cursor: pointer; /* Make it look clickable */
 }
 
-.azkar-link:hover {
-    background-color: #a17509; /* لون أغمق عند الhover */
+.azkar-link:hover, .suggestion-link:hover, .prayer-times-link:hover {
+    background-color: #a17509;
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
+
+#azkar-app p, #suggestions p, #prayer-times-link p, .azkar-app-like p {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 1.1em; /* Slightly larger text */
 }
 
 
+/* Mosque Location */
 #mosque-location .location-map iframe {
     max-width: 100%;
     width: 100%;
-    height: 300px;
-  }
-  .azkar-app-like {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    height: 350px; /* Increased height */
+    border-radius: 8px; /* Match section radius */
+    border: 1px solid #ddd; /* Add subtle border */
 }
 
-.azkar-app-like h2 {
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.azkar-app-like p {
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.azkar-app-like .prayer-times-link {
-    display: inline-block;
-    background-color: #c08400;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.azkar-app-like .prayer-times-link:hover {
-    background-color: #9e6d00;
-}
-
-#suggestions {
-    background-color: #fff;
-    padding: 30px 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-#suggestions h2 {
+/* Prayer Times Page Specific Styles */
+#prayer-times-page .date { /* Added page ID for specificity */
+    margin: 25px 0;
+    font-size: 1.2em; /* Larger date */
     color: #555;
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.6em;
 }
-
-.suggestion-link {
-    display: inline-block;
-    background-color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
-    color: white;
-    padding: 12px 25px;
-    text-decoration: none;
+#prayer-times-page .times { /* Added page ID */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Increased gap */
+    max-width: 400px; /* Slightly wider box */
+    width: 90%; /* Responsive width */
+    background: #fff;
+    padding: 25px; /* More padding */
+    border: 1px solid #ddd; /* Standard border */
     border-radius: 8px;
-    font-size: 1em;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* ظل خفيف للمعة */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin: 0 auto; /* Center the box */
+    text-align: right; /* Align text to right */
 }
-
-.suggestion-link:hover {
-    background-color: #a17509; /* لون أغمق عند الhover */
-}
-
-.contact-form {
-    padding: 20px;
-    background-color: #f9f9f9;
+#prayer-times-page .prayer { /* Added page ID */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center */
+    padding: 15px; /* More padding */
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1em; /* Larger font */
     border-radius: 5px;
-    margin-bottom: 20px;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+#prayer-times-page .prayer:last-child {
+    border-bottom: none;
+}
+#prayer-times-page .prayer .label { /* Added page ID */
+    color: #333;
+    font-weight: bold;
+}
+#prayer-times-page .prayer .time { /* Added page ID */
+    color: #b8860b;
+    font-weight: bold;
+    font-size: 1.1em; /* Slightly larger time */
+}
+
+/* Style for the next prayer */
+#prayer-times-page .prayer.next-prayer {
+    background-color: #e8f5e9; /* Light green background */
+    border-left: 5px solid #4CAF50; /* Green indicator bar on the left */
+    padding-left: 10px; /* Adjust padding for the border */
+}
+#prayer-times-page .prayer.next-prayer .label,
+#prayer-times-page .prayer.next-prayer .time {
+    color: #2e7d32; /* Darker green text */
+    font-weight: bold;
+}
+
+/* Loading indicator */
+#prayer-times-page .loading-indicator {
+    color: #777;
+    font-style: italic;
+}
+
+
+/* Contact Form */
+.contact-form {
+    padding: 30px; /* Increased padding */
+    background-color: #f9f9f9;
+    border-radius: 8px; /* Match section radius */
+    margin-bottom: 30px; /* Increased margin */
+    max-width: 600px; /* Limit width */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right; /* Align labels right */
+    border: 1px solid #eee; /* Subtle border */
 }
 
 .contact-form div {
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Increased spacing */
 }
 
 .contact-form label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px; /* Increased spacing */
     font-weight: bold;
+    color: #444; /* Slightly darker label color */
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px; /* Increased padding */
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 5px;
     box-sizing: border-box;
+    font-size: 1em; /* Ensure consistent font size */
+}
+
+.contact-form textarea {
+    resize: vertical; /* Allow vertical resize only */
 }
 
 .contact-form button[type="submit"] {
-    background-color: #007bff;
+    background-color: #5cb85c; /* Green color */
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.1em; /* Larger font */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-form button[type="submit"]:hover {
+    background-color: #4cae4c; /* Darker green */
+    transform: translateY(-1px);
 }
 
 .contact-info {
     padding: 20px;
     background-color: #f9f9f9;
-    border-radius: 5px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto; /* Center it */
+    text-align: center; /* Center text */
+    border: 1px solid #eee;
 }
 
 .contact-info ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .contact-info li {
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* Increased spacing */
+    color: #555;
+}
+.contact-info li:last-child {
+    margin-bottom: 0;
 }
 
+/* News Page */
 .news-item {
     background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    text-align: right; /* Align text right */
+    border: 1px solid #f0f0f0; /* Lighter border */
 }
 
 .news-item h3 {
-    color: #333;
+    color: #b8860b; /* Gold color for title */
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-size: 1.4em;
 }
 
 .news-item .date {
-    color: #777;
+    color: #888; /* Lighter date color */
     font-size: 0.9em;
     margin-bottom: 15px;
+    display: block; /* Ensure it takes full width */
 }
 
 .news-item p {
@@ -416,140 +447,195 @@ main {
     margin-bottom: 15px;
 }
 
-.news-item a {
-    color: #007bff;
+.news-item a.read-more { /* Specific class for read more */
+    color: #5cb85c; /* Green color */
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-.news-item a:hover {
-    color: #0056b3;
+.news-item a.read-more:hover {
+    color: #4cae4c; /* Darker green */
+    text-decoration: underline;
 }
 
+/* Gallery Page */
 #gallery-page .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* تخطيط افتراضي لعدة أعمدة */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Slightly larger min size */
     gap: 20px;
-    padding: 20px;
+    padding: 20px 0; /* Remove side padding */
 }
+
+#gallery-page .gallery-item { /* Wrap image and link */
+    overflow: hidden; /* Ensure border radius applies correctly */
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#gallery-page .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 
 #gallery-page .gallery-container img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 200px; /* Fixed height for uniformity */
+    object-fit: cover; /* Crop images nicely */
+    display: block; /* Remove extra space */
+    border-radius: 8px; /* Match container */
 }
 
-/* تصميم متجاوب */
+/* About Page */
+#about-page p, #about-page ul {
+    text-align: right; /* Justify text */
+    line-height: 1.8;
+    font-size: 1.1em;
+    color: #444;
+    margin-bottom: 18px;
+}
+#about-page ul {
+    padding-right: 20px; /* Indent list */
+    list-style: disc; /* Standard bullets */
+}
+#about-page li {
+    margin-bottom: 10px;
+}
+
+/* Quran Page */
+#quran-page iframe {
+    width: 100%;
+    height: 75vh; /* Adjust height as needed */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Match section style */
+}
+
+
+/* --- Responsive Design --- */
 @media (max-width: 768px) {
     body {
-        padding-top: 50px;
-    }
-
-    header {
-        padding: 10px 15px;
-        width: 100%;
-        left: 0;
-        transform: translateX(0);
-        padding: 0 10px;
+        padding-top: 60px; /* Fixed padding top for mobile */
     }
 
     .header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        flex-wrap: nowrap;
-        margin-left: -10px;
-        margin-right: 5px;
+        padding: 0 10px; /* Less padding on mobile */
+        justify-content: space-between; /* Ensure space between items */
     }
 
     .logo img {
-        height: 45px;
-        margin-left: 8px;
-    }
-
-    .logo-text {
-        margin-right: 8px;
+        height: 35px; /* Smaller logo */
     }
 
     .logo-text h1 {
-        font-size: 1em;
-        margin-bottom: 0;
-        white-space: nowrap;
-        color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        font-size: 1em; /* Smaller text */
+    }
+    .logo-text p {
+        font-size: 0.6em; /* Smaller text */
     }
 
-    .logo-text p {
-        font-size: 0.6em;
-        margin-top: 2px;
-        white-space: nowrap;
+
+    .menu-toggle {
+        display: block; /* Show hamburger button */
+        order: 3; /* Move hamburger to the right */
     }
 
     nav {
-        display: none;
         position: absolute;
-        top: 50px;
+        top: 100%; /* Position below header */
         left: 0;
         width: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 99;
-        padding: 15px 0;
-        transform: translateY(-100%);
+        background-color: rgba(255, 255, 255, 0.98); /* More opaque */
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+        z-index: 999; /* Below header but above content */
+        padding: 10px 0; /* Padding top/bottom */
+        flex-direction: column; /* Stack items vertically */
+        align-items: stretch; /* Stretch items full width */
+        max-height: 0; /* Start hidden */
+        overflow: hidden; /* Hide content */
+        transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Smooth transition */
     }
 
     nav.open {
-        display: block;
-        transform: translateY(0);
+        max-height: 500px; /* Arbitrary large height to show all items */
+        padding: 15px 0; /* Add padding when open */
     }
 
     nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: block;
-        text-align: center;
+        flex-direction: column; /* Stack list items */
+        width: 100%;
     }
 
     nav li {
         margin-left: 0;
-        margin-bottom: 10px;
+        margin-bottom: 5px; /* Spacing between vertical items */
+        text-align: center; /* Center text */
+        width: 100%; /* Full width */
     }
+     nav li:last-child {
+        margin-bottom: 0;
+     }
 
     nav a {
-        display: block;
-        padding: 10px 20px;
-        text-decoration: none;
-        color: #555;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
+        padding: 12px 20px; /* Larger touch target */
+        color: #444; /* Slightly darker color */
+        border-bottom: 1px solid #eee; /* Separator */
+        border-radius: 0; /* Remove radius */
     }
-
-    nav a:hover {
-        background-color: #eee;
-        color: #5cb85c;
+    nav a:hover, nav a.active {
+        background-color: #e0e0e0; /* Different hover for mobile */
+        color: #b8860b; /* Gold highlight */
     }
+     nav li:last-child a {
+         border-bottom: none; /* No border for last item */
+     }
 
-    .header-inner::after {
-        content: '☰';
-        font-size: 1.5em;
-        color: #555;
-        cursor: pointer;
-        margin-left: 30px;
-        margin-right: auto;
+    main {
+        padding-top: 70px; /* Adjust main content padding */
     }
 
     #photo-album .album-container {
-        flex-direction: row; /* ترتيب العناصر أفقيًا */
-        justify-content: center; /* توسيط العناصر أفقياً */
-        align-items: center; /* توسيط العناصر عموديًا */
-        padding: 0 10px; /* إضافة مسافة داخلية */
+        width: 100%; /* Full width on mobile */
     }
+    #album-image {
+         max-height: 300px; /* Limit height on mobile */
+    }
+    #prev-btn, #next-btn {
+        font-size: 1.5em;
+        padding: 8px 10px;
+    }
+     #prev-btn { left: 8px; }
+     #next-btn { right: 8px; }
+
+
+    #prayer-times-page .times {
+        width: 95%; /* Near full width */
+        padding: 15px;
+    }
+     #prayer-times-page .prayer {
+         padding: 12px 10px;
+         font-size: 1em;
+     }
+      #prayer-times-page .prayer .time {
+          font-size: 1em;
+      }
+
+    .contact-form, .contact-info {
+        width: 95%;
+        padding: 20px;
+    }
+
+    #gallery-page .gallery-container {
+       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Smaller columns */
+       gap: 10px;
+    }
+    #gallery-page .gallery-container img {
+        height: 120px; /* Adjust fixed height */
+    }
+
+    #about-page p, #about-page ul {
+        font-size: 1em; /* Adjust font size */
+    }
+
 }

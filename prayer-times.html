@@ -3,187 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مواقيت الصلاة - مسجد نورا</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="اطلع على مواقيت الصلاة الدقيقة لليوم في السالمية، الكويت (حسب توقيت وزارة الأوقاف) - الفجر، الشروق، الظهر، العصر، المغرب، العشاء.">
+  <title>مواقيت الصلاة - مسجد نورة سعد العبيد</title>
+  <link rel="icon" href="images/mosque-logo.png" type="image/png">
+  <link rel="stylesheet" href="style.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* تنسيقات خاصة بصفحة مواقيت الصلاة */
-    body {
-      font-family: 'Tajawal', sans-serif;
-      background-color: #f4f4f4; /* لون خلفية فاتح */
-      color: #333; /* لون نص أساسي */
-      margin: 0;
-      padding-top: 120px; /* عشان الهيدر الثابت مَيغطيش المحتوى */
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh; /* لجعل الخلفية تغطي كامل ارتفاع الشاشة */
-    }
-    header {
-      background-color: rgba(255, 255, 255, 0.8);
-      color: #333;
-      padding: 10px 15px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    header.menu-open {
-        transform: translateY(0);
-    }
-
-    .header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        padding: 0 15px;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        flex-wrap: nowrap;
-        margin-left: -5px;
-        margin-right: 10px;
-    }
-
-    .logo img {
-        height: 40px;
-        margin-left: 8px;
-        transition: height 0.3s ease-in-out;
-    }
-
-    .logo-text {
-        margin-right: 8px;
-    }
-
-    .logo-text h1 {
-        font-size: 1.1em;
-        margin-bottom: 0;
-        white-space: nowrap;
-        color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    .logo-text p {
-        font-size: 0.7em;
-        margin-top: 2px;
-        white-space: nowrap;
-    }
-
-    nav {
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 98;
-        padding: 15px 0;
-        display: none;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    nav.open {
-        display: block;
-        transform: translateY(0);
-    }
-
-    nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: block;
-        text-align: center;
-    }
-
-    nav li {
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
-
-    nav li:last-child {
-        margin-bottom: 0;
-    }
-
-    nav a {
-        display: block;
-        padding: 10px 20px;
-        text-decoration: none;
-        color: #555;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-    }
-
-    nav a:hover {
-        background-color: #eee;
-        color: #5cb85c;
-    }
-
-    .date {
-      margin: 25px 0; /* زيادة الهامش عشان يكون فيه مساحة تحت الهيدر */
-      font-size: 18px;
-      color: #555; /* لون التاريخ أغمق قليلاً */
-    }
-    .times {
-      display: flex;
-      flex-direction: column;
-      gap: 10px; /* تقليل المسافة بين أوقات الصلاة */
-      max-width: 350px; /* تصغير عرض البوكس */
-      width: 100%;
-      background: #fff; /* خلفية بيضاء لقائمة الأوقات */
-      padding: 20px;
-      border: 2px solid #b8860b; /* إضافة إطار ذهبي */
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    }
-    .prayer {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 15px; /* مساحة داخلية أكبر قليلاً */
-      background: #f9f9f9; /* لون خلفية أفتح لكل وقت صلاة */
-      border-bottom: 1px solid #eee; /* خط فاصل خفيف */
-      font-size: 18px;
-      border-radius: 5px;
-    }
-    .prayer:last-child {
-      border-bottom: none; /* إزالة الخط الفاصل عن آخر وقت */
-    }
-    .label {
-      color: #333; /* لون اسم الصلاة */
-      font-weight: bold;
-    }
-    .time {
-      color: #b8860b; /* لون وقت الصلاة ذهبي */
-      font-weight: bold;
-    }
-    #prayer-times {
-      padding: 0; /* إزالة أي مساحة داخلية افتراضية */
-    }
+    body { font-family: 'Tajawal', sans-serif; text-align: center; }
   </style>
 </head>
-<body>
+<body id="prayer-times-page">
 
   <header>
     <div class="header-inner">
-        <div class="logo">
-            <img src="images/mosque-logo.png" alt="شعار المسجد">
-            <div class="logo-text">
-                <h1>مسجد نورة سعد العبيد</h1>
-                <p>صرح إسلامي شامخ</p>
-            </div>
+         <div class="logo">
+             <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                <img src="images/mosque-logo.png" alt="شعار المسجد">
+                <div class="logo-text">
+                    <h1>مسجد نورة سعد العبيد</h1>
+                    <p>صرح إسلامي شامخ</p>
+                </div>
+            </a>
         </div>
         <nav>
-            <ul>
+             <ul>
                 <li><a href="index.html">الرئيسية</a></li>
                 <li><a href="about.html">عن المسجد</a></li>
                 <li><a href="gallery.html">مكتبة الصور</a></li>
@@ -193,49 +38,79 @@
                 <li><a href="news.html">الأخبار والفعاليات</a></li>
             </ul>
         </nav>
+        <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
     </div>
 </header>
 
-  <div class="date" id="today"></div>
-  <div class="times" id="prayer-times">
-    جاري التحميل...
-  </div>
+<main>
+    <h2 style="color: #333; margin-top: 0; margin-bottom: 15px;">مواقيت الصلاة اليوم</h2>
+    <div class="date" id="today"></div>
+    <div class="times" id="prayer-times">
+        <div class="loading-indicator">جاري تحميل مواقيت الصلاة...</div>
+    </div>
+</main>
 
   <script>
-    const today = new Date();
-    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById("today").textContent = today.toLocaleDateString('ar-EG', dateOptions);
-
-    fetch("https://api.aladhan.com/v1/timingsByCity?city=Salmiya&country=Kuwait&method=3")
-      .then(response => response.json())
-      .then(data => {
-        const timings = data.data.timings;
-        const prayerList = {
-          "الفجر": timings.Fajr,
-          "الشروق": timings.Sunrise,
-          "الظهر": timings.Dhuhr,
-          "العصر": timings.Asr,
-          "المغرب": timings.Maghrib,
-          "العشاء": timings.Isha
-        };
-
-        const container = document.getElementById("prayer-times");
-        container.innerHTML = '';
-
-        for (const [label, time] of Object.entries(prayerList)) {
-          const div = document.createElement("div");
-          div.className = "prayer";
-          div.innerHTML = `<span class="label">${label}</span><span class="time">${convertTo12Hour(time)}</span>`;
-          container.appendChild(div);
-        }
-      });
-
-    function convertTo12Hour(time24) {
-      const [hour, minute] = time24.split(":").map(Number);
-      const ampm = hour >= 12 ? 'م' : 'ص';
-      const hour12 = ((hour + 11) % 12 + 1);
-      return `${hour12}:${minute.toString().padStart(2, '0')} ${ampm}`;
+    function timeToMinutes(time) {
+        if (!time || !time.includes(':')) return 0;
+        const [hours, minutes] = time.split(':').map(Number);
+        return hours * 60 + minutes;
     }
+    function convertTo12Hour(time24) {
+        if (!time24 || !time24.includes(':')) return '';
+        const [hour, minute] = time24.split(":").map(Number);
+        const period = hour >= 12 ? 'م' : 'ص';
+        const hour12 = ((hour + 11) % 12 + 1);
+        return `${hour12}:${minute.toString().padStart(2, '0')} ${period}`;
+    }
+    function fetchPrayerTimes() {
+        const today = new Date();
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Kuwait' };
+        document.getElementById("today").textContent = today.toLocaleDateString('ar-KW', dateOptions);
+
+        fetch("https://api.aladhan.com/v1/timingsByCity?city=Salmiya&country=Kuwait&method=3")
+          .then(response => {
+              if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+              return response.json();
+           })
+          .then(data => {
+                if (data.code === 200 && data.data && data.data.timings) {
+                    const timings = data.data.timings;
+                    const prayerMap = {"Fajr": "الفجر", "Sunrise": "الشروق", "Dhuhr": "الظهر", "Asr": "العصر", "Maghrib": "المغرب", "Isha": "العشاء"};
+                    const container = document.getElementById("prayer-times");
+                    container.innerHTML = '';
+                    const now = new Date();
+                    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+                    let nextPrayerFound = false;
+
+                    for (const [key, label] of Object.entries(prayerMap)) {
+                        const time24 = timings[key];
+                        if (time24) {
+                            const div = document.createElement("div");
+                            div.className = "prayer";
+                            div.dataset.time = time24;
+                            div.innerHTML = `<span class="label">${label}</span><span class="time">${convertTo12Hour(time24)}</span>`;
+                            container.appendChild(div);
+                            if (!nextPrayerFound) {
+                                const prayerMinutes = timeToMinutes(time24);
+                                if (prayerMinutes > nowMinutes && key !== "Sunrise") {
+                                    div.classList.add("next-prayer");
+                                    nextPrayerFound = true;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    throw new Error("Invalid data received from API.");
+                }
+          })
+          .catch(error => {
+                console.error("Error fetching prayer times:", error);
+                document.getElementById("prayer-times").innerHTML = '<div class="loading-indicator" style="color: red;">حدث خطأ أثناء تحميل المواقيت. يرجى المحاولة مرة أخرى.</div>';
+          });
+    }
+    fetchPrayerTimes();
   </script>
-  <script src="script.js"></script> </body>
+  <script src="script.js"></script>
+</body>
 </html>

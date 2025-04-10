@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تواصل مع إدارة جامع نورة سعد العبيد بالسالمية. أرسل استفساراتك أو اقتراحاتك عبر نموذج الاتصال أو ابحث عن معلومات الاتصال الأخرى.">
     <title>تواصل معنا - مسجد نورة سعد العبيد</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/mosque-logo.png" type="image/png">
+    <link rel="stylesheet" href="style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Tajawal', sans-serif; } </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="header-inner">
-                <div class="logo">
-                    <img src="images/mosque-logo.png" alt="شعار المسجد">
-                    <div class="logo-text">
-                        <h1>مسجد نورة سعد العبيد</h1>
-                        <p>صرح إسلامي شامخ</p>
-                    </div>
+                 <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="images/mosque-logo.png" alt="شعار المسجد">
+                        <div class="logo-text">
+                            <h1>مسجد نورة سعد العبيد</h1>
+                            <p>صرح إسلامي شامخ</p>
+                        </div>
+                    </a>
                 </div>
                 <nav>
                     <ul>
@@ -28,32 +36,39 @@
                         <li><a href="news.html">الأخبار والفعاليات</a></li>
                     </ul>
                 </nav>
+                <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
             </div>
         </header>
 
         <main id="contact-page">
             <h2>تواصل معنا</h2>
-            <p>يمكنكم التواصل معنا عبر النموذج التالي أو عبر وسائل الاتصال المتاحة.</p>
-            <form action="#" method="post" class="contact-form">
+            <p>نرحب باستفساراتكم واقتراحاتكم. يمكنكم التواصل معنا عبر النموذج التالي أو عبر وسائل الاتصال المتاحة أدناه.</p>
+
+            <form action="send_email.php" method="post" class="contact-form">
                 <div>
                     <label for="name">الاسم:</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" required placeholder="الاسم الكامل">
                 </div>
                 <div>
                     <label for="email">البريد الإلكتروني:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required placeholder="example@domain.com">
+                </div>
+                 <div>
+                    <label for="subject">الموضوع:</label>
+                    <input type="text" id="subject" name="subject" required placeholder="موضوع الرسالة">
                 </div>
                 <div>
                     <label for="message">الرسالة:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <textarea id="message" name="message" rows="6" required placeholder="اكتب رسالتك هنا..."></textarea>
                 </div>
-                <button type="submit">إرسال</button>
+                <button type="submit">إرسال الرسالة</button>
             </form>
+
             <div class="contact-info">
-                <p>أو يمكنكم التواصل عبر:</p>
+                <h3>معلومات الاتصال</h3>
+                <p>أو يمكنكم التواصل المباشر عبر:</p>
                 <ul>
-                    <li>الهاتف: [رقم الهاتف]</li>
-                    <li>البريد الإلكتروني: [البريد الإلكتروني]</li>
+                    <li><strong>الهاتف:</strong> <a href="tel:+965XXXXXXXX">[+965 XXXX XXXX]</a></li> <li><strong>البريد الإلكتروني:</strong> <a href="mailto:info@example.com">[info@example.com]</a></li> <li><strong>العنوان:</strong> شارع 8، السالمية، محافظة حولي، الكويت</li>
                 </ul>
             </div>
         </main>

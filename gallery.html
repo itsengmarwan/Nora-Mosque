@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="شاهد صور جامع نورة سعد العبيد في السالمية، الكويت. تصفح معرض الصور للمسجد من الداخل والخارج.">
     <title>مكتبة الصور - مسجد نورة سعد العبيد</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/mosque-logo.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Tajawal', sans-serif; } </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="header-inner">
-                <div class="logo">
-                    <img src="images/mosque-logo.png" alt="شعار المسجد">
-                    <div class="logo-text">
-                        <h1>مسجد نورة سعد العبيد</h1>
-                        <p>صرح إسلامي شامخ</p>
-                    </div>
+                 <div class="logo">
+                     <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="images/mosque-logo.png" alt="شعار المسجد">
+                        <div class="logo-text">
+                            <h1>مسجد نورة سعد العبيد</h1>
+                            <p>صرح إسلامي شامخ</p>
+                        </div>
+                    </a>
                 </div>
                 <nav>
                     <ul>
@@ -28,20 +37,51 @@
                         <li><a href="news.html">الأخبار والفعاليات</a></li>
                     </ul>
                 </nav>
+                <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
             </div>
         </header>
 
         <main id="gallery-page">
             <h2>مكتبة الصور</h2>
+            <p style="color: #555; margin-bottom: 25px;">اضغط على الصورة لعرضها بحجم أكبر.</p>
             <div class="gallery-container">
-                <img src="mosque_images/image1.jpg" alt="صورة للمسجد">
-                <img src="mosque_images/image2.jpg" alt="صورة للمسجد">
-                <img src="mosque_images/image3.jpg" alt="صورة للمسجد">
-                <img src="mosque_images/image4.jpg" alt="صورة للمسجد">
-                <img src="mosque_images/image5.jpg" alt="صورة للمسجد">
+                <div class="gallery-item">
+                    <a href="mosque_images/image1.jpg" data-lightbox="mosque-gallery" data-title="وصف للصورة الأولى (اختياري)">
+                        <img src="mosque_images/image1.jpg" alt="صورة 1 للمسجد" loading="lazy">
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="mosque_images/image2.jpg" data-lightbox="mosque-gallery" data-title="صورة داخلية للمسجد">
+                        <img src="mosque_images/image2.jpg" alt="صورة 2 للمسجد" loading="lazy">
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="mosque_images/image3.jpg" data-lightbox="mosque-gallery" data-title="صورة خارجية للمسجد ليلاً">
+                        <img src="mosque_images/image3.jpg" alt="صورة 3 للمسجد" loading="lazy">
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="mosque_images/image4.jpg" data-lightbox="mosque-gallery">
+                        <img src="mosque_images/image4.jpg" alt="صورة 4 للمسجد" loading="lazy">
+                    </a>
+                </div>
+                 <div class="gallery-item">
+                    <a href="mosque_images/image5.jpg" data-lightbox="mosque-gallery">
+                        <img src="mosque_images/image5.jpg" alt="صورة 5 للمسجد" loading="lazy">
+                    </a>
+                </div>
                 </div>
         </main>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        lightbox.option({
+          'resizeDuration': 200,
+          'wrapAround': true
+        })
+    </script>
 </body>
 </html>
