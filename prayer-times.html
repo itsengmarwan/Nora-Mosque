@@ -44,6 +44,12 @@
             padding: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
         }
+
+        .date {
+            font-size: 1.2em;
+            color: #ccc;
+        }
+
     </style>
 </head>
 <body>
@@ -51,24 +57,49 @@
     <div class="container">
         <h1>مسجد نورة سعد العبيد</h1>
         <h2>مواقيت الصلاة - السالمية</h2>
+        <div class="date" id="current-date"></div>
         <div id="prayer-times"></div>
     </div>
 
     <script>
+        // تحويل الوقت بتنسيق 24 ساعة إلى 12 ساعة مع AM/PM
+        function formatTime24to12(hour, minute) {
+            let ampm = hour >= 12 ? 'PM' : 'AM';
+            hour = hour % 12;
+            hour = hour ? hour : 12;  // الساعة 0 تصبح 12
+            minute = minute < 10 ? '0' + minute : minute;
+            return hour + ':' + minute + ' ' + ampm;
+        }
+
+        // جلب مواقيت الصلاة وتاريخ اليوم
         fetch("https://api.aladhan.com/v1/timingsByCity?city=Salmiya&country=Kuwait&method=2")
             .then(response => response.json())
             .then(data => {
                 const timings = data.data.timings;
                 const container = document.getElementById("prayer-times");
+                const dateContainer = document.getElementById("current-date");
 
+                // عرض اليوم والتاريخ
+                const today = new Date();
+                const daysOfWeek = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+                const monthsOfYear = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+                const dayOfWeek = daysOfWeek[today.getDay()];
+                const month = monthsOfYear[today.getMonth()];
+                const date = today.getDate();
+                const year = today.getFullYear();
+                const formattedDate = `${dayOfWeek}, ${date} ${month} ${year}`;
+
+                dateContainer.innerHTML = `${formattedDate}`;
+
+                // عرض مواقيت الصلاة
                 container.innerHTML = `
                     <ul>
-                        <li>الفجر: <span class="time">${timings.Fajr}</span></li>
-                        <li>الشروق: <span class="time">${timings.Sunrise}</span></li>
-                        <li>الظهر: <span class="time">${timings.Dhuhr}</span></li>
-                        <li>العصر: <span class="time">${timings.Asr}</span></li>
-                        <li>المغرب: <span class="time">${timings.Maghrib}</span></li>
-                        <li>العشاء: <span class="time">${timings.Isha}</span></li>
+                        <li>الفجر: <span class="time">${formatTime24to12(...timings.Fajr.split(':').map(Number))}</span></li>
+                        <li>الشروق: <span class="time">${formatTime24to12(...timings.Sunrise.split(':').map(Number))}</span></li>
+                        <li>الظهر: <span class="time">${formatTime24to12(...timings.Dhuhr.split(':').map(Number))}</span></li>
+                        <li>العصر: <span class="time">${formatTime24to12(...timings.Asr.split(':').map(Number))}</span></li>
+                        <li>المغرب: <span class="time">${formatTime24to12(...timings.Maghrib.split(':').map(Number))}</span></li>
+                        <li>العشاء: <span class="time">${formatTime24to12(...timings.Isha.split(':').map(Number))}</span></li>
                     </ul>
                 `;
             })
