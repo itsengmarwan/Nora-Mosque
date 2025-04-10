@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerInner = document.querySelector('.header-inner');
     const nav = document.querySelector('nav');
     const body = document.querySelector('body');
-    const menuToggle = headerInner ? headerInner.querySelector('::after') : null; // محاولة استهداف عنصر ::after (قد لا يعمل بشكل مباشر)
+    // const menuToggle = headerInner ? headerInner.querySelector('::after') : null; // تعليق أو حذف محاولة استهداف ::after
+
+    // وظيفة ألبوم الصور في الصفحة الرئيسية (الكود الأصلي)
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const albumImage = document.getElementById('album-image');
@@ -18,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     let currentIndex = 0;
 
-    // وظيفة ألبوم الصور في الصفحة الرئيسية
     if (prevBtn && nextBtn && albumImage && images.length > 0) {
         albumImage.src = images[currentIndex];
 
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // تفعيل/إخفاء قائمة التنقل على الجوال
+    // تفعيل/إخفاء قائمة التنقل على الجوال (الكود الأصلي)
     if (headerInner && nav && body && window.innerWidth <= 768) {
         headerInner.addEventListener('click', function() {
             nav.classList.toggle('open');
@@ -41,11 +42,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // إغلاق القائمة وإزالة تأثير الخلفية عند تغيير حجم الشاشة إلى أكبر من 768 بكسل
+    // إغلاق القائمة عند تغيير حجم الشاشة (الكود الأصلي)
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             nav.classList.remove('open');
             body.classList.remove('menu-open');
         }
     });
+
+    // كود تفعيل أنيميشن الظهور عند التمرير (الجزء الجديد)
+    const elementsToAnimate = document.querySelectorAll('.element-to-animate');
+
+    function checkVisibility() {
+        elementsToAnimate.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementBottom = element.getBoundingClientRect().bottom;
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+            // لو العنصر ظاهر جزئياً في الشاشة (تعديل بسيط في نسبة الظهور)
+            if (elementTop < viewportHeight * 0.8 && elementBottom > 0) {
+                element.classList.add('animate__delay-0.2s'); // إضافة تأخير بسيط (اختياري)
+                element.classList.add('animate__fast'); // سرعة أسرع شوية (اختياري)
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkVisibility);
+    checkVisibility(); // عشان نشيك أول مرة عند تحميل الصفحة
 });
