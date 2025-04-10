@@ -1,4 +1,4 @@
-/* Nora-Mosque/style.css (Improved, Unminified) */
+/* Nora-Mosque/style.css (Improved, Unminified, News Section Removed) */
 body {
     font-family: 'Tajawal', sans-serif; /* Applied Tajawal globally */
     margin: 0;
@@ -128,8 +128,9 @@ main {
 }
 
 /* --- Section Styles --- */
+/* Removed .news-item from here */
 #photo-album, #social-links, #azkar-app, #suggestions, #mosque-location,
-#prayer-times-link, .azkar-app-like, .news-item, #about-page, #contact-page, #gallery-page, #quran-page {
+#prayer-times-link, .azkar-app-like, #about-page, #contact-page, #gallery-page, #quran-page {
     background-color: #fff;
     padding: 30px 20px;
     margin-bottom: 30px;
@@ -138,9 +139,10 @@ main {
     text-align: center;
 }
 
+/* Removed #news-page h2 from here */
 #photo-album h2, #social-links h2, #azkar-app h2, #suggestions h2,
 #mosque-location h2, #prayer-times-link h2, .azkar-app-like h2,
-#contact-page h2, #gallery-page h2, #news-page h2, #about-page h2, #quran-page h1 {
+#contact-page h2, #gallery-page h2, #about-page h2, #quran-page h1 {
     color: #333;
     margin-top: 0;
     margin-bottom: 25px;
@@ -413,48 +415,8 @@ main {
     margin-bottom: 0;
 }
 
-/* News Page */
-.news-item {
-    background-color: #fff;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
-    text-align: right;
-    border: 1px solid #f0f0f0;
-}
+/* News Page Section - REMOVED */
 
-.news-item h3 {
-    color: #b8860b;
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 1.4em;
-}
-
-.news-item .date {
-    color: #888;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.news-item p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 15px;
-}
-
-.news-item a.read-more {
-    color: #5cb85c;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.news-item a.read-more:hover {
-    color: #4cae4c;
-    text-decoration: underline;
-}
 
 /* Gallery Page */
 #gallery-page .gallery-container {
@@ -555,7 +517,7 @@ main {
     }
 
     nav.open {
-        max-height: 500px;
+        max-height: 500px; /* Adjust if your menu gets taller */
         padding: 15px 0;
     }
 
