@@ -49,8 +49,9 @@ header.menu-open {
 }
 
 .logo img {
-    height: 35px;
+    height: 40px; /* تكبير ارتفاع الشعار من 35px إلى 40px */
     margin-left: 8px;
+    transition: height 0.3s ease-in-out; /* إضافة تأثير بسيط عند تغيير الحجم لو حبيت */
 }
 
 .logo-text {
@@ -421,7 +422,7 @@ main {
     }
 
     .logo img {
-        height: 35px;
+        height: 45px; /* تكبير ارتفاع الشعار على الجوال أيضًا */
         margin-left: 8px;
     }
 
@@ -430,13 +431,13 @@ main {
     }
 
     .logo-text h1 {
-        font-size: 1.1em;
+        font-size: 1em; /* تصغير حجم الخط عشان يتناسب مع الشعار الأكبر */
         margin-bottom: 0;
         white-space: nowrap;
     }
 
     .logo-text p {
-        font-size: 0.7em;
+        font-size: 0.6em; /* تصغير حجم الخط عشان يتناسب مع الشعار الأكبر */
         margin-top: 2px;
         white-space: nowrap;
     }
@@ -524,11 +525,24 @@ main {
         width: 100%;
     }
 
-    #about-page main,
-    #contact-page main,
-    #news-page main,
-    #gallery-page main,
+    /* هامش علوي لعناصر <main> داخل الصفحات على الجوال */
     #index-page main {
-        padding-top: 60px; /* هامش علوي لعناصر <main> على الجوال */
+        padding-top: 60px;
+    }
+
+    #about-page main {
+        padding-top: 60px;
+    }
+
+    #contact-page main {
+        padding-top: 60px;
+    }
+
+    #news-page main {
+        padding-top: 60px;
+    }
+
+    #gallery-page main {
+        padding-top: 60px;
     }
 }
