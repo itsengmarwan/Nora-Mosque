@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
         'mosque_images/image3.jpg',
         'mosque_images/image4.jpg',
         'mosque_images/image5.jpg',
-        'mosque_images/image6.jpg',
-        'mosque_images/image7.jpg'
         // يمكنك إضافة المزيد من أسماء الصور هنا مثل 'mosque_images/image3.jpg'
     ];
     let currentIndex = 0;
