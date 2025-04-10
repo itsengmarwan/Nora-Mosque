@@ -8,7 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const albumImage = document.getElementById('album-image');
     const images = [
         'mosque_images/image1.jpg',
-        'mosque_images/image2.jpg'
+        'mosque_images/image2.jpg',
+        'mosque_images/image3.jpg',
+        'mosque_images/image4.jpg',
+        'mosque_images/image5.jpg',
+        'mosque_images/image6.jpg',
+        'mosque_images/image7.jpg'
         // يمكنك إضافة المزيد من أسماء الصور هنا مثل 'mosque_images/image3.jpg'
     ];
     let currentIndex = 0;
