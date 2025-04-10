@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = document.getElementById('next-btn');
     const albumImage = document.getElementById('album-image');
     const images = [
-        'mosque_images/image1.jpg',
-        'mosque_images/image2.jpg',
-        'mosque_images/image3.jpg',
-        'mosque_images/image4.jpg',
-        'mosque_images/image5.jpg',
-        'mosque_images/image6.jpg',
-        'mosque_images/image7.jpg'
+        'mosque_images/image1.png',
+        'mosque_images/image2.png',
+        'mosque_images/image3.png',
+        'mosque_images/image4.png',
+        'mosque_images/image5.png',
+        'mosque_images/image6.png',
+        'mosque_images/image7.png'
         // يمكنك إضافة المزيد من أسماء الصور هنا مثل 'mosque_images/image3.jpg'
     ];
     let currentIndex = 0;
