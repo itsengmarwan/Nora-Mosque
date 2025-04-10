@@ -11,8 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // يمكنك إضافة المزيد من أسماء الصور هنا مثل 'mosque_images/image3.jpg'
     ];
     let currentIndex = 0;
-    let isMenuOpen = false; // حالة القائمة
-    let menuClickCount = 0; // عداد النقرات على قائمة التنقل
 
     // وظيفة ألبوم الصور في الصفحة الرئيسية
     if (prevBtn && nextBtn && albumImage && images.length > 0) {
@@ -33,24 +31,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (headerInner && nav && body && window.innerWidth <= 768) {
         headerInner.addEventListener('click', function(event) {
             if (event.target.matches('.header-inner::after')) {
-                menuClickCount++; // زيادة عداد النقرات
-                if (menuClickCount % 2 === 1) { // إذا كان عدد النقرات فرديًا (فتح القائمة)
-                    nav.classList.add('open');
-                    body.classList.add('menu-open');
-                } else { // إذا كان عدد النقرات زوجيًا (إغلاق القائمة)
-                    nav.classList.remove('open');
-                    body.classList.remove('menu-open');
-                }
+                nav.classList.toggle('open');
+                body.classList.toggle('menu-open');
             }
         });
     }
 
     // إغلاق القائمة وإزالة تأثير الخلفية عند تغيير حجم الشاشة إلى أكبر من 768 بكسل
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768 && isMenuOpen) {
+        if (window.innerWidth > 768) {
             nav.classList.remove('open');
             body.classList.remove('menu-open');
-            isMenuOpen = false; // إعادة تعيين حالة القائمة
         }
     });
 });
