@@ -65,9 +65,7 @@ header.menu-open {
     font-size: 1.1em;
     margin-bottom: 0;
     white-space: nowrap;
-    /* ذهبي أغمق مع لمعة بسيطة */
     color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
-    /* ممكن نضيف تأثير ظل خفيف عشان اللمعة */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -287,7 +285,7 @@ main {
 
 .suggestion-link {
     display: inline-block;
-    background-color: #007bff;
+    background-color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
     color: white;
     padding: 12px 25px;
     text-decoration: none;
@@ -295,10 +293,11 @@ main {
     font-size: 1em;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* ظل خفيف للمعة */
 }
 
 .suggestion-link:hover {
-    background-color: #0056b3;
+    background-color: #a17509; /* لون أغمق عند التhover */
 }
 
 .contact-form {
@@ -445,8 +444,8 @@ main {
         font-size: 1em;
         margin-bottom: 0;
         white-space: nowrap;
-        color: #b8860b; /* ذهبي أغمق */
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* ظل خفيف للمعة */
+        color: #b8860b; /* ذهبي أغمق (DarkGoldenrod) */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     }
 
     .logo-text p {
@@ -512,11 +511,4 @@ main {
     #photo-album .album-container {
         flex-direction: row; /* ترتيب العناصر أفقيًا */
         justify-content: center; /* توسيط العناصر أفقياً */
-        align-items: center; /* توسيط العناصر عموديًا */
-        padding: 0 10px; /* إضافة مسافة داخلية */
-    }
-
-    #album-image {
-        max-width: 70%; /* تكبير حجم الصورة */
-        height: auto;
-        border-radius: 8px;
+        align-items: center;
