@@ -14,18 +14,15 @@
             justify-content: center; /* توسيط أفقي للعناصر المباشرة داخل main */
             align-items: flex-start; /* محاذاة العناصر من الأعلى */
             flex-direction: column;
-            text-align: center; /* توسيط النص بشكل افتراضي */
         }
 
-        .prayer-times-container {
-            max-width: 600px; /* نفس عرض جدول المواقيت */
+        .prayer-times-wrapper {
+            max-width: 600px;
             width: 100%;
             margin-top: 30px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .prayer-times-container table {
+        .prayer-times-wrapper table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
@@ -35,34 +32,36 @@
             overflow: hidden;
         }
 
-        .prayer-times-container th,
-        .prayer-times-container td {
+        .prayer-times-wrapper th,
+        .prayer-times-wrapper td {
             padding: 10px;
             text-align: center;
             border-bottom: 1px solid #eee;
         }
 
-        .prayer-times-container th {
+        .prayer-times-wrapper th {
             font-weight: bold;
             color: #555;
         }
 
-        .prayer-times-container td:first-child {
+        .prayer-times-wrapper td:first-child {
             font-weight: bold;
             color: #333;
         }
 
-        .prayer-times-container td:last-child {
+        .prayer-times-wrapper td:last-child {
             color: #b8860b;
             font-weight: bold;
         }
 
         body {
             color: #333;
+            text-align: center; /* توسيط عام للنص في body */
         }
 
         #prayer-times-page h2 {
             color: #555;
+            text-align: center; /* توسيط عنوان الصفحة */
         }
     </style>
 </head>
@@ -92,7 +91,7 @@
 
         <main id="prayer-times-page">
             <h2>مواقيت الصلاة - السالمية</h2>
-            <div class="prayer-times-container">
+            <div class="prayer-times-wrapper">
                 <div id="q8prayers" data-lang="ar" data-theme="light" data-size="md" data-date="gregorian"></div>
             </div>
         </main>
