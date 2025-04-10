@@ -398,7 +398,7 @@ main {
 /* تصميم متجاوب */
 @media (max-width: 768px) {
     body {
-        padding-top: 50px; /* هامش علوي لجعل الرأس يظهر بشكل صحيح */
+        padding-top: 50px; /* هامش علوي لجعل الرأس يظهر بشكل صحيح على الجوال */
     }
 
     header {
@@ -524,53 +524,11 @@ main {
         width: 100%;
     }
 
-    #about-page {
-        padding: 15px;
+    #about-page main,
+    #contact-page main,
+    #news-page main,
+    #gallery-page main,
+    #index-page main {
+        padding-top: 60px; /* هامش علوي لعناصر <main> على الجوال */
     }
-
-    #about-page h2 {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-    }
-
-    #about-page p {
-        font-size: 1em;
-        line-height: 1.8;
-        margin-bottom: 15px;
-    }
-
-    #contact-page {
-        padding: 15px;
-    }
-
-    #contact-page h2 {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-    }
-
-    .contact-form {
-        padding: 15px;
-    }
-
-    .contact-form div {
-        margin-bottom: 10px;
-    }
-
-    .contact-form label {
-        font-size: 1em;
-    }
-
-    .contact-form input[type="text"],
-    .contact-form input[type="email"],
-    .contact-form textarea {
-        font-size: 1em;
-        padding: 8px;
-    }
-
-    .contact-form button[type="submit"] {
-        font-size: 1em;
-        padding: 10px 20px;
-    }
-
-    .contact-info {
-        padding:
+}
