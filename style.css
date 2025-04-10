@@ -119,6 +119,10 @@ nav a:hover {
     color: #5cb85c;
 }
 
+main {
+    padding-top: 70px; /* هامش علوي عام لعناصر <main> */
+}
+
 #photo-album {
     background-color: #fff;
     padding: 30px 20px;
@@ -394,11 +398,14 @@ nav a:hover {
 /* تصميم متجاوب */
 @media (max-width: 768px) {
     body {
-        padding-top: 50px;
+        padding-top: 50px; /* هامش علوي لجعل الرأس يظهر بشكل صحيح */
     }
 
     header {
         padding: 10px 15px;
+        width: 100%;
+        left: 0;
+        transform: translateX(0);
     }
 
     .header-inner {
@@ -566,14 +573,4 @@ nav a:hover {
     }
 
     .contact-info {
-        padding: 15px;
-        margin-top: 20px;
-    }
-
-    .contact-info h3 {
-        font-size: 1.2em;
-        margin-bottom: 10px;
-    }
-
-    .contact-info ul {
-        padding-
+        padding:
