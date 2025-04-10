@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerInner = document.querySelector('.header-inner');
     const nav = document.querySelector('nav');
     const body = document.querySelector('body');
+    const menuToggle = headerInner ? headerInner.querySelector('::after') : null; // محاولة استهداف عنصر ::after (قد لا يعمل بشكل مباشر)
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const albumImage = document.getElementById('album-image');
@@ -29,11 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // تفعيل/إخفاء قائمة التنقل على الجوال
     if (headerInner && nav && body && window.innerWidth <= 768) {
-        headerInner.addEventListener('click', function(event) {
-            if (event.target.matches('.header-inner::after')) {
-                nav.classList.toggle('open');
-                body.classList.toggle('menu-open');
-            }
+        headerInner.addEventListener('click', function() {
+            nav.classList.toggle('open');
+            body.classList.toggle('menu-open');
         });
     }
 
