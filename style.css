@@ -46,12 +46,13 @@ header.menu-open {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
+    margin-left: -5px; /* تحريك الشعار جهة الشمال بمقدار بسيط */
 }
 
 .logo img {
-    height: 40px; /* تكبير ارتفاع الشعار من 35px إلى 40px */
-    margin-left: 8px;
-    transition: height 0.3s ease-in-out; /* إضافة تأثير بسيط عند تغيير الحجم لو حبيت */
+    height: 40px;
+    margin-left: 8px; /* دي القيمة الأصلية للمسافة بين الشعار والنص */
+    transition: height 0.3s ease-in-out;
 }
 
 .logo-text {
@@ -419,10 +420,11 @@ main {
         display: flex;
         align-items: center;
         flex-wrap: nowrap;
+        margin-left: -10px; /* تحريك الشعار جهة الشمال بمقدار أكبر على الجوال */
     }
 
     .logo img {
-        height: 45px; /* تكبير ارتفاع الشعار على الجوال أيضًا */
+        height: 45px;
         margin-left: 8px;
     }
 
@@ -431,13 +433,13 @@ main {
     }
 
     .logo-text h1 {
-        font-size: 1em; /* تصغير حجم الخط عشان يتناسب مع الشعار الأكبر */
+        font-size: 1em;
         margin-bottom: 0;
         white-space: nowrap;
     }
 
     .logo-text p {
-        font-size: 0.6em; /* تصغير حجم الخط عشان يتناسب مع الشعار الأكبر */
+        font-size: 0.6em;
         margin-top: 2px;
         white-space: nowrap;
     }
@@ -543,6 +545,4 @@ main {
     }
 
     #gallery-page main {
-        padding-top: 60px;
-    }
-}
+        padding-top: 60px
