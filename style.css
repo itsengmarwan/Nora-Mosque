@@ -240,7 +240,7 @@ main {
 }
 
 #azkar-app h2 {
-    color: #5cb85c;
+    color: #000; /* خلينا لون العنوان أسود */
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.8em;
@@ -506,3 +506,8 @@ main {
         color: #555;
         cursor: pointer;
         margin-left: 30px;
+        margin-right: auto;
+    }
+
+    #photo-album .album-container {
+        flex-direction: row; /* ترتيب العناصر أفقيًا
