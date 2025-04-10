@@ -174,10 +174,6 @@ main {
     transition: opacity 0.3s ease;
 }
 
-#prev-btn:hover, #next-btn:hover {
-    opacity: 1;
-}
-
 #prev-btn {
     left: 10px;
 }
@@ -498,58 +494,39 @@ main {
         font-size: 1.5em;
         color: #555;
         cursor: pointer;
-        margin-left: 30px; /* زودنا المسافة من اليسار كمان */
+        margin-left: 30px;
         margin-right: auto;
     }
 
     #photo-album .album-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row; /* تغيير اتجاه العناصر إلى أفقي */
+        justify-content: space-between; /* توزيع العناصر على الأطراف */
+        align-items: center; /* توسيط العناصر عموديًا */
+        padding: 0 10px; /* إضافة بعض المسافة الداخلية */
+    }
+
+    #album-image {
+        max-width: 80%; /* تصغير حجم الصورة عشان الأزرار تاخد مكان */
+        margin: 0; /* إزالة الهوامش التلقائية */
     }
 
     #prev-btn, #next-btn {
-        position: static;
-        transform: translateY(0);
-        margin: 10px 0;
-        display: block;
-        text-align: center;
+        position: static; /* تغيير الوضع عشان يتبع تخطيط الأب */
+        transform: translateY(0); /* إزالة التحويل الرأسي */
+        margin: 0; /* إزالة الهوامش التلقائية */
+        display: block; /* عرض كعنصر بلوك عشان ياخد مساحة */
+        text-align: center; /* توسيط النص داخل الزر (لو فيه نص) */
+        font-size: 2em; /* تكبير حجم الأزرار */
+        padding: 10px; /* إضافة مساحة داخلية للأزرار */
     }
 
-    #photo-album .album-container img {
-        max-width: 95%;
+    #photo-album .album-container > :not(#album-image) { /* تحديد الأزرار فقط */
+        flex-basis: auto; /* السماح للأزرار بأخذ المساحة اللي محتاجينها */
     }
 
-    .links-container {
-        justify-content: space-around;
+    #prev-btn {
+        order: 1; /* وضع الزر الأيمن أولًا في الترتيب المرئي */
     }
 
-    #gallery-page .gallery-container {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 15px;
-    }
-
-    #gallery-page .gallery-container img {
-        width: 100%;
-    }
-
-    #index-page main {
-        padding-top: 60px;
-    }
-
-    #about-page main {
-        padding-top: 60px;
-    }
-
-    #contact-page main {
-        padding-top: 60px;
-    }
-
-    #news-page main {
-        padding-top: 60px;
-    }
-
-    #gallery-page main {
-        padding-top: 60px;
-    }
-}
+    #album-image {
+        order: 2
