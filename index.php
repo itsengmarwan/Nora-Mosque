@@ -15,9 +15,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Side Navigation -->
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <a href="javascript:void(0)" onclick="switchTab('home')"><i class="fas fa-home"></i> الرئيسية</a>
         <a href="javascript:void(0)" onclick="switchTab('about')"><i class="fas fa-info-circle"></i> عن المسجد</a>
         <a href="javascript:void(0)" onclick="switchTab('prayer')"><i class="fas fa-clock"></i> مواقيت الصلاة</a>
@@ -30,7 +29,6 @@
         <a href="javascript:void(0)" onclick="switchTab('location')"><i class="fas fa-map-marker-alt"></i> موقع المسجد</a>
     </div>
 
-    <!-- Navbar -->
     <div class="navbar">
         <div class="logo-container">
             <div class="logo">
@@ -43,19 +41,17 @@
         </button>
     </div>
 
-    <!-- Main Content -->
     <div class="main-container">
-        <!-- Home Tab -->
         <div id="home" class="tab-content active">
             <img src="mosque_images/image1.jpg" alt="مسجد نورة سعد العبيد" class="banner-image">
-            
+
             <div class="card">
                 <div class="section-title">
                     <i class="fas fa-mosque"></i> أهلا بكم في مسجد نورة سعد العبيد
                 </div>
                 <p>هذا التطبيق مخصص لخدمة مسجد نورة سعد العبيد بالكويت، ويقدم معلومات ومزايا متنوعة للمصلين والزوار.</p>
             </div>
-            
+
             <div class="feature-cards">
                 <a href="javascript:void(0)" onclick="switchTab('prayer')" class="feature-card">
                     <i class="fas fa-clock"></i>
@@ -78,7 +74,7 @@
                     <div class="feature-card-desc">حجز واستعارة الكتب</div>
                 </a>
             </div>
-            
+
             <div class="card" style="margin-top: 20px;">
                 <div class="section-title">
                     <i class="fas fa-hashtag"></i> تابعونا على
@@ -130,7 +126,6 @@
             </div>
         </div>
 
-        <!-- About Tab -->
         <div id="about" class="tab-content">
             <div class="card">
                 <div class="section-title">
@@ -140,7 +135,7 @@
                     <p>يُعتبر جامع نورة سعد العبيد معلماً إسلامياً بارزاً يزهو في قلب منطقة السالمية التابعة لمحافظة حولي بدولة الكويت، وتحديداً يشع نوره في شارع 8.</p>
                     <p>يشرف على إمامة المسجد فضيلة الشيخ/ <strong>عبداللّه العازمي </strong><p>و يلقي خطبة الجمعة فضيلة الشيخ الدكتور/ <strong>سعد سعد الأحمد</strong></p>، ويرفع نداء الحق بصوته العذب المؤذن الشيخ/ <strong>حسن بدري</strong>.</p>
                 </div>
-                
+
                 <div class="section-title">
                     <i class="fas fa-calendar-alt"></i> الأنشطة والفعاليات الرئيسية
                 </div>
@@ -152,7 +147,7 @@
                     <li>استضافة محاضرات ودروس دينية وعلمية دورية يقدمها نخبة من المشايخ والدعاة.</li>
                     <li>توفير مكتبة عامرة بالكتب الشرعية والثقافية للباحثين والمهتمين.</li>
                 </ul>
-                
+
                 <div class="section-title" style="margin-top: 20px;">
                     <i class="fas fa-question-circle"></i> لماذا سُمي بهذا الاسم؟
                 </div>
@@ -160,7 +155,6 @@
             </div>
         </div>
 
-        <!-- Prayer Times Tab -->
         <div id="prayer" class="tab-content">
             <div class="card">
                 <div class="section-title">
@@ -199,7 +193,6 @@
             </div>
         </div>
 
-        <!-- Gallery Tab -->
         <div id="gallery" class="tab-content">
             <div class="card">
                 <div class="section-title">
@@ -225,7 +218,6 @@
             </div>
         </div>
 
-        <!-- Quran Tab -->
         <div id="quran" class="tab-content">
             <div class="card">
                 <div class="section-title">
@@ -233,148 +225,112 @@
                 </div>
                 <p class="mb-3">نسخة مجمع الملك فهد لطباعة المصحف الشريف</p>
                 <div class="quran-surah-list" id="quranSurahList">
-                    <!-- القائمة ستملأ بالجافاسكريبت -->
-                </div>
+                    </div>
                 <div class="swipe-indicator">
-                    <i class="fas fa-hand-point-up"></i> اضغط على اسم السورة لفتحها
+                    <div class="indicator-dot active"></div>
+                    <div class="indicator-dot"></div>
+                    <div class="indicator-dot"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Library Tab -->
         <div id="library" class="tab-content">
             <div class="card">
                 <div class="section-title">
                     <i class="fas fa-book"></i> مكتبة المسجد
                 </div>
-                <p>مكتبة مسجد نورة سعد العبيد تحتوي على مجموعة متنوعة من الكتب الإسلامية والثقافية. يمكنكم زيارة المكتبة واستعارة الكتب بعد الحجز.</p>
-                <a href="https://forms.gle/2pT8jDXCqFJTF8Yt6" class="action-button">
-                    <i class="fas fa-calendar-check"></i> حجز زيارة المكتبة
-                </a>
+                <p>قريبًا ستتوفر هنا قائمة بالكتب المتاحة في مكتبة المسجد وروابط لحجز أو استعارة الكتب.</p>
             </div>
         </div>
 
-        <!-- Azkar Tab -->
         <div id="azkar" class="tab-content">
             <div class="card">
                 <div class="section-title">
-                    <i class="fas fa-pray"></i> موقع أذكار المسلم
+                    <i class="fas fa-pray"></i> أذكار المسلم
                 </div>
-                <p>حصنك اليومي من الأذكار المتنوعة. تحتوي على أذكار الصباح والمساء وأذكار النوم والاستيقاظ وأذكار مختلفة للمسلم.</p>
-                <a href="https://alazkar.netlify.app/" class="action-button" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> الذهاب إلى موقع الأذكار
-                </a>
+                <p>قريبًا ستتوفر هنا مجموعة من أذكار المسلم اليومية.</p>
             </div>
         </div>
 
-        <!-- Suggestions Tab -->
         <div id="suggestions" class="tab-content">
             <div class="card">
                 <div class="section-title">
                     <i class="fas fa-comment-alt"></i> شاركنا برأيك
                 </div>
-                <p>هل لديك اقتراح لتطوير المسجد أو أنشطته؟ نرحب بآرائكم واقتراحاتكم.</p>
-                <a href="https://forms.gle/vqLbACky9q39rVa78" class="action-button" target="_blank">
-                    <i class="fas fa-clipboard-list"></i> تقديم اقتراح
-                </a>
+                <form id="suggestionsForm">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">الاسم:</label>
+                        <input type="text" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="اسمك الكريم">
+                    </div>
+                    <div class="mb-4">
+                        <label for="suggestion" class="block text-gray-700 text-sm font-bold mb-2">اقتراحك/رأيك:</label>
+                        <textarea id="suggestion" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="اكتب اقتراحك أو رأيك هنا"></textarea>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">إرسال الاقتراح</button>
+                        <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="document.getElementById('suggestionsForm').reset()">مسح</button>
+                    </div>
+                </form>
             </div>
         </div>
 
-        <!-- Contact Tab -->
         <div id="contact" class="tab-content">
             <div class="card">
                 <div class="section-title">
                     <i class="fas fa-envelope"></i> تواصل معنا
                 </div>
-                <p>نرحب باستفساراتكم واقتراحاتكم. يمكنكم التواصل معنا عبر النموذج التالي أو عبر وسائل الاتصال المتاحة أدناه.</p>
-                
-                <form id="contactForm" onsubmit="return false;">
-                    <div class="form-group">
-                        <label for="name" class="form-label">الاسم:</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">البريد الإلكتروني:</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject" class="form-label">الموضوع:</label>
-                        <input type="text" id="subject" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label">الرسالة:</label>
-                        <textarea id="message" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="action-button">
-                        <i class="fas fa-paper-plane"></i> إرسال
-                    </button>
-                </form>
-                
-                <div class="contact-info">
-                    <div class="section-title">
-                        <i class="fas fa-info-circle"></i> معلومات الاتصال
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <a href="tel:+96566877036">+965 6687 7036</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <a href="marwan.tarek.abosalem@gmail.com">marwan.tarek.abosalem@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>شارع 8، السالمية، محافظة حولي، الكويت</span>
-                    </div>
-                </div>
+                <p>يمكنكم التواصل مع إدارة المسجد عبر الوسائل التالية:</p>
+                <ul>
+                <li><strong>البريد الإلكتروني:</strong> <a href="mailto:info@yourmosque.com">info@yourmosque.com</a> (مثال)</li>
+                    <li><strong>رقم الهاتف:</strong> +965 XXXXXXXX (مثال)</li>
+                    <li><strong>العنوان:</strong> شارع 8، السالمية، الكويت (مثال)</li>
+                </ul>
+                <p class="mt-4">نتطلع إلى تواصلكم واستقبال استفساراتكم وملاحظاتكم.</p>
             </div>
         </div>
 
-        <!-- Location Tab -->
         <div id="location" class="tab-content">
             <div class="card">
                 <div class="section-title">
                     <i class="fas fa-map-marker-alt"></i> موقع المسجد
                 </div>
-                <p>موقع مسجد نورة سعد العبيد في شارع 8، السالمية، محافظة حولي، الكويت.</p>
-                <div id="map" style="width: 100%; height: 300px; border-radius: 8px; margin-top: 15px;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3478.2644742438056!2d48.08693025314941!3d29.333243953079098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf76193cdeed09%3A0xac50e72d5e143872!2z2YXYs9is2K8g2YbZiNix2Kkg2LPYudivINin2YTYudio2YrYrw!5e0!3m2!1sar!2skw!4v1744397925437!5m2!1sar!2skw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3477.67890123456!2d48.077777!3d29.345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sYour+Mosque+Name!5e0!3m2!1sar!2skw!4v16XXXXXXXXX"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <p class="mt-3 text-center"><a href="https://www.google.com/maps/place/Your+Mosque+Name" target="_blank">عرض الموقع على خرائط جوجل</a></p>
+                    <small>*** يرجى استبدال رابط الخريطة واسم الموقع بالمعلومات الصحيحة لمسجدكم. ***</small>
                 </div>
-                <a href="https://maps.app.goo.gl/33Qg7bFeeXbfKnVt9" class="action-button" target="_blank" style="margin-top: 15px;">
-                    <i class="fas fa-directions"></i> الاتجاهات إلى المسجد
-                </a>
             </div>
         </div>
     </div>
 
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-        <a href="javascript:void(0)" onclick="switchTab('home')" class="bottom-nav-item active" id="nav-home">
+    <div class="bottom-navigation">
+        <a href="javascript:void(0)" onclick="switchTab('home')" class="bottom-nav-item active">
             <i class="fas fa-home"></i>
-            <span class="bottom-nav-text">الرئيسية</span>
+            <span>الرئيسية</span>
         </a>
-        <a href="javascript:void(0)" onclick="switchTab('prayer')" class="bottom-nav-item" id="nav-prayer">
+        <a href="javascript:void(0)" onclick="switchTab('prayer')" class="bottom-nav-item">
             <i class="fas fa-clock"></i>
-            <span class="bottom-nav-text">الصلاة</span>
+            <span>مواقيت الصلاة</span>
         </a>
-        <a href="javascript:void(0)" onclick="switchTab('quran')" class="bottom-nav-item" id="nav-quran">
+        <a href="javascript:void(0)" onclick="switchTab('quran')" class="bottom-nav-item">
             <i class="fas fa-book-open"></i>
-            <span class="bottom-nav-text">القرآن</span>
+            <span>المصحف</span>
         </a>
-        <a href="javascript:void(0)" onclick="switchTab('gallery')" class="bottom-nav-item" id="nav-gallery">
+        <a href="javascript:void(0)" onclick="switchTab('gallery')" class="bottom-nav-item">
             <i class="fas fa-images"></i>
-            <span class="bottom-nav-text">الصور</span>
+            <span>الصور</span>
         </a>
-        <a href="javascript:void(0)" onclick="switchTab('contact')" class="bottom-nav-item" id="nav-contact">
-            <i class="fas fa-envelope"></i>
-            <span class="bottom-nav-text">اتصل بنا</span>
+        <a href="javascript:void(0)" onclick="openNav()" class="bottom-nav-item">
+            <i class="fas fa-bars"></i>
+            <span>المزيد</span>
         </a>
     </div>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://chat.whatsapp.com/LuwgLyE5NVf2Hb8Yb6lhS9" class="floating-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <div id="imageViewer" class="image-viewer">
+        <span class="close-btn" onclick="closeImageViewer()">&times;</span>
+        <img class="viewer-image" id="viewedImage" src="" alt="صورة مكبرة">
+    </div>
 
     <script src="script.js"></script>
 </body>
