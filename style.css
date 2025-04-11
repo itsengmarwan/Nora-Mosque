@@ -1,11 +1,24 @@
+/* --- Google Font Import --- */
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
-        
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap'); /* Font for Quran text */
+@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap'); /* Alternative Font for Quran text */
+
+
+/* --- Base Variables and Reset --- */
 :root {
-    --primary-color: #2C3E50    ;
-    --secondary-color: #34495E;
-    --text-color: #000000;
-    --light-bg: #F0F0F0;
+    --primary-color: #2C3E50;    /* Dark Blue-Gray */
+    --secondary-color: #34495E; /* Slightly Lighter Blue-Gray */
+    --accent-color: #3498DB;     /* Nice Blue for accents like next prayer */
+    --text-color: #333333;       /* Dark Gray for general text */
+    --light-text-color: #666666; /* Lighter Gray for secondary text */
+    --light-bg: #F8F9FA;         /* Very Light Gray Background */
     --white: #FFFFFF;
+    --border-color: #E0E0E0;     /* Light border color */
+    --next-prayer-bg: #e0f2fe;   /* Tailwind sky-100 */
+    --next-prayer-border: #7dd3fc;/* Tailwind sky-300 */
+    --next-prayer-text: #0c4a6e; /* Tailwind sky-800 */
+    --next-prayer-time: #0369a1; /* Tailwind sky-700 */
+    --next-prayer-remaining: #0284c7; /* Tailwind sky-600 */
 }
 
 * {
@@ -15,31 +28,22 @@
 }
 
 body {
-    font-family: 'Tajawal', Arial, sans-serif;
+    font-family: 'Tajawal', Arial, sans-serif; /* Default font */
     background-color: var(--light-bg);
     color: var(--text-color);
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
-@keyframes dotPulse {
-    0%, 100% {
-        transform: scale(0.5);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
+/* --- Navbar Styles --- */
 .navbar {
     position: sticky;
     top: 0;
     background-color: var(--primary-color);
-    color: white;
+    color: var(--white);
     padding: 12px 16px;
-    z-index: 100;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure navbar is on top */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,123 +52,222 @@ body {
 .logo-container {
     display: flex;
     align-items: center;
+    gap: 10px; /* Space between logo and name */
 }
 
 .logo {
     width: 40px;
     height: 40px;
-    margin-left: 10px;
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 .logo i {
     color: var(--primary-color);
-    font-size: 24px;
+    font-size: 22px; /* Slightly smaller icon */
 }
 
 .app-name {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 1rem; /* Responsive font size */
+    font-weight: 700; /* Bold */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if name is too long */
 }
 
 .menu-toggle {
     background: none;
     border: none;
-    color: white;
+    color: var(--white);
     font-size: 24px;
     cursor: pointer;
+    padding: 5px; /* Add padding for easier tapping */
 }
 
+/* --- Sidenav Styles --- */
 .sidenav {
     height: 100%;
-    width: 0;
+    width: 0; /* Initially hidden */
     position: fixed;
-    z-index: 999;
+    z-index: 1100; /* Higher than navbar */
     top: 0;
     right: 0;
-    background-color: white;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    box-shadow: -4px 0 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+    padding-top: 60px; /* Space for close button */
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .sidenav a {
-    padding: 12px 16px;
+    padding: 12px 16px 12px 32px; /* Adjust padding */
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--text-color);
-    display: flex;
+    display: flex; /* Use flex for icon alignment */
     align-items: center;
-    transition: 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+    border-bottom: 1px solid var(--border-color); /* Separator */
+    white-space: nowrap;
+}
+
+.sidenav a:last-child {
+    border-bottom: none; /* Remove border for the last item */
 }
 
 .sidenav a i {
-    margin-left: 15px;
-    width: 24px;
+    margin-left: 15px; /* Space after icon (RTL) */
+    width: 24px; /* Fixed width for icons */
     text-align: center;
     color: var(--primary-color);
+    font-size: 1.1em;
 }
 
 .sidenav a:hover {
     background-color: var(--light-bg);
+    color: var(--primary-color);
 }
 
 .sidenav .closebtn {
     position: absolute;
-    top: 0;
-    left: 10px;
+    top: 10px; /* Adjust position */
+    left: 15px; /* Adjust position (RTL) */
     font-size: 36px;
-    margin-right: 50px;
+    margin-left: 0; /* Remove margin-right */
+    color: var(--light-text-color);
+    border-bottom: none; /* Ensure close button has no border */
+    padding: 0 10px; /* Add some padding */
+}
+.sidenav .closebtn:hover {
+    color: var(--text-color);
+    background-color: transparent; /* No background hover for close */
 }
 
-.section {
+/* --- General Layout and Cards --- */
+.main-container {
+    padding: 15px;
+    max-width: 768px; /* Limit width on larger screens */
+    margin: 0 auto; /* Center container */
+    padding-bottom: 80px; /* Ensure space for bottom nav */
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+}
+
+.section { /* Can be used for non-card sections if needed */
     padding: 16px;
     margin-bottom: 20px;
-    background-color: white;
+    background-color: var(--white);
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .section-title {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 1.2rem; /* Adjusted size */
+    font-weight: 700; /* Bolder title */
     margin-bottom: 16px;
     color: var(--primary-color);
     display: flex;
     align-items: center;
+    gap: 8px; /* Space between icon and text */
+    border-bottom: 2px solid var(--primary-color); /* Underline effect */
+    padding-bottom: 8px;
 }
 
 .section-title i {
-    margin-left: 10px;
+    /* margin-left: 10px; Removed, using gap now */
+    font-size: 1.1em; /* Adjust icon size relative to text */
 }
 
+/* --- Prayer Times Specific Styles --- */
 .prayer-times {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px; /* Space between items */
 }
 
 .prayer-time-item {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    background-color: var(--light-bg);
+    align-items: center; /* Align items vertically */
+    padding: 12px 15px; /* Adjusted padding */
+    background-color: #f1f3f5; /* Slightly different light background */
     border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.prayer-details {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start; /* Align text to the start (right in RTL) */
 }
 
 .prayer-name {
-    font-weight: bold;
+    font-weight: 500; /* Medium weight */
+    font-size: 1rem;
+    color: var(--text-color);
 }
 
+.prayer-time {
+    font-weight: 700; /* Bold time */
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.time-remaining {
+    font-size: 0.75rem;
+    color: var(--light-text-color);
+    margin-top: 3px; /* Space below prayer name */
+    min-height: 1em; /* Reserve space */
+    direction: ltr; /* Ensure timer text reads left-to-right */
+    text-align: right; /* Align timer text right within its block (looks better in RTL) */
+}
+
+/* Highlight style for the next prayer */
+.prayer-time-item.next-prayer {
+    background-color: var(--next-prayer-bg);
+    border-color: var(--next-prayer-border);
+    transform: scale(1.02);
+    box-shadow: 0 3px 6px rgba(52, 152, 219, 0.1); /* Subtle shadow with accent color hint */
+}
+
+.prayer-time-item.next-prayer .prayer-name {
+    color: var(--next-prayer-text);
+    font-weight: 700; /* Make name bold too */
+}
+
+.prayer-time-item.next-prayer .prayer-time {
+    color: var(--next-prayer-time);
+}
+
+.prayer-time-item.next-prayer .time-remaining {
+    color: var(--next-prayer-remaining);
+    font-weight: 500; /* Medium weight for timer */
+}
+
+/* Style for the summary div below prayer times */
+#nextPrayerInfo {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--accent-color);
+    min-height: 1.2em; /* Reserve space */
+}
+
+/* --- Social Links --- */
 .social-links {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); /* Responsive grid */
+    gap: 15px; /* Increased gap */
     margin-top: 10px;
 }
 
@@ -174,52 +277,64 @@ body {
     align-items: center;
     text-decoration: none;
     color: var(--text-color);
+    transition: transform 0.2s ease;
+}
+.social-link:hover {
+    transform: translateY(-3px); /* Slight lift on hover */
 }
 
 .social-icon {
-    width: 40px;
-    height: 40px;
+    width: 45px; /* Slightly larger icon */
+    height: 45px;
     border-radius: 50%;
     background-color: var(--light-bg);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 5px;
+    border: 1px solid var(--border-color);
 }
 
 .social-icon i {
     font-size: 20px;
     color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+.social-link:hover .social-icon i {
+    color: var(--accent-color); /* Change icon color on hover */
 }
 
 .social-name {
     font-size: 12px;
 }
 
+/* --- Action Buttons --- */
 .action-button {
-    display: block;
-    width: 100%;
-    padding: 12px;
+    display: inline-block; /* Allow multiple buttons side-by-side */
+    padding: 10px 20px;
     background-color: var(--primary-color);
-    color: white;
+    color: var(--white);
     text-align: center;
     border-radius: 8px;
     text-decoration: none;
     margin-top: 10px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
     border: none;
     font-family: 'Tajawal', Arial, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .action-button:hover {
     background-color: var(--secondary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+/* --- Gallery --- */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive columns */
     gap: 10px;
 }
 
@@ -227,15 +342,23 @@ body {
     border-radius: 8px;
     overflow: hidden;
     position: relative;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1; /* Make items square */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Cover the area without distortion */
+    display: block; /* Remove extra space below image */
 }
 
+/* --- Forms --- */
 .form-group {
     margin-bottom: 15px;
 }
@@ -244,19 +367,23 @@ body {
     display: block;
     margin-bottom: 5px;
     font-weight: 500;
+    color: var(--text-color);
 }
 
 .form-control {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     font-family: 'Tajawal', Arial, sans-serif;
+    background-color: var(--white);
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-control:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.2);
 }
 
 textarea.form-control {
@@ -264,6 +391,7 @@ textarea.form-control {
     resize: vertical;
 }
 
+/* --- Contact Info --- */
 .contact-info {
     margin-top: 20px;
 }
@@ -271,46 +399,51 @@ textarea.form-control {
 .contact-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* Increased spacing */
+    gap: 10px; /* Space between icon and text */
 }
 
 .contact-item i {
-    width: 30px;
+    width: 25px; /* Fixed width */
     color: var(--primary-color);
     font-size: 18px;
+    text-align: center;
 }
-
-.main-container {
-    padding: 15px;
-    max-width: 768px;
-    margin: 0 auto;
+.contact-item a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s;
 }
-
-.card {
-    background-color: white;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.contact-item a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
 }
+.ltr-text { direction: ltr; text-align: left; } /* For phone numbers */
 
+/* --- Feature Cards (Home Screen) --- */
 .feature-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
     gap: 15px;
     margin-top: 15px;
 }
 
 .feature-card {
-    background-color: var(--light-bg);
+    background-color: var(--white); /* Use white background */
     border-radius: 10px;
-    padding: 15px;
+    padding: 20px 15px; /* More padding */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     text-decoration: none;
     color: var(--text-color);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card i {
@@ -322,63 +455,78 @@ textarea.form-control {
 .feature-card-title {
     font-weight: bold;
     margin-bottom: 5px;
+    font-size: 1rem;
+}
+.feature-card-desc {
+    font-size: 0.85rem;
+    color: var(--light-text-color);
 }
 
+/* --- Bottom Navigation --- */
 .bottom-nav {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: white;
+    background-color: var(--white);
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 50;
+    padding: 8px 0; /* Adjusted padding */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 900; /* Below navbar and sidenav */
+    border-top: 1px solid var(--border-color);
 }
 
 .bottom-nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Center content vertically */
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--light-text-color); /* Default color */
+    flex: 1; /* Make items share space equally */
+    padding: 5px 0; /* Add some vertical padding */
+    transition: color 0.3s;
 }
 
 .bottom-nav-item i {
     font-size: 20px;
-    margin-bottom: 5px;
-    color: #999;
+    margin-bottom: 4px; /* Space between icon and text */
 }
 
+.bottom-nav-item.active {
+    color: var(--primary-color); /* Active color */
+}
 .bottom-nav-item.active i {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Ensure icon color matches */
 }
 
 .bottom-nav-text {
-    font-size: 12px;
+    font-size: 11px; /* Slightly smaller text */
+    font-weight: 500;
 }
 
+/* --- Tab Content --- */
 .tab-content {
-    display: none;
-    padding-bottom: 70px; /* Space for bottom nav */
+    /* display: none; Replaced by utility class 'hidden' */
+    padding-bottom: 10px; /* Add some padding at the bottom within tabs */
 }
 
 .tab-content.active {
     display: block;
 }
 
-.mosque-info {
-    margin-bottom: 20px;
-}
-
-.mosque-info p {
-    margin-bottom: 10px;
-    line-height: 1.6;
+/* --- Specific Section Styles --- */
+.mosque-info p,
+.activities-list li,
+.card p {
+    line-height: 1.7; /* Improved readability */
+    color: var(--text-color); /* Ensure consistent text color */
 }
 
 .activities-list {
-    padding-right: 20px;
+    padding-right: 20px; /* Keep indentation for list */
+    list-style: none; /* Remove default list bullets */
 }
 
 .activities-list li {
@@ -387,68 +535,183 @@ textarea.form-control {
 }
 
 .activities-list li::before {
-    content: "•";
+    content: "•"; /* Use bullet character */
     color: var(--primary-color);
     position: absolute;
-    right: -20px;
+    right: -20px; /* Position bullet to the right (RTL) */
+    font-size: 1.2em;
+    line-height: 1;
 }
 
+/* --- Quran List Styles --- */
 .quran-surah-list {
-    max-height: 400px;
-    overflow-y: auto;
+    /* max-height: 400px; Let container size dictate height */
+    /* overflow-y: auto; Handled by container */
 }
 
 .surah-item {
+    /* Using Tailwind via JS now, but keep basic structure */
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+    align-items: center;
+    padding: 12px 10px; /* Adjust padding */
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+.surah-item:last-child {
+    border-bottom: none;
+}
+.surah-item:hover {
+    background-color: var(--light-bg);
+}
+
+.surah-details {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between number and name */
 }
 
 .surah-number {
     width: 30px;
     height: 30px;
+    flex-shrink: 0; /* Prevent shrinking */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--light-bg);
+    background-color: #e9ecef; /* Lighter background */
     border-radius: 50%;
     color: var(--primary-color);
     font-weight: bold;
+    font-size: 0.9rem;
 }
 
-.floating-btn {
-    position: fixed;
-    bottom: 80px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
+/* --- Quran Viewer Styles --- */
+#quranViewer {
+    background-color: #fdfdfd; /* Slightly off-white background */
+}
+
+.quran-viewer-content {
+    font-family: 'Noto Naskh Arabic', 'Amiri Quran', serif;
+    line-height: 2.5;
+    text-align: justify;
+    margin-top: 1rem;
+    max-height: 60vh; /* Limit height and enable scroll */
+    overflow-y: auto;
+    padding: 15px; /* Add padding inside */
+    background-color: #f9fafb;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.quran-viewer-content p {
+    margin-bottom: 15px; /* Space between paragraphs (ayahs) */
+    font-size: 1.3rem;
+    display: inline; /* Allows number to flow inline */
+}
+.quran-viewer-content p::after {
+    content: ""; /* Add space after paragraph for number */
+    display: inline;
+}
+
+
+.ayah-number {
+    display: inline-block;
+    margin: 0 5px; /* Space around number */
+    font-family: sans-serif; /* Use standard font for numbers */
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     border-radius: 50%;
+    width: 26px; /* Slightly larger */
+    height: 26px;
+    line-height: 24px;
+    text-align: center;
+    background-color: var(--white);
+    vertical-align: middle; /* Align number vertically */
+}
+
+/* Close button for Quran viewer */
+.quran-viewer-close-btn {
+    display: block;
+    width: auto;
+    padding: 8px 16px;
+    margin: 15px auto 0;
     background-color: var(--primary-color);
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-    z-index: 40;
-    text-decoration: none;
-}
-
-.floating-btn i {
-    font-size: 24px;
-}
-
-.banner-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.swipe-indicator {
     text-align: center;
-    padding: 10px;
-    color: #999;
-    font-size: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: none;
+    font-family: 'Tajawal', Arial, sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.quran-viewer-close-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid var(--primary-color); /* Accent color */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto; /* Center spinner */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* --- Image Viewer Modal --- */
+#imageViewer {
+    /* Using Tailwind classes now, but keep basic style for reference/fallback */
+    /* position: fixed; inset: 0; background-color: rgba(0,0,0,0.8); */
+    /* display: flex; align-items: center; justify-content: center; */
+    /* z-index: 2000; display: none; padding: 1rem; */
+}
+
+#imageViewer .close-btn { /* Style the close button if not using Tailwind */
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2001;
+}
+
+#imageViewer img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    border-radius: 5px; /* Optional: rounded corners for viewed image */
+}
+
+/* --- Utility Classes --- */
+.hidden { display: none; } /* Basic hidden class */
+.text-center { text-align: center; }
+.mt-4 { margin-top: 1rem; } /* Example margin */
+
+
+/* --- Responsive Adjustments (Optional Example) --- */
+@media (min-width: 640px) { /* Example: adjustments for larger screens */
+    .app-name {
+        font-size: 1.2rem;
+    }
+    .main-container {
+        padding: 20px;
+    }
+    .feature-cards {
+        grid-template-columns: repeat(4, 1fr); /* Show 4 features per row */
+    }
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 }
