@@ -1,19 +1,3 @@
-  // Splash Screen
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-        document.getElementById('splashScreen').style.opacity = '0';
-        setTimeout(function() {
-            document.getElementById('splashScreen').style.display = 'none';
-        }, 1000);
-    }, 2000);
-    
-    // Initialize app
-    initPrayerTimes();
-    initQuranList();
-    
-    // Generate app manifest
-    generateManifest();
-});
 
 // Side Navigation
 function openNav() {
