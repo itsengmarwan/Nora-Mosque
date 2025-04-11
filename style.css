@@ -19,6 +19,9 @@
     --next-prayer-text: #0c4a6e; /* Tailwind sky-800 */
     --next-prayer-time: #0369a1; /* Tailwind sky-700 */
     --next-prayer-remaining: #0284c7; /* Tailwind sky-600 */
+    --quran-viewer-bg: #fdfdfd;  /* Slightly off-white for Quran viewer */
+    --quran-content-bg: #f9fafb; /* Background for Quran text area */
+    --quran-font: 'Noto Naskh Arabic', 'Amiri Quran', serif; /* Explicit Quran font variable */
 }
 
 * {
@@ -330,6 +333,12 @@ body {
     background-color: var(--secondary-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+.action-button:disabled { /* Style for disabled button during form submission */
+    background-color: var(--light-text-color);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
 
 /* --- Gallery --- */
 .gallery {
@@ -345,6 +354,7 @@ body {
     aspect-ratio: 1 / 1; /* Make items square */
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--border-color); /* Placeholder bg */
 }
 .gallery-item:hover {
     transform: scale(1.05);
@@ -413,6 +423,7 @@ textarea.form-control {
     color: var(--accent-color);
     text-decoration: none;
     transition: color 0.3s;
+    word-break: break-all; /* Prevent long links from overflowing */
 }
 .contact-item a:hover {
     color: var(--primary-color);
@@ -487,6 +498,7 @@ textarea.form-control {
     flex: 1; /* Make items share space equally */
     padding: 5px 0; /* Add some vertical padding */
     transition: color 0.3s;
+    cursor: pointer;
 }
 
 .bottom-nav-item i {
@@ -543,20 +555,15 @@ textarea.form-control {
     line-height: 1;
 }
 
-/* --- Quran List Styles --- */
-.quran-surah-list {
-    /* max-height: 400px; Let container size dictate height */
-    /* overflow-y: auto; Handled by container */
-}
-
 .surah-item {
-    /* Using Tailwind via JS now, but keep basic structure */
+    /* Styles are mostly handled by Tailwind in JS now, keep basic structure for fallback */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 10px; /* Adjust padding */
     border-bottom: 1px solid var(--border-color);
     transition: background-color 0.2s ease;
+    cursor: pointer;
 }
 .surah-item:last-child {
     border-bottom: none;
@@ -587,32 +594,34 @@ textarea.form-control {
 
 /* --- Quran Viewer Styles --- */
 #quranViewer {
-    background-color: #fdfdfd; /* Slightly off-white background */
+    background-color: var(--quran-viewer-bg);
 }
 
 .quran-viewer-content {
-    font-family: 'Noto Naskh Arabic', 'Amiri Quran', serif;
-    line-height: 2.5;
+    font-family: var(--quran-font);
+    line-height: 2.5; /* Generous line height for Arabic */
     text-align: justify;
     margin-top: 1rem;
-    max-height: 60vh; /* Limit height and enable scroll */
+    max-height: 65vh; /* Limit height and enable scroll */
     overflow-y: auto;
     padding: 15px; /* Add padding inside */
-    background-color: #f9fafb;
+    background-color: var(--quran-content-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
 }
 
 .quran-viewer-content p {
     margin-bottom: 15px; /* Space between paragraphs (ayahs) */
-    font-size: 1.3rem;
-    display: inline; /* Allows number to flow inline */
-}
-.quran-viewer-content p::after {
-    content: ""; /* Add space after paragraph for number */
-    display: inline;
 }
 
+/* Style for inline Ayah text span */
+.quran-viewer-content span.inline {
+   font-size: 1.3rem; /* Adjust as needed */
+    color: var(--text-color);
+    /* Apply specific Quran font via Tailwind or here */
+    font-family: var(--quran-font);
+    line-height: 2.5; /* Ensure consistent line height */
+}
 
 .ayah-number {
     display: inline-block;
@@ -624,10 +633,10 @@ textarea.form-control {
     border-radius: 50%;
     width: 26px; /* Slightly larger */
     height: 26px;
-    line-height: 24px;
+    line-height: 24px; /* Center number vertically */
     text-align: center;
     background-color: var(--white);
-    vertical-align: middle; /* Align number vertically */
+    vertical-align: middle; /* Align number vertically with text */
 }
 
 /* Close button for Quran viewer */
@@ -667,15 +676,6 @@ textarea.form-control {
     100% { transform: rotate(360deg); }
 }
 
-
-/* --- Image Viewer Modal --- */
-#imageViewer {
-    /* Using Tailwind classes now, but keep basic style for reference/fallback */
-    /* position: fixed; inset: 0; background-color: rgba(0,0,0,0.8); */
-    /* display: flex; align-items: center; justify-content: center; */
-    /* z-index: 2000; display: none; padding: 1rem; */
-}
-
 #imageViewer .close-btn { /* Style the close button if not using Tailwind */
     position: absolute;
     top: 15px;
@@ -695,7 +695,7 @@ textarea.form-control {
 }
 
 /* --- Utility Classes --- */
-.hidden { display: none; } /* Basic hidden class */
+.hidden { display: none !important; } /* Basic hidden class with high specificity */
 .text-center { text-align: center; }
 .mt-4 { margin-top: 1rem; } /* Example margin */
 
@@ -714,4 +714,19 @@ textarea.form-control {
     .gallery {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
+    /* Increase font size for Quran text on larger screens */
+    .quran-viewer-content span.inline {
+       font-size: 1.5rem; /* Larger font size */
+    }
+     .ayah-number {
+        width: 28px;
+        height: 28px;
+        line-height: 26px;
+        font-size: 1rem;
+    }
+}
+
+/* Additional Styles for Notification Toggle (Tailwind handles most of it) */
+#notificationStatus {
+    min-height: 1em; /* Reserve space */
 }
