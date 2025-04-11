@@ -1,135 +1,174 @@
-// Nora-Mosque/script.js
-document.addEventListener('DOMContentLoaded', function() {
-
-    // --- Mobile Menu Toggle ---
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
-    const header = document.querySelector('header');
-    const body = document.body;
-
-    if (menuToggle && nav && header) {
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('open');
-            if (nav.classList.contains('open')) {
-                const headerHeight = header.offsetHeight;
-                const navHeight = nav.scrollHeight;
-                body.style.paddingTop = `${headerHeight + navHeight}px`;
-                menuToggle.textContent = '✕';
-            } else {
-                body.style.paddingTop = `${header.offsetHeight}px`;
-                menuToggle.textContent = '☰';
-            }
+        // Splash Screen
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('splashScreen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('splashScreen').style.display = 'none';
+                }, 1000);
+            }, 2000);
+            
+            // Initialize app
+            initPrayerTimes();
+            initQuranList();
+            
+            // Generate app manifest
+            generateManifest();
         });
-
-        document.addEventListener('click', (event) => {
-            const isClickInsideNav = nav.contains(event.target);
-            const isClickOnToggle = menuToggle.contains(event.target);
-            if (nav.classList.contains('open') && !isClickInsideNav && !isClickOnToggle) {
-                nav.classList.remove('open');
-                body.style.paddingTop = `${header.offsetHeight}px`;
-                 menuToggle.textContent = '☰';
-            }
-        });
-    }
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            if (nav && nav.classList.contains('open')) {
-                nav.classList.remove('open');
-                 menuToggle.textContent = '☰';
-            }
-            if (body.style.paddingTop !== '' && header) {
-                 body.style.paddingTop = `${header.offsetHeight}px`;
-            }
-        } else {
-             if (header && (!nav || !nav.classList.contains('open'))) {
-                 body.style.paddingTop = `${header.offsetHeight}px`;
-             }
+        
+        // Side Navigation
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
         }
-    });
-
-    // --- Homepage Photo Album (Improved Timing) ---
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const albumImage = document.getElementById('album-image');
-    const images = [
-        'mosque_images/image1.jpg',
-        'mosque_images/image2.jpg',
-        'mosque_images/image3.jpg',
-        'mosque_images/image4.jpg',
-        'mosque_images/image5.jpg',
-        // Add more image paths here
-    ];
-    let currentIndex = 0;
-    let isAnimating = false; // Flag to prevent rapid clicking during transition
-
-    // Function to show image with fade transition
-    function showImage(index) {
-        // Exit if elements don't exist, no images, or animation is already running
-        if (!albumImage || images.length === 0 || isAnimating) return;
-
-        isAnimating = true; // Set flag to prevent further clicks
-        albumImage.classList.add('fade-out'); // Start fade-out animation
-
-        // Wait for the fade-out transition to complete (duration defined in CSS: 0.6s = 600ms)
-        setTimeout(() => {
-            // Calculate the new index, handling wrap-around
-            currentIndex = (index + images.length) % images.length;
-            // Update the image source
-            albumImage.src = images[currentIndex];
-
-            // Allow a very brief moment for the browser to register the src change
-            // before starting the fade-in animation. 50ms is usually sufficient.
-            setTimeout(() => {
-                // Remove the fade-out class to trigger the fade-in animation (opacity back to 1)
-                albumImage.classList.remove('fade-out');
-
-                // Reset the animation flag *after* the fade-in transition is complete (another 600ms)
-                // This ensures the user cannot click again until the new image is fully visible.
-                setTimeout(() => {
-                    isAnimating = false;
-                }, 600); // Match the CSS transition duration for fade-in
-
-            }, 50); // Short delay
-
-        }, 600); // Match the CSS transition duration for fade-out
-    }
-
-    // Initial setup if album elements exist
-    if (prevBtn && nextBtn && albumImage && images.length > 0) {
-        // Load the first image without animation initially
-        albumImage.src = images[currentIndex];
-
-        // Add event listeners for previous and next buttons
-        prevBtn.addEventListener('click', () => {
-            showImage(currentIndex + 1); // Note: Your prev button had '>' text, implying next? Corrected logic based on common patterns. Adjust if needed.
-        });
-
-        nextBtn.addEventListener('click', () => {
-            showImage(currentIndex - 1); // Note: Your next button had '<' text, implying previous? Corrected logic based on common patterns. Adjust if needed.
-        });
-
-        // Optional: Auto-play functionality (uncomment to enable)
-        // setInterval(() => {
-        //     showImage(currentIndex + 1); // Go to next image
-        // }, 5000); // Change image every 5 seconds
-    }
-
-
-    // --- Set Active Navigation Link ---
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('nav a');
-
-    navLinks.forEach(link => {
-        // Handle cases where href might be empty or just '#'
-        const linkHref = link.getAttribute('href');
-        if (linkHref) {
-            const linkPage = linkHref.split('/').pop();
-             // Make comparison robust for root path vs index.html
-            if (linkPage === currentPage || (currentPage === 'index.html' && linkPage === '')) {
-                link.classList.add('active');
+        
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        
+        // Tab Switching
+        function switchTab(tabId) {
+            // Hide all tabs
+            var tabs = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update bottom nav
+            var navItems = document.getElementsByClassName('bottom-nav-item');
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].classList.remove('active');
+            }
+            
+            var navItem = document.getElementById('nav-' + tabId);
+            if (navItem) {
+                navItem.classList.add('active');
+            }
+            
+            // Close side nav
+            closeNav();
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Prayer Times
+        function initPrayerTimes() {
+            // Sample prayer times for Kuwait (in real app, this would come from an API)
+            document.getElementById('fajrTime').textContent = '4:15';
+            document.getElementById('sunriseTime').textContent = '5:35';
+            document.getElementById('dhuhrTime').textContent = '11:45';
+            document.getElementById('asrTime').textContent = '3:15';
+            document.getElementById('maghribTime').textContent = '5:50';
+            document.getElementById('ishaTime').textContent = '7:05';
+            
+            // Set Hijri date
+            var today = new Date();
+            document.getElementById('hijriDate').textContent = getHijriDate(today);
+        }
+        
+        function getHijriDate(date) {
+            // This is a simplified conversion - in a real app, use a proper Hijri calendar library
+            return '15 رمضان 1445';
+        }
+        
+        // Quran List
+        function initQuranList() {
+            const surahs = [
+                "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
+                "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه",
+                "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",
+                "لقمان", "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر",
+                "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق",
+                "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة",
+                "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج",
+                "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس",
+                "التكوير", "الانفطار", "المطففين", "الانشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد",
+                "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات",
+                "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
+                "المسد", "الإخلاص", "الفلق", "الناس"
+            ];
+            
+            const surahListContainer = document.getElementById('quranSurahList');
+            
+            for (let i = 0; i < surahs.length; i++) {
+                const surahItem = document.createElement('div');
+                surahItem.className = 'surah-item';
+                
+                const surahNumber = document.createElement('div');
+                surahNumber.className = 'surah-number';
+                surahNumber.textContent = (i + 1);
+                
+                const surahName = document.createElement('div');
+                surahName.className = 'surah-name';
+                surahName.textContent = surahs[i];
+                
+                surahItem.appendChild(surahNumber);
+                surahItem.appendChild(surahName);
+                
+                // Add click event to open the surah
+                surahItem.addEventListener('click', function() {
+                    openSurah(i + 1);
+                });
+                
+                surahListContainer.appendChild(surahItem);
             }
         }
-    });
-
-});
+        
+        function openSurah(surahNumber) {
+            // In a real app, this would open the specific surah
+            alert('سيتم فتح سورة رقم ' + surahNumber);
+        }
+        
+        // Image Viewer
+        function openImageViewer(imageSrc) {
+            document.getElementById('viewerImage').src = imageSrc;
+            document.getElementById('imageViewer').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeImageViewer() {
+            document.getElementById('imageViewer').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Generate Web App Manifest
+        function generateManifest() {
+            const manifest = {
+                "name": "مسجد نورة سعد العبيد",
+                "short_name": "مسجد نورة",
+                "description": "تطبيق مسجد نورة سعد العبيد",
+                "start_url": "/",
+                "display": "standalone",
+                "background_color": "#4CAF50",
+                "theme_color": "#4CAF50",
+                "icons": [
+                    {
+                        "src": "https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.4/svgs/solid/mosque.svg",
+                        "sizes": "192x192",
+                        "type": "image/svg+xml"
+                    },
+                    {
+                        "src": "https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.4/svgs/solid/mosque.svg",
+                        "sizes": "512x512",
+                        "type": "image/svg+xml"
+                    }
+                ]
+            };
+            
+            const manifestBlob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+            const manifestURL = URL.createObjectURL(manifestBlob);
+            document.getElementById('manifestPlaceholder').href = manifestURL;
+        }
+        
+        // Contact Form Handler
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // In a real app, this would send the data to a server
+            alert('تم إرسال رسالتك بنجاح وسيتم الرد عليك قريباً');
+            
+            // Reset form
+            this.reset();
+        });

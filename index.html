@@ -3,101 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="الموقع الرسمي لجامع نورة سعد العبيد في السالمية، الكويت. تعرف على أوقات الصلاة، الأنشطة، المكتبة، وشاهد صور المسجد.">
-    <title>مسجد نورة سعد العبيد - الرئيسية</title>
-    <link rel="icon" href="images/mosque-logo.png" type="image/png">
-    <link rel="stylesheet" href="style.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    </head>
+    <title>مسجد نورة سعد العبيد</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <link rel="manifest" href="#" id="manifestPlaceholder">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="مسجد نورة">
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-inner">
-                <div class="logo">
-                    <a href="index.html" class="logo-link">
-                        <img src="images/mosque-logo.png" alt="شعار المسجد">
-                        <div class="logo-text">
-                            <h1>مسجد نورة سعد العبيد</h1>
-                            <p>صرح إسلامي شامخ</p>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-logo">
+            <i class="fas fa-mosque" style="font-size: 80px; color: white;"></i>
+        </div>
+        <div class="splash-mosque-name">مسجد نورة سعد العبيد</div>
+        <div class="splash-loading">
+            <div class="splash-loading-dot"></div>
+            <div class="splash-loading-dot"></div>
+            <div class="splash-loading-dot"></div>
+        </div>
+    </div>
+
+    <!-- Side Navigation -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" onclick="switchTab('home')"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="javascript:void(0)" onclick="switchTab('about')"><i class="fas fa-info-circle"></i> عن المسجد</a>
+        <a href="javascript:void(0)" onclick="switchTab('prayer')"><i class="fas fa-clock"></i> مواقيت الصلاة</a>
+        <a href="javascript:void(0)" onclick="switchTab('gallery')"><i class="fas fa-images"></i> مكتبة الصور</a>
+        <a href="javascript:void(0)" onclick="switchTab('quran')"><i class="fas fa-book-open"></i> المصحف الشريف</a>
+        <a href="javascript:void(0)" onclick="switchTab('library')"><i class="fas fa-book"></i> مكتبة الجامع</a>
+        <a href="javascript:void(0)" onclick="switchTab('azkar')"><i class="fas fa-pray"></i> أذكار المسلم</a>
+        <a href="javascript:void(0)" onclick="switchTab('suggestions')"><i class="fas fa-comment-alt"></i> شاركنا برأيك</a>
+        <a href="javascript:void(0)" onclick="switchTab('contact')"><i class="fas fa-envelope"></i> تواصل معنا</a>
+        <a href="javascript:void(0)" onclick="switchTab('location')"><i class="fas fa-map-marker-alt"></i> موقع المسجد</a>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-mosque"></i>
+            </div>
+            <div class="app-name">مسجد نورة سعد العبيد</div>
+        </div>
+        <button class="menu-toggle" onclick="openNav()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Home Tab -->
+        <div id="home" class="tab-content active">
+            <img src="https://noramosque.netlify.app/mosque_images/image1.jpg" alt="مسجد نورة سعد العبيد" class="banner-image">
+            
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-mosque"></i> أهلا بكم في مسجد نورة سعد العبيد
+                </div>
+                <p>هذا التطبيق مخصص لخدمة مسجد نورة سعد العبيد بالكويت، ويقدم معلومات ومزايا متنوعة للمصلين والزوار.</p>
+            </div>
+            
+            <div class="feature-cards">
+                <a href="javascript:void(0)" onclick="switchTab('prayer')" class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <div class="feature-card-title">مواقيت الصلاة</div>
+                    <div class="feature-card-desc">أوقات الصلوات اليومية</div>
+                </a>
+                <a href="javascript:void(0)" onclick="switchTab('quran')" class="feature-card">
+                    <i class="fas fa-book-open"></i>
+                    <div class="feature-card-title">المصحف الشريف</div>
+                    <div class="feature-card-desc">قراءة القرآن الكريم</div>
+                </a>
+                <a href="javascript:void(0)" onclick="switchTab('gallery')" class="feature-card">
+                    <i class="fas fa-images"></i>
+                    <div class="feature-card-title">صور المسجد</div>
+                    <div class="feature-card-desc">معرض صور متنوع</div>
+                </a>
+                <a href="javascript:void(0)" onclick="switchTab('library')" class="feature-card">
+                    <i class="fas fa-book"></i>
+                    <div class="feature-card-title">مكتبة الجامع</div>
+                    <div class="feature-card-desc">حجز واستعارة الكتب</div>
+                </a>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <div class="section-title">
+                    <i class="fas fa-hashtag"></i> تابعونا على
+                </div>
+                <div class="social-links">
+                    <a href="https://chat.whatsapp.com/LuwgLyE5NVf2Hb8Yb6lhS9" class="social-link">
+                        <div class="social-icon">
+                            <i class="fab fa-whatsapp"></i>
                         </div>
+                        <div class="social-name">واتساب</div>
+                    </a>
+                    <a href="https://www.instagram.com/nsom_15?igsh=MWo0d3g2em9heWMwYw==" class="social-link">
+                        <div class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="social-name">إنستجرام</div>
+                    </a>
+                    <a href="https://www.tiktok.com/@nsom_15?_t=ZS-8vQHwvIMxqp&_r=1" class="social-link">
+                        <div class="social-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div class="social-name">تيكتوك</div>
+                    </a>
+                    <a href="https://x.com/nsom_15?t=e5bbi8l3y6ys3lKeC14VXQ&s=08" class="social-link">
+                        <div class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <div class="social-name">اكس</div>
+                    </a>
+                    <a href="https://youtube.com/@nsom_15?si=2e8nG3ua_URYlhyt" class="social-link">
+                        <div class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="social-name">يوتيوب</div>
+                    </a>
+                    <a href="https://www.facebook.com/share/12JAF4EbBsd/" class="social-link">
+                        <div class="social-icon">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <div class="social-name">فيسبوك</div>
+                    </a>
+                    <a href="https://t.me/nsom_15" class="social-link">
+                        <div class="social-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="social-name">تلجرام</div>
                     </a>
                 </div>
-                <nav>
-                     <ul>
-                        <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="about.html">عن المسجد</a></li>
-                        <li><a href="gallery.html">مكتبة الصور</a></li>
-                        <li><a href="prayer-times.html">مواقيت الصلاة</a></li>
-                        <li><a href="quran.html">المصحف الشريف</a></li>
-                        <li><a href="contact.html">تواصل معنا</a></li>
-                    </ul>
-                </nav>
-                <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
             </div>
-        </header>
+        </div>
 
-        <main id="index-page">
-            <section id="photo-album">
-                <h2>صور المسجد</h2>
-                <div class="album-container">
-                    <button id="prev-btn" aria-label="الصورة السابقة">></button>
-                    <img id="album-image" src="mosque_images/image1.jpg" alt="صورة لواجهة أو ساحة مسجد نورة سعد العبيد" loading="lazy">
-                    <button id="next-btn" aria-label="الصورة التالية"><</button>
+        <!-- About Tab -->
+        <div id="about" class="tab-content">
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-info-circle"></i> عن جامع نورة سعد العبيد
                 </div>
-            </section>
-
-            <section id="social-links">
-                <h2>تابعونا على</h2>
-                <div class="links-container">
-                    <a href="https://chat.whatsapp.com/LuwgLyE5NVf2Hb8Yb6lhS9" target="_blank" rel="noopener noreferrer" aria-label="واتساب"><img src="images/whatsapp.png" alt="واتساب"></a>
-                    <a href="https://www.instagram.com/nsom_15?igsh=MWo0d3g2em9heWMwYw==" target="_blank" rel="noopener noreferrer" aria-label="إنستجرام"><img src="images/instagram.png" alt="إنستجرام"></a>
-                    <a href="https://www.tiktok.com/@nsom_15?_t=ZS-8vQHwvIMxqp&_r=1" target="_blank" rel="noopener noreferrer" aria-label="تيكتوك"><img src="images/tiktok.png" alt="تيكتوك"></a>
-                    <a href="https://x.com/nsom_15?t=e5bbi8l3y6ys3lKeC14VXQ&s=08" target="_blank" rel="noopener noreferrer" aria-label="منصة اكس"><img src="images/x.png" alt="اكس"></a>
-                    <a href="https://youtube.com/@nsom_15?si=2e8nG3ua_URYlhyt" target="_blank" rel="noopener noreferrer" aria-label="يوتيوب"><img src="images/youtube.png" alt="يوتيوب"></a>
-                    <a href="https://www.facebook.com/share/12JAF4EbBsd/" target="_blank" rel="noopener noreferrer" aria-label="فيسبوك"><img src="images/facebook.png" alt="فيسبوك"></a>
-                    <a href="https://t.me/nsom_15" target="_blank" rel="noopener noreferrer" aria-label="تلجرام"><img src="images/telegram.png" alt="تلجرام"></a>
+                <div class="mosque-info">
+                    <p>يُعتبر جامع نورة سعد العبيد معلماً إسلامياً بارزاً يزهو في قلب منطقة السالمية التابعة لمحافظة حولي بدولة الكويت، وتحديداً يشع نوره في شارع 8.</p>
+                    <p>يشرف على إمامة المسجد وخطبه فضيلة الشيخ/ <strong>سعد سعد الأحمد</strong>، ويرفع نداء الحق بصوته العذب المؤذن الشيخ/ <strong>حسن بدري</strong>.</p>
                 </div>
-            </section>
-
-             <section id="library-booking" class="azkar-app-like">
-                <h2>مكتبة الجامع</h2>
-                <p>لحجز موعد لزيارة المكتبة واستعارة الكتب.</p>
-                <a href="https://forms.gle/2pT8jDXCqFJTF8Yt6" target="_blank" rel="noopener noreferrer" class="prayer-times-link">حجز زيارة المكتبة</a>
-            </section>
-
-            <section id="prayer-times-shortcut" class="azkar-app-like">
-                <h2>مواقيت الصلاة</h2>
-                <p>لمعرفة أوقات الصلاة اليومية لمدينة الكويت.</p>
-                <a href="prayer-times.html" class="prayer-times-link">عرض مواقيت الصلاة</a>
-            </section>
-
-
-            <section id="azkar-app">
-                <h2>موقع أذكار المسلم</h2>
-                <p>حصنك اليومي من الأذكار المتنوعة.</p>
-                <a href="https://alazkar.netlify.app/" target="_blank" rel="noopener noreferrer" class="azkar-link">اذهب إلى موقع أذكار</a>
-            </section>
-
-            <section id="suggestions">
-                <h2>شاركنا برأيك</h2>
-                <p>هل لديك اقتراح لتطوير المسجد أو أنشطته؟</p>
-                <a href="https://forms.gle/vqLbACky9q39rVa78" target="_blank" rel="noopener noreferrer" class="suggestion-link">قدم اقتراحك</a>
-            </section>
-
-            <section id="mosque-location">
-                <h2>موقع المسجد</h2>
-                <div class="location-map">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d434.7829278056063!2d48.086545149525044!3d29.33327478530791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf76193cdeed09%3A0xac50e72d5e143872!2z2YXYs9is2K8g2YbZiNix2Kkg2LPYudivINin2YTYudio2YrYrw!5e0!3m2!1sar!2skw!4v1744321044140!5m2!1sar!2skw" 
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade" title="موقع مسجد نورة سعد العبيد على الخريطة">
-                    </iframe>
+                
+                <div class="section-title">
+                    <i class="fas fa-calendar-alt"></i> الأنشطة والفعاليات الرئيسية
                 </div>
-            </section>
-        </main>
+                <ul class="activities-list">
+                    <li>إقامة الصلوات الخمس جماعة في أوقاتها.</li>
+                    <li>تنظيم حلقات تحفيظ وتدارس القرآن الكريم لمختلف الأعمار.</li>
+                    <li>إلقاء خطبة الجمعة الأسبوعية التي تناقش قضايا معاصرة بمنظور إسلامي.</li>
+                    <li>إحياء ليالي شهر رمضان الفضيل بصلاتي التراويح والقيام وتنظيم فعاليات مصاحبة.</li>
+                    <li>استضافة محاضرات ودروس دينية وعلمية دورية يقدمها نخبة من المشايخ والدعاة.</li>
+                    <li>توفير مكتبة عامرة بالكتب الشرعية والثقافية للباحثين والمهتمين.</li>
+                </ul>
+                
+                <div class="section-title" style="margin-top: 20px;">
+                    <i class="fas fa-question-circle"></i> لماذا سُمي بهذا الاسم؟
+                </div>
+                <p>حمل هذا الصرح اسم "نورة سعد العبيد" تكريماً وعرفاناً لذكرى السيدة الفاضلة/ <strong>نورة سعد العبيد</strong> رحمها الله، التي كانت سبباً في إنشائه ووهبت جهودها لخدمة بيوت الله، سائلين المولى أن يجعل ذلك في ميزان حسناتها وأن يخلد ذكرها في سجل الخير والعطاء.</p>
+            </div>
+        </div>
 
+        <!-- Prayer Times Tab -->
+        <div id="prayer" class="tab-content">
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-clock"></i> مواقيت الصلاة اليوم
+                </div>
+                <div class="prayer-times" id="prayerTimesContainer">
+                    <div class="prayer-time-item">
+                        <div class="prayer-name">الفجر</div>
+                        <div class="prayer-time" id="fajrTime">--:--</div>
+                    </div>
+                    <div class="prayer-time-item">
+                        <div class="prayer-name">الشروق</div>
+                        <div class="prayer-time" id="sunriseTime">--:--</div>
+                    </div>
+                    <div class="prayer-time-item">
+                        <div class="prayer-name">الظهر</div>
+                        <div class="prayer-time" id="dhuhrTime">--:--</div>
+                    </div>
+                    <div class="prayer-time-item">
+                        <div class="prayer-name">العصر</div>
+                        <div class="prayer-time" id="asrTime">--:--</div>
+                    </div>
+                    <div class="prayer-time-item">
+                        <div class="prayer-name">المغرب</div>
+                        <div class="prayer-time" id="maghribTime">--:--</div>
+                    </div>
+                    <div class="prayer-time-item">
+                        <div class="prayer-name">العشاء</div>
+                        <div class="prayer-time" id="ishaTime">--:--</div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <small>التاريخ الهجري: <span id="hijriDate">--</span></small><br>
+                    <small>أوقات الصلاة لمدينة الكويت</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Tab -->
+        <div id="gallery" class="tab-content">
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-images"></i> مكتبة الصور
+                </div>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://noramosque.netlify.app/mosque_images/image1.jpg" alt="صورة خارجية لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://noramosque.netlify.app/mosque_images/image2.jpg" alt="صورة داخلية لقاعة الصلاة في مسجد نورة" onclick="openImageViewer(this.src)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://noramosque.netlify.app/mosque_images/image3.jpg" alt="صورة لمئذنة المسجد مضاءة ليلاً" onclick="openImageViewer(this.src)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://noramosque.netlify.app/mosque_images/image4.jpg" alt="صورة تفصيلية للزخارف في المسجد" onclick="openImageViewer(this.src)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://noramosque.netlify.app/mosque_images/image5.jpg" alt="صورة عامة للمسجد مع المصلين" onclick="openImageViewer(this.src)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quran Tab -->
+        <div id="quran" class="tab-content">
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-book-open"></i> المصحف الشريف
+                </div>
+                <p class="mb-3">نسخة مجمع الملك فهد لطباعة المصحف الشريف</p>
+                <div class="quran-surah-list" id="quranSurahList">
+                    <!-- القائمة ستملأ بالجافاسكريبت -->
+                </div>
+                <div class="swipe-indicator">
+                    <i class="fas fa-hand-point-up"></i> اضغط على اسم السورة لفتحها
+                </div>
+            </div>
+        </div>
+
+        <!-- Library Tab -->
+        <div id="library" class="tab-content">
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-book"></i> مكتبة الجامع
+                </div>
+                <p>مكتبة جامع نورة سعد العبيد تحتوي على مجموعة متنوعة من الكتب الإسلامية والثقافية. يمكنكم زيارة المكتبة واستعارة الكتب بعد الحجز.</p>
+                <a href="https://forms.gle/2pT8jDXCqFJTF8Yt6" class="action-button">
+                    <i class="fas fa-calendar-check"></i> حجز زيارة المكتبة
+                </a>
+            </div>
+        </div>
+
+        <!-- Azkar Tab -->
+        <div id="azkar" class="tab-content">
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-pray"></i> موقع أذكار المسلم
+                </div>
+                <p>حصنك اليومي من الأذكار المتنوعة. تحتوي على أذكار الصباح والمساء وأذكار النوم والاستيقاظ وأذكار مختلفة للمسلم.</p>
+                <a href="https://alazkar.netlify.app/" class="action-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> الذهاب إلى موقع الأذكار
+                </a>
+            </div>
+        </div>
+
+        <!-- Suggestions Tab -->
+        <div id="suggestions" class="tab-content">
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-comment-alt"></i> شاركنا برأيك
+                </div>
+                <p>هل لديك اقتراح لتطوير المسجد أو أنشطته؟ نرحب بآرائكم واقتراحاتكم.</p>
+                <a href="https://forms.gle/vqLbACky9q39rVa78" class="action-button" target="_blank">
+                    <i class="fas fa-clipboard-list"></i> تقديم اقتراح
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact Tab -->
+        <div id="contact" class="tab-content">
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-envelope"></i> تواصل معنا
+                </div>
+                <p>نرحب باستفساراتكم واقتراحاتكم. يمكنكم التواصل معنا عبر النموذج التالي أو عبر وسائل الاتصال المتاحة أدناه.</p>
+                
+                <form id="contactForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="name" class="form-label">الاسم:</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">البريد الإلكتروني:</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="form-label">الموضوع:</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">الرسالة:</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="action-button">
+                        <i class="fas fa-paper-plane"></i> إرسال
+                    </button>
+                </form>
+                
+                <div class="contact-info">
+                    <div class="section-title">
+                        <i class="fas fa-info-circle"></i> معلومات الاتصال
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+96566877036">+965 6687 7036</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:noramosque@gmail.com">noramosque@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>شارع 8، السالمية، محافظة حولي، الكويت</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Tab -->
+        <div id="location" class="tab-content">
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-map-marker-alt"></i> موقع المسجد
+                </div>
+                <p>موقع مسجد نورة سعد العبيد في شارع 8، السالمية، محافظة حولي، الكويت.</p>
+                <div id="map" style="width: 100%; height: 300px; border-radius: 8px; margin-top: 15px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.2998073253695!2d48.080861!3d29.349329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9c83ce455555%3A0x486d316bd35d393c!2z2YXYs9is2K8g2YbZiNix2Kkg2LPYudivINin2YTYudio2YrYrw!5e0!3m2!1sar!2sus!4v1632612345678!5m2!1sar!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <a href="https://maps.app.goo.gl/UfnMaYtFExdtA8B2A" class="action-button" target="_blank" style="margin-top: 15px;">
+                    <i class="fas fa-directions"></i> الاتجاهات إلى المسجد
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="javascript:void(0)" onclick="switchTab('home')" class="bottom-nav-item active" id="nav-home">
+            <i class="fas fa-home"></i>
+            <span class="bottom-nav-text">الرئيسية</span>
+        </a>
+        <a href="javascript:void(0)" onclick="switchTab('prayer')" class="bottom-nav-item" id="nav-prayer">
+            <i class="fas fa-clock"></i>
+            <span class="bottom-nav-text">الصلاة</span>
+        </a>
+        <a href="javascript:void(0)" onclick="switchTab('quran')" class="bottom-nav-item" id="nav-quran">
+            <i class="fas fa-book-open"></i>
+            <span class="bottom-nav-text">القرآن</span>
+        </a>
+        <a href="javascript:void(0)" onclick="switchTab('gallery')" class="bottom-nav-item" id="nav-gallery">
+            <i class="fas fa-images"></i>
+            <span class="bottom-nav-text">الصور</span>
+        </a>
+        <a href="javascript:void(0)" onclick="switchTab('contact')" class="bottom-nav-item" id="nav-contact">
+            <i class="fas fa-envelope"></i>
+            <span class="bottom-nav-text">اتصل بنا</span>
+        </a>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://chat.whatsapp.com/LuwgLyE5NVf2Hb8Yb6lhS9" class="floating-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Image Viewer Modal -->
+    <div id="imageViewer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 9999; display: flex; justify-content: center; align-items: center;">
+        <span onclick="closeImageViewer()" style="position: absolute; top: 15px; right: 25px; color: white; font-size: 35px; cursor: pointer;">&times;</span>
+        <img id="viewerImage" style="max-width: 90%; max-height: 90%;">
     </div>
     <script src="script.js"></script>
 </body>
