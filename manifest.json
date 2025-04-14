@@ -1,24 +1,25 @@
 {
-    "name": "مسجد نورة سعد العبيد",
-    "short_name": "مسجد نورة",
-    "description": "تطبيق مسجد نورة سعد العبيد - مواقيت الصلاة، قرآن، وأنشطة المسجد",
-    "start_url": "/index.html",
-    "display": "standalone",
-    "background_color": "#F8F9FA",
-    "theme_color": "#2C3E50",
-    "orientation": "portrait-primary",
-    "icons": [
-      {
-        "src": "mosque_images/icon-192.png",
-        "type": "image/png",
-        "sizes": "192x192",
-        "purpose": "any maskable"
-      },
-      {
-        "src": "mosque_images/icon-512.png",
-        "type": "image/png",
-        "sizes": "512x512",
-         "purpose": "any maskable"
-      }
-    ]
-  }
+  "name": "مسجد نورة سعد العبيد",
+  "short_name": "مسجد نورة",
+  "description": "تطبيق مسجد نورة سعد العبيد - مواقيت الصلاة، قرآن، وأنشطة المسجد",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#2C3E50",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "mosque_images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "mosque_images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+       "purpose": "any maskable"
+    }
+   
+  ]
+}

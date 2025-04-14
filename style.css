@@ -6,14 +6,14 @@
 
 /* --- Base Variables and Reset --- */
 :root {
-    --primary-color: #2C3E50;    /* Dark Blue-Gray */
-    --secondary-color: #34495E; /* Slightly Lighter Blue-Gray */
+    --primary-color: #0d6fd1  ;    /* Dark Blue-Gray */
+    --secondary-color: #1E90FF ; /* Slightly Lighter Blue-Gray */
     --accent-color: #3498DB;     /* Nice Blue for accents like next prayer */
     --text-color: #333333;       /* Dark Gray for general text */
     --light-text-color: #666666; /* Lighter Gray for secondary text */
     --light-bg: #F8F9FA;         /* Very Light Gray Background */
     --white: #FFFFFF;
-    --border-color: #E0E0E0;     /* Light border color */
+    --border-color: #e0e0e0;     /* Light border color */
     --next-prayer-bg: #e0f2fe;   /* Tailwind sky-100 */
     --next-prayer-border: #7dd3fc;/* Tailwind sky-300 */
     --next-prayer-text: #0c4a6e; /* Tailwind sky-800 */
