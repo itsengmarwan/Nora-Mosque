@@ -6,8 +6,8 @@
 
 /* --- Base Variables and Reset --- */
 :root {
-    --primary-color: #0d6fd1  ;    /* Dark Blue-Gray */
-    --secondary-color: #1E90FF ; /* Slightly Lighter Blue-Gray */
+    --primary-color: #2f0000  ;    /* Dark Blue-Gray */
+    --secondary-color: #2f0000b7 ; /* Slightly Lighter Blue-Gray */
     --accent-color: #3498DB;     /* Nice Blue for accents like next prayer */
     --text-color: #333333;       /* Dark Gray for general text */
     --light-text-color: #666666; /* Lighter Gray for secondary text */
