@@ -651,7 +651,7 @@ async function handleSuggestionSubmit(event) {
     // Basic validation (optional, Formspree handles some)
     const email = formData.get('email');
     const suggestion = formData.get('suggestion');
-    if (!email || !suggestion || !email.includes('@')) { // Very basic check
+    if (!suggestion || (email && !email.includes('@'))) { // Very basic check
          statusMessage.textContent = 'يرجى إدخال بريد إلكتروني صالح ونص الاقتراح.';
          statusMessage.className = 'text-red-600 text-sm mt-3';
         return;

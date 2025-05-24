@@ -44,6 +44,7 @@
         <!--<a href="javascript:void(0)" onclick="switchTab('volunteer')"><i class="fas fa-hands-helping w-6 text-center"></i> التطوع بالمسجد</a>-->
         <!--<a href="javascript:void(0)" onclick="switchTab('donate')"><i class="fas fa-donate w-6 text-center"></i> التبرع للمسجد</a>-->
         <a href="javascript:void(0)" onclick="switchTab('azkar')"><i class="fas fa-pray w-6 text-center"></i> أذكار المسلم</a>
+        <a href="javascript:void(0)" onclick="switchTab('suggestions')"><i class="fas fa-lightbulb w-6 text-center"></i> الاقتراحات</a>
         <a href="javascript:void(0)" onclick="switchTab('contact')"><i class="fas fa-envelope w-6 text-center"></i> تواصل معنا</a> <a href="javascript:void(0)" onclick="switchTab('location')"><i class="fas fa-map-marker-alt w-6 text-center"></i> موقع المسجد</a>
         </div>
 
@@ -305,6 +306,29 @@
                  <div class="text-center mt-5">
                     <a href="https://alazkar.netlify.app/" target="_blank" rel="noopener noreferrer" class="action-button inline-block"> <i class="fas fa-external-link-alt ml-2"></i> الذهاب إلى موقع الأذكار </a>
                  </div>
+            </div>
+        </div>
+
+        <div id="suggestions" class="tab-content hidden">
+            <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-lightbulb"></i> تقديم اقتراح أو ملاحظة </div>
+                <p class="text-gray-700 mb-4">نرحب بأي اقتراحات أو ملاحظات لديكم لتحسين خدمات المسجد أو هذا الموقع. يرجى استخدام النموذج التالي:</p>
+                <form id="suggestionsForm" action="https://formspree.io/f/mvojoazb" method="POST">
+                    <div class="form-group">
+                        <label for="email" class="form-label">بريدك الإلكتروني (اختياري):</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="example@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="suggestion" class="form-label">الاقتراح / الملاحظة:</label>
+                        <textarea id="suggestion" name="suggestion" class="form-control" rows="4" placeholder="اكتب اقتراحك هنا..." required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" id="suggestionSubmitButton" class="action-button">
+                            <i class="fas fa-paper-plane mr-2"></i> إرسال الاقتراح
+                        </button>
+                    </div>
+                </form>
+                <div id="suggestionStatus" class="text-sm mt-4 text-center"></div>
             </div>
         </div>
 
