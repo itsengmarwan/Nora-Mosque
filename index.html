@@ -40,6 +40,7 @@
         <a href="javascript:void(0)" onclick="switchTab('prayer')"><i class="fas fa-clock w-6 text-center"></i> مواقيت الصلاة</a>
         <a href="javascript:void(0)" onclick="switchTab('gallery')"><i class="fas fa-images w-6 text-center"></i> مكتبة الصور</a>
         <a href="javascript:void(0)" onclick="switchTab('quran')"><i class="fas fa-book-open w-6 text-center"></i> المصحف الشريف</a>
+        <a href="javascript:void(0)" onclick="switchTab('quiz')"><i class="fas fa-book w-6 text-center"></i>مسابقات المسجد</a>
         <!--<a href="javascript:void(0)" onclick="switchTab('library')"><i class="fas fa-book w-6 text-center"></i> حجز المكتبة</a>-->
         <!--<a href="javascript:void(0)" onclick="switchTab('volunteer')"><i class="fas fa-hands-helping w-6 text-center"></i> التطوع بالمسجد</a>-->
         <!--<a href="javascript:void(0)" onclick="switchTab('donate')"><i class="fas fa-donate w-6 text-center"></i> التبرع للمسجد</a>-->
@@ -75,7 +76,7 @@
                  <a href="javascript:void(0)" onclick="switchTab('prayer')" class="feature-card animate__animated animate__fadeInUp animate__delay-1s"> <i class="fas fa-clock"></i> <div class="feature-card-title">مواقيت الصلاة</div> <div class="feature-card-desc">أوقات الصلوات اليومية</div> </a>
                  <a href="javascript:void(0)" onclick="switchTab('quran')" class="feature-card animate__animated animate__fadeInUp animate__delay-1s"> <i class="fas fa-book-open"></i> <div class="feature-card-title">المصحف الشريف</div> <div class="feature-card-desc">قراءة القرآن الكريم</div> </a>
                  <a href="javascript:void(0)" onclick="switchTab('gallery')" class="feature-card animate__animated animate__fadeInUp animate__delay-2s"> <i class="fas fa-images"></i> <div class="feature-card-title">صور المسجد</div> <div class="feature-card-desc">معرض صور متنوع</div> </a>
-                 <!--<a href="javascript:void(0)" onclick="switchTab('library')" class="feature-card animate__animated animate__fadeInUp animate__delay-2s"> <i class="fas fa-book"></i> <div class="feature-card-title">حجز المكتبة</div> <div class="feature-card-desc">حجز مرافق المكتبة</div> </a>-->
+                 <a href="javascript:void(0)" onclick="switchTab('quiz')" class="feature-card animate__animated animate__fadeInUp animate__delay-2s"> <i class="fas fa-book"></i> <div class="feature-card-title">مسابقات المسجد</div> <div class="feature-card-desc">مسابقات المسجد</div> </a>
             </div>
 
             <div class="card mt-5 animate__animated animate__fadeInUp animate__delay-3s">
@@ -260,6 +261,16 @@
                       <h3 id="quranViewerTitle" class="text-lg font-semibold mb-3 text-center"></h3>
                       <div id="quranViewerContent" class="quran-viewer-content"></div>
                       <button onclick="closeQuranViewer()" class="quran-viewer-close-btn"> <i class="fas fa-times mr-1"></i> إغلاق </button>
+                 </div>
+            </div>
+        </div>
+
+        <div id="quiz" class="tab-content hidden">
+             <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-book"></i> طلب المشاركة في مسابقات المسجد </div>
+                <p class="text-gray-700 mb-4">يمكنك المشاركة في مسابقات المسجد التعليمية و الترفيهية المتنوعه. يرجى استخدام النموذج التالي لتقديم طلب الحجز:</p>
+                 <div class="text-center mt-5">
+                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScVbSED2Ci1Mw_XbeeW1EG9ATmXG6U82XeJTtGjP9Kxw81FZw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="action-button inline-block"> <i class="fas fa-calendar-check ml-2"></i> اضغط هنا للمشاركة في المسابقة </a>
                  </div>
             </div>
         </div>
