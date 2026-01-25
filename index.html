@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="الموقع الرسمي لمسجد نورة سعد العبيد بالكويت - مواقيت الصلاة، أنشطة المسجد، ومكتبة الصور.">
     <title>مسجد نورة سعد العبيد</title>
-    
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="style.css">
-    
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2C3E50">
     <meta name="mobile-web-app-capable" content="yes">
@@ -28,7 +21,6 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-N3QN3BKL');</script>
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1ZLC53HCQ"></script>
     <script>
          window.dataLayer = window.dataLayer || [];
@@ -36,14 +28,10 @@
          gtag('js', new Date());
         gtag('config', 'G-X1ZLC53HCQ');
     </script>
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2654036089977891" crossorigin="anonymous"></script>
-</head>
-
-<body class="bg-gray-100 font-sans antialiased">
-
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3QN3BKL"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2654036089977891"
+    crossorigin="anonymous"></script>
+    </head>
+<body class="bg-gray-100">
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
@@ -53,242 +41,347 @@
         <a href="javascript:void(0)" onclick="switchTab('gallery')"><i class="fas fa-images w-6 text-center"></i> مكتبة الصور</a>
         <a href="javascript:void(0)" onclick="switchTab('quran')"><i class="fas fa-book-open w-6 text-center"></i> المصحف الشريف</a>
         <a href="javascript:void(0)" onclick="switchTab('quiz')"><i class="fas fa-book w-6 text-center"></i>مسابقات المسجد</a>
+        <!--<a href="javascript:void(0)" onclick="switchTab('library')"><i class="fas fa-book w-6 text-center"></i> حجز المكتبة</a>-->
+        <!--<a href="javascript:void(0)" onclick="switchTab('volunteer')"><i class="fas fa-hands-helping w-6 text-center"></i> التطوع بالمسجد</a>-->
+        <!--<a href="javascript:void(0)" onclick="switchTab('donate')"><i class="fas fa-donate w-6 text-center"></i> التبرع للمسجد</a>-->
         <a href="javascript:void(0)" onclick="switchTab('azkar')"><i class="fas fa-pray w-6 text-center"></i> أذكار المسلم</a>
-        <a href="javascript:void(0)" onclick="switchTab('contact')"><i class="fas fa-envelope w-6 text-center"></i> تواصل معنا</a> 
-        <a href="javascript:void(0)" onclick="switchTab('location')"><i class="fas fa-map-marker-alt w-6 text-center"></i> موقع المسجد</a>
-    </div>
+        <a href="javascript:void(0)" onclick="switchTab('contact')"><i class="fas fa-envelope w-6 text-center"></i> تواصل معنا</a> <a href="javascript:void(0)" onclick="switchTab('location')"><i class="fas fa-map-marker-alt w-6 text-center"></i> موقع المسجد</a>
+        </div>
 
-    <div class="navbar shadow-md">
+    <div class="navbar">
         <div class="logo-container">
             <div class="logo">
-                <i class="fas fa-mosque text-xl"></i>
+                <i class="fas fa-mosque"></i>
             </div>
-            <div class="app-name font-bold">مسجد نورة سعد العبيد</div>
+            <div class="app-name">مسجد نورة سعد العبيد</div>
         </div>
-        <button class="menu-toggle focus:outline-none" onclick="openNav()" aria-label="القائمة">
-            <i class="fas fa-bars text-xl"></i>
+        <button class="menu-toggle" onclick="openNav()">
+            <i class="fas fa-bars"></i>
         </button>
     </div>
 
-    <div class="main-container pb-24 px-4 pt-4 max-w-screen-md mx-auto">
+    <div class="main-container pb-20">
 
         <div id="home" class="tab-content active">
-            <img src="mosque_images/outside/outside (3).jpg" 
-                 alt="مسجد نورة سعد العبيد - الواجهة" 
-                 class="w-full h-60 rounded-lg shadow-md mb-4 object-cover" 
-                 width="800" height="400"
-                 fetchpriority="high"> 
+            <img src="mosque_images/outside/outside-3.jpg" alt="مسجد نورة سعد العبيد" class="w-full h-auto rounded-lg shadow-md mb-4 object-cover max-h-60">
 
-            <div class="card animate__animated animate__fadeInUp bg-white p-4 rounded-lg shadow mb-4">
-                <div class="section-title text-xl font-bold mb-2 text-blue-900 border-b pb-2">
-                    <i class="fas fa-mosque text-blue-600 ml-2"></i> أهلا بكم في مسجد نورة سعد العبيد
+            <div class="card animate__animated animate__fadeInUp">
+                <div class="section-title">
+                    <i class="fas fa-mosque"></i> أهلا بكم في مسجد نورة سعد العبيد
                 </div>
-                <p class="text-gray-700 leading-relaxed">هذا الموقع مخصص لخدمة مسجد نورة سعد العبيد بالكويت، ويقدم معلومات ومزايا متنوعة للمصلين والزوار.</p>
+                <p class="text-gray-700">هذا الموقع مخصص لخدمة مسجد نورة سعد العبيد بالكويت، ويقدم معلومات ومزايا متنوعة للمصلين والزوار.</p>
             </div>
 
-            <div class="grid grid-cols-2 gap-3 mb-4">
-                 <a href="javascript:void(0)" onclick="switchTab('prayer')" class="feature-card animate__animated animate__fadeInUp animate__delay-1s bg-white p-3 rounded-lg shadow text-center hover:bg-blue-50 transition"> <i class="fas fa-clock text-2xl text-blue-600 mb-2"></i> <div class="font-bold text-gray-800">مواقيت الصلاة</div> <div class="text-xs text-gray-500">أوقات الصلوات اليومية</div> </a>
-                 <a href="javascript:void(0)" onclick="switchTab('quran')" class="feature-card animate__animated animate__fadeInUp animate__delay-1s bg-white p-3 rounded-lg shadow text-center hover:bg-blue-50 transition"> <i class="fas fa-book-open text-2xl text-green-600 mb-2"></i> <div class="font-bold text-gray-800">المصحف الشريف</div> <div class="text-xs text-gray-500">قراءة القرآن الكريم</div> </a>
-                 <a href="javascript:void(0)" onclick="switchTab('gallery')" class="feature-card animate__animated animate__fadeInUp animate__delay-2s bg-white p-3 rounded-lg shadow text-center hover:bg-blue-50 transition"> <i class="fas fa-images text-2xl text-purple-600 mb-2"></i> <div class="font-bold text-gray-800">صور المسجد</div> <div class="text-xs text-gray-500">معرض صور متنوع</div> </a>
-                 <a href="javascript:void(0)" onclick="switchTab('quiz')" class="feature-card animate__animated animate__fadeInUp animate__delay-2s bg-white p-3 rounded-lg shadow text-center hover:bg-blue-50 transition"> <i class="fas fa-book text-2xl text-orange-600 mb-2"></i> <div class="font-bold text-gray-800">مسابقات المسجد</div> <div class="text-xs text-gray-500">شارك واربح</div> </a>
+            <div class="feature-cards">
+                 <a href="javascript:void(0)" onclick="switchTab('prayer')" class="feature-card animate__animated animate__fadeInUp animate__delay-1s"> <i class="fas fa-clock"></i> <div class="feature-card-title">مواقيت الصلاة</div> <div class="feature-card-desc">أوقات الصلوات اليومية</div> </a>
+                 <a href="javascript:void(0)" onclick="switchTab('quran')" class="feature-card animate__animated animate__fadeInUp animate__delay-1s"> <i class="fas fa-book-open"></i> <div class="feature-card-title">المصحف الشريف</div> <div class="feature-card-desc">قراءة القرآن الكريم</div> </a>
+                 <a href="javascript:void(0)" onclick="switchTab('gallery')" class="feature-card animate__animated animate__fadeInUp animate__delay-2s"> <i class="fas fa-images"></i> <div class="feature-card-title">صور المسجد</div> <div class="feature-card-desc">معرض صور متنوع</div> </a>
+                 <a href="javascript:void(0)" onclick="switchTab('quiz')" class="feature-card animate__animated animate__fadeInUp animate__delay-2s"> <i class="fas fa-book"></i> <div class="feature-card-title">مسابقات المسجد</div> <div class="feature-card-desc">مسابقات المسجد</div> </a>
             </div>
 
-            <div class="card mt-5 animate__animated animate__fadeInUp animate__delay-3s bg-white p-4 rounded-lg shadow">
-                <div class="section-title text-lg font-bold mb-3">
-                    <i class="fas fa-hashtag ml-2"></i> تابعونا على
+            <div class="card mt-5 animate__animated animate__fadeInUp animate__delay-3s">
+                <div class="section-title">
+                    <i class="fas fa-hashtag"></i> تابعونا على
                 </div>
-                 <div class="flex flex-wrap justify-center gap-4">
-                      <a href="https://chat.whatsapp.com/LuwgLyE5NVf2Hb8Yb6lhS9" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-gray-600 hover:text-green-500"> <div class="text-2xl"><i class="fab fa-whatsapp"></i></div> <div class="text-xs mt-1">واتساب</div> </a>
-                      <a href="https://www.instagram.com/nsom_15?igsh=MWo0d3g2em9heWMwYw==" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-gray-600 hover:text-pink-600"> <div class="text-2xl"><i class="fab fa-instagram"></i></div> <div class="text-xs mt-1">إنستجرام</div> </a>
-                      <a href="https://www.tiktok.com/@nsom_15?_t=ZS-8vQHwvIMxqp&_r=1" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-gray-600 hover:text-black"> <div class="text-2xl"><i class="fab fa-tiktok"></i></div> <div class="text-xs mt-1">تيكتوك</div> </a>
-                      <a href="https://x.com/nsom_15?t=e5bbi8l3y6ys3lKeC14VXQ&s=08" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-gray-600 hover:text-blue-400"> <div class="text-2xl"><i class="fab fa-twitter"></i></div> <div class="text-xs mt-1">اكس</div> </a>
-                      <a href="https://youtube.com/@nsom_15?si=39FLXhqxA1Z3KwKD" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-gray-600 hover:text-red-600"> <div class="text-2xl"><i class="fab fa-youtube"></i></div> <div class="text-xs mt-1">يوتيوب</div> </a>
-                      <a href="https://www.facebook.com/share/12JAF4EbBsd/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-gray-600 hover:text-blue-700"> <div class="text-2xl"><i class="fab fa-facebook"></i></div> <div class="text-xs mt-1">فيسبوك</div> </a>
-                      <a href="https://t.me/nsom_15" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-gray-600 hover:text-blue-500"> <div class="text-2xl"><i class="fab fa-telegram"></i></div> <div class="text-xs mt-1">تلجرام</div> </a>
+                 <div class="social-links">
+                     <a href="https://chat.whatsapp.com/LuwgLyE5NVf2Hb8Yb6lhS9" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-whatsapp"></i></div> <div class="social-name">واتساب</div> </a>
+                     <a href="https://www.instagram.com/nsom_15?igsh=MWo0d3g2em9heWMwYw==" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-instagram"></i></div> <div class="social-name">إنستجرام</div> </a>
+                     <a href="https://www.tiktok.com/@nsom_15?_t=ZS-8vQHwvIMxqp&_r=1" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-tiktok"></i></div> <div class="social-name">تيكتوك</div> </a>
+                     <a href="https://x.com/nsom_15?t=e5bbi8l3y6ys3lKeC14VXQ&s=08" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-twitter"></i></div> <div class="social-name">اكس</div> </a>
+                     <a href="https://youtube.com/@nsom_15?si=39FLXhqxA1Z3KwKD" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-youtube"></i></div> <div class="social-name">يوتيوب</div> </a>
+                     <a href="https://www.facebook.com/share/12JAF4EbBsd/" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-facebook"></i></div> <div class="social-name">فيسبوك</div> </a>
+                     <a href="https://t.me/nsom_15" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-telegram"></i></div> <div class="social-name">تلجرام</div> </a>
                 </div>
             </div>
         </div>
 
         <div id="about" class="tab-content hidden">
-            <div class="card animate__animated animate__fadeIn bg-white p-4 rounded-lg shadow">
-                <div class="section-title text-xl font-bold mb-3 border-b pb-2 text-blue-900"> <i class="fas fa-info-circle ml-2 text-blue-600"></i> عن جامع نورة سعد العبيد </div>
-                <div class="mosque-info text-gray-700 space-y-3 leading-relaxed">
+            <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-info-circle"></i> عن جامع نورة سعد العبيد </div>
+                <div class="mosque-info text-gray-700 space-y-3">
                     <p>يُعتبر جامع نورة سعد العبيد معلماً إسلامياً بارزاً يزهو في قلب منطقة السالمية التابعة لمحافظة حولي بدولة الكويت، وتحديداً يشع نوره في شارع 8.</p>
                     <p>يشرف على إمامة المسجد فضيلة الشيخ/ <strong>عبداللّه العازمي </strong> ويلقي خطبة الجمعة فضيلة الشيخ الدكتور/ <strong>سعد سعد الأحمد</strong>، ويرفع نداء الحق بصوته العذب المؤذن الشيخ/ <strong>حسن بدري</strong>.</p>
                 </div>
-                </div>
+                <div class="section-title mt-6"> <i class="fas fa-calendar-alt"></i> الأنشطة والفعاليات الرئيسية </div>
+                <ul class="activities-list list-inside text-gray-700 space-y-2">
+                    <li>إقامة الصلوات الخمس جماعة في أوقاتها.</li>
+                    <li>تنظيم حلقات تحفيظ وتدارس القرآن الكريم لمختلف الأعمار.</li>
+                    <li>إلقاء خطبة الجمعة الأسبوعية التي تناقش قضايا معاصرة بمنظور إسلامي.</li>
+                    <li>إحياء ليالي شهر رمضان الفضيل بصلاتي التراويح والقيام وتنظيم فعاليات مصاحبة.</li>
+                    <li>استضافة محاضرات ودروس دينية وعلمية دورية يقدمها نخبة من المشايخ والدعاة.</li>
+                    <li>توفير مكتبة عامرة بالكتب الشرعية والثقافية للباحثين والمهتمين.</li>
+                </ul>
+                <div class="section-title mt-6"> <i class="fas fa-question-circle"></i> لماذا سُمي بهذا الاسم؟ </div>
+                <p class="text-gray-700">حمل هذا الصرح اسم "نورة سعد العبيد" تكريماً وعرفاناً للسيدة الفاضلة/ <strong>نورة سعد العبيد</strong> حفظها الله، التي كانت سبباً في إنشائه ووهبت جهودها لخدمة بيوت الله، سائلين المولى أن يجعل ذلك في ميزان حسناتها وأن يخلد ذكرها في سجل الخير والعطاء.</p>
+            </div>
         </div>
 
         <div id="prayer" class="tab-content hidden">
-             <div class="card animate__animated animate__fadeIn bg-white p-4 rounded-lg shadow">
-                <div class="section-title text-xl font-bold mb-4 border-b pb-2"> <i class="fas fa-clock ml-2 text-blue-600"></i> مواقيت الصلاة اليوم </div>
+             <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-clock"></i> مواقيت الصلاة اليوم </div>
                 <div class="prayer-times space-y-2" id="prayerTimesContainer">
-                    <div class="prayer-time-item flex justify-between items-center p-3 bg-gray-50 rounded" id="fajrItem"> <div class="prayer-details"> <div class="prayer-name font-bold">الفجر</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time font-mono text-lg" id="fajrTime">--:--</div> </div>
-                    <div class="prayer-time-item flex justify-between items-center p-3 bg-gray-50 rounded" id="sunriseItem"> <div class="prayer-details"> <div class="prayer-name font-bold">الشروق</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time font-mono text-lg" id="sunriseTime">--:--</div> </div>
-                    <div class="prayer-time-item flex justify-between items-center p-3 bg-gray-50 rounded" id="dhuhrItem"> <div class="prayer-details"> <div class="prayer-name font-bold">الظهر</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time font-mono text-lg" id="dhuhrTime">--:--</div> </div>
-                    <div class="prayer-time-item flex justify-between items-center p-3 bg-gray-50 rounded" id="asrItem"> <div class="prayer-details"> <div class="prayer-name font-bold">العصر</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time font-mono text-lg" id="asrTime">--:--</div> </div>
-                    <div class="prayer-time-item flex justify-between items-center p-3 bg-gray-50 rounded" id="maghribItem"> <div class="prayer-details"> <div class="prayer-name font-bold">المغرب</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time font-mono text-lg" id="maghribTime">--:--</div> </div>
-                    <div class="prayer-time-item flex justify-between items-center p-3 bg-gray-50 rounded" id="ishaItem"> <div class="prayer-details"> <div class="prayer-name font-bold">العشاء</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time font-mono text-lg" id="ishaTime">--:--</div> </div>
+                    <div class="prayer-time-item" id="fajrItem"> <div class="prayer-details"> <div class="prayer-name">الفجر</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time" id="fajrTime">--:--</div> </div>
+                    <div class="prayer-time-item" id="sunriseItem"> <div class="prayer-details"> <div class="prayer-name">الشروق</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time" id="sunriseTime">--:--</div> </div>
+                    <div class="prayer-time-item" id="dhuhrItem"> <div class="prayer-details"> <div class="prayer-name">الظهر</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time" id="dhuhrTime">--:--</div> </div>
+                    <div class="prayer-time-item" id="asrItem"> <div class="prayer-details"> <div class="prayer-name">العصر</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time" id="asrTime">--:--</div> </div>
+                    <div class="prayer-time-item" id="maghribItem"> <div class="prayer-details"> <div class="prayer-name">المغرب</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time" id="maghribTime">--:--</div> </div>
+                    <div class="prayer-time-item" id="ishaItem"> <div class="prayer-details"> <div class="prayer-name">العشاء</div> <span class="time-remaining text-xs text-gray-500 block"></span> </div> <div class="prayer-time" id="ishaTime">--:--</div> </div>
                     <p class="prayer-error-message text-red-600 text-center pt-2"></p>
                 </div>
                 <div class="text-center mt-4 text-sm text-gray-600">
                     <small>التاريخ الهجري: <span id="hijriDate" class="font-semibold">--</span></small><br>
                     <small>أوقات الصلاة لمدينة الكويت - السالمية</small>
                     <div id="nextPrayerInfo" class="mt-2 font-semibold text-blue-600"></div>
-                     <div class="mt-4 border-t pt-3 flex justify-center items-center">
+                     <div class="mt-4 border-t pt-3">
                         <label for="notificationToggle" class="inline-flex items-center cursor-pointer">
-                          <span class="ml-2 text-gray-700">تنبيهات الأذان:</span> 
-                          <span class="relative">
+                          <span class="ml-2 text-gray-700">تنبيهات الأذان:</span> <span class="relative">
                             <input type="checkbox" id="notificationToggle" class="sr-only peer">
-                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] rtl:after:right-[2px] rtl:after:left-auto after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] rtl:after:right-[2px] rtl:after:left-auto after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                           </span>
                         </label>
+                        <p id="notificationStatus" class="text-xs text-gray-500 mt-1"></p>
                      </div>
-                     <p id="notificationStatus" class="text-xs text-gray-500 mt-1"></p>
                 </div>
             </div>
         </div>
 
         <div id="gallery" class="tab-content hidden">
-            <div class="card animate__animated animate__fadeIn bg-white p-4 rounded-lg shadow">
-                <div class="section-title text-xl font-bold mb-4 border-b pb-2">
-                    <i class="fas fa-images ml-2 text-blue-600"></i> مكتبة الصور
+            <div class="card animate__animated animate__fadeIn">
+                <div class="section-title">
+                    <i class="fas fa-images"></i> مكتبة الصور
                 </div>
         
                 <h4 class="text-lg font-semibold text-gray-700 mt-5 mb-3 border-b pb-2">
                     <i class="fas fa-camera-retro mr-2 text-gray-500"></i> صور خارجية للمسجد
                 </h4>
-                <div class="gallery grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                <div class="gallery mb-6">
                     <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
-                        <img src="mosque_images/outside/outside (1).jpg" alt="واجهة المسجد 1" onclick="openImageViewer(this.src)" loading="lazy" class="w-full h-32 object-cover">
+                        <img src="mosque_images/outside/outside-1.jpg" alt="صورة خارجية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
                     </div>
                     <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
-                        <img src="mosque_images/outside/outside (2).jpg" alt="واجهة المسجد 2" onclick="openImageViewer(this.src)" loading="lazy" class="w-full h-32 object-cover">
+                        <img src="mosque_images/outside/outside-2.jpg" alt="صورة خارجية 2 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
                     </div>
                     <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
-                        <img src="mosque_images/outside/outside (3).jpg" alt="واجهة المسجد 3" onclick="openImageViewer(this.src)" loading="lazy" class="w-full h-32 object-cover">
+                        <img src="mosque_images/outside/outside-3.jpg" alt="صورة خارجية 3 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
                     </div>
-                </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/outside/outside-4.jpg" alt="صورة خارجية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/outside/outside-5.jpg" alt="صورة خارجية 2 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/outside/outside-6.jpg" alt="صورة خارجية 3 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/outside/outside-7.jpg" alt="صورة خارجية 3 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    </div>
         
                 <h4 class="text-lg font-semibold text-gray-700 mt-5 mb-3 border-b pb-2">
                     <i class="fas fa-mosque mr-2 text-gray-500"></i> صور داخلية للمسجد
                 </h4>
-                <div class="gallery grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-                     <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
-                        <img src="mosque_images/inside/inside (1).jpg" alt="داخل المسجد 1" onclick="openImageViewer(this.src)" loading="lazy" class="w-full h-32 object-cover">
+                <div class="gallery mb-6">
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/inside/inside-1.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
                     </div>
-                     <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
-                        <img src="mosque_images/inside/inside (2).jpg" alt="داخل المسجد 2" onclick="openImageViewer(this.src)" loading="lazy" class="w-full h-32 object-cover">
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/inside/inside-2.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
                     </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/inside/inside-3.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
                     </div>
-            </div> 
-        </div>
-
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/inside/inside-4.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/inside/inside-5.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/inside/inside-6.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/inside/inside-7.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/inside/inside-8.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/inside/inside-9.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                </div>
+        
+                <h4 class="text-lg font-semibold text-gray-700 mt-5 mb-3 border-b pb-2">
+                    <i class="fas fa-toilet mr-2 text-gray-500"></i> الحمامات وأماكن الوضوء
+                </h4>
+                <div class="gallery mb-6">
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/7mam/7mam-1.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/7mam/7mam-2.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/7mam/7mam-3.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                </div>
+                <h4 class="text-lg font-semibold text-gray-700 mt-5 mb-3 border-b pb-2">
+                    <i class="fas fa-book-reader mr-2 text-gray-500"></i> المكتبة
+                </h4>
+                <div class="gallery mb-6">
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/mktaba/mktaba.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                </div>
+        
+                <h4 class="text-lg font-semibold text-gray-700 mt-5 mb-3 border-b pb-2">
+                    <i class="fas fa-quran mr-2 text-gray-500"></i> حلقات القرآن
+                </h4>
+                <div class="gallery mb-6">
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/7laka/7laka-1.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/7laka/7laka-2.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                    <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow hover:shadow-xl transition-shadow duration-300">
+                        <img src="mosque_images/7laka/7laka-3.jpg" alt="صورة داخلية 1 لمسجد نورة سعد العبيد" onclick="openImageViewer(this.src)" loading="lazy">
+                    </div>
+                </div>
+            </div> </div>
+            
         <div id="quran" class="tab-content hidden">
-            <div class="card animate__animated animate__fadeIn bg-white p-4 rounded-lg shadow">
-                <div class="section-title text-xl font-bold mb-3 border-b pb-2"> <i class="fas fa-book-open ml-2 text-green-600"></i> المصحف الشريف </div>
+            <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-book-open"></i> المصحف الشريف </div>
                 <p class="mb-3 text-gray-600 text-sm">اختر السورة لعرضها:</p>
-                <div class="quran-surah-list border rounded-md max-h-96 overflow-y-auto p-2 bg-gray-50" id="quranSurahList">
+                <div class="quran-surah-list border rounded-md max-h-96 overflow-y-auto" id="quranSurahList">
                      <div class="text-center py-5 text-gray-500 loading-placeholder">جارٍ تحميل قائمة السور...</div>
                 </div>
-                 <div id="quranViewer" class="mt-4 p-4 border rounded-md bg-white hidden shadow-inner">
-                      <h3 id="quranViewerTitle" class="text-lg font-semibold mb-3 text-center text-green-800"></h3>
-                      <div id="quranViewerContent" class="quran-viewer-content text-xl leading-loose font-serif text-right" style="direction: rtl;"></div>
-                      <button onclick="closeQuranViewer()" class="quran-viewer-close-btn mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 w-full"> <i class="fas fa-times mr-1"></i> إغلاق </button>
+                 <div id="quranViewer" class="mt-4 p-4 border rounded-md bg-gray-50 hidden">
+                      <h3 id="quranViewerTitle" class="text-lg font-semibold mb-3 text-center"></h3>
+                      <div id="quranViewerContent" class="quran-viewer-content"></div>
+                      <button onclick="closeQuranViewer()" class="quran-viewer-close-btn"> <i class="fas fa-times mr-1"></i> إغلاق </button>
                  </div>
             </div>
         </div>
 
         <div id="quiz" class="tab-content hidden">
-             <div class="card animate__animated animate__fadeIn bg-white p-4 rounded-lg shadow">
-                <div class="section-title text-xl font-bold mb-3 border-b pb-2"> <i class="fas fa-book ml-2 text-orange-600"></i> مسابقات المسجد </div>
-                <p class="text-gray-700 mb-4 leading-relaxed">شارك معنا في مسابقات المسجد التعليمية والترفيهية.</p>
+             <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-book"></i> طلب المشاركة في مسابقات المسجد </div>
+                <p class="text-gray-700 mb-4">يمكنك المشاركة في مسابقات المسجد التعليمية و الترفيهية المتنوعه. يرجى استخدام النموذج التالي لتقديم طلب الحجز:</p>
                  <div class="text-center mt-5">
-                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScVbSED2Ci1Mw_XbeeW1EG9ATmXG6U82XeJTtGjP9Kxw81FZw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition inline-block font-bold"> <i class="fas fa-calendar-check ml-2"></i> اضغط هنا للمشاركة </a>
+                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScVbSED2Ci1Mw_XbeeW1EG9ATmXG6U82XeJTtGjP9Kxw81FZw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="action-button inline-block"> <i class="fas fa-calendar-check ml-2"></i> اضغط هنا للمشاركة في المسابقة </a>
                  </div>
             </div>
         </div>
 
-        <div id="azkar" class="tab-content hidden">
-            <div class="card animate__animated animate__fadeIn bg-white p-4 rounded-lg shadow">
-                <div class="section-title text-xl font-bold mb-3 border-b pb-2"> <i class="fas fa-pray ml-2 text-purple-600"></i> أذكار المسلم </div>
-                <p class="text-gray-700 mb-4">حصن المسلم اليومي ومجموعة من الأذكار المأثورة.</p>
+        <!--<div id="library" class="tab-content hidden">
+             <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-book"></i> حجز مكتبة المسجد </div>
+                <p class="text-gray-700 mb-4">يمكنك حجز مكتبة المسجد أو أحد مرافقها للدراسة أو القراءة أو الأنشطة التعليمية. يرجى استخدام النموذج التالي لتقديم طلب الحجز:</p>
                  <div class="text-center mt-5">
-                    <a href="https://alazkar.netlify.app/" target="_blank" rel="noopener noreferrer" class="bg-purple-600 text-white px-6 py-3 rounded-full shadow hover:bg-purple-700 transition inline-block font-bold"> <i class="fas fa-external-link-alt ml-2"></i> الذهاب إلى موقع الأذكار </a>
+                     <a href="https://forms.gle/UvpnTqo9bXFJWXai9" target="_blank" rel="noopener noreferrer" class="action-button inline-block"> <i class="fas fa-calendar-check ml-2"></i> اضغط هنا لحجز المكتبة </a>
+                 </div>
+            </div>
+        </div>-->
+
+        <!--<div id="volunteer" class="tab-content hidden">
+            <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-hands-helping"></i> التطوع في المسجد </div>
+                <p class="text-gray-700 mb-4"> نؤمن بأهمية العمل الجماعي لخدمة بيوت الله. إذا كنت ترغب في المساهمة بوقتك وجهدك في أنشطة المسجد المختلفة، سواء كانت تنظيمية، تعليمية، أو خدمية، فنحن نرحب بك أجمل ترحيب. </p>
+                <p class="text-gray-700 mb-4"> يمكنك تقديم طلب التطوع عن طريق ملء النموذج التالي، وسنقوم بالتواصل معك لتحديد مجالات التطوع المناسبة. </p>
+                <div class="text-center mt-5">
+                     <a href="https://forms.gle/xsJJ6z4nCNc9joLXA" target="_blank" rel="noopener noreferrer" class="action-button inline-block"> <i class="fab fa-wpforms ml-2"></i> نموذج طلب التطوع </a>
+                 </div>
+                 <p class="text-gray-600 mt-4 text-sm"> قال رسول الله ﷺ: "والله في عون العبد ما كان العبد في عون أخيه". نسأل الله أن يتقبل منا ومنكم صالح الأعمال. </p>
+            </div>
+        </div>-->
+
+        <!--<div id="donate" class="tab-content hidden">
+            <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-donate"></i> التبرع في المسجد </div>
+                <p class="text-gray-700 mb-4"> تساهم تبرعاتكم السخية في استمرارية وتطوير برامج المسجد الدعوية والتعليمية، وصيانة مرافقه، وتوفير احتياجاته المختلفة، لتظل بيوت الله منارات هدى وخير للمجتمع. </p>
+                 <p class="text-gray-700 mb-4"> قال الله تعالى: "مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ فِي كُلِّ سُنبُلَةٍ مِّائَةُ حَبَّةٍ ۗ وَاللَّهُ يُضَاعِفُ لِمَن يَشَاءُ ۗ وَاللَّهُ وَاسِعٌ عَلِيمٌ" [البقرة: 261]. </p>
+                 <div class="text-center mt-5">
+                     <a href="https://forms.gle/CBnLbjtJmqkPHvFD7" target="_blank" rel="noopener noreferrer" class="action-button inline-block"> <i class="fas fa-credit-card ml-2"></i> اضغط هنا للمساهمة في التبرع </a>
+                 </div>
+                 <p class="text-gray-600 mt-4 text-sm"> تقبل الله طاعتكم وجعل ما تقدمونه في ميزان حسناتكم. لمزيد من المعلومات حول أوجه التبرع، يمكنكم التواصل معنا. </p>
+            </div>
+        </div>-->
+
+        <div id="azkar" class="tab-content hidden">
+            <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-pray"></i> أذكار المسلم </div>
+                <p class="text-gray-700 mb-4">حصن المسلم اليومي ومجموعة من الأذكار المأثورة. يمكنك زيارة الموقع التالي للاطلاع على الأذكار:</p>
+                 <div class="text-center mt-5">
+                    <a href="https://alazkar.netlify.app/" target="_blank" rel="noopener noreferrer" class="action-button inline-block"> <i class="fas fa-external-link-alt ml-2"></i> الذهاب إلى موقع الأذكار </a>
                  </div>
             </div>
         </div>
 
         <div id="contact" class="tab-content hidden">
-            <div class="card animate__animated animate__fadeIn bg-white p-4 rounded-lg shadow">
-                <div class="section-title text-xl font-bold mb-3 border-b pb-2">
-                    <i class="fas fa-envelope ml-2 text-gray-600"></i> تواصل معنا
+            <div class="card animate__animated animate__fadeIn">
+                <div class="section-title">
+                    <i class="fas fa-envelope"></i> تواصل معنا
                 </div>
-                    <div class="contact-info space-y-4 text-gray-700">
-                        <div class="contact-group bg-gray-50 p-3 rounded">
-                            <p class="font-bold mb-2">إدارة المسجد:</p>
-                            <div class="contact-item flex items-center mb-2">
-                                <i class="fas fa-envelope w-8 text-center text-blue-500"></i>
-                                <a href="mailto:n.s.o.mosque1@gmail.com" class="hover:text-blue-600 break-all">n.s.o.mosque1@gmail.com</a>
-                            </div>
-                            <div class="contact-item flex items-center">
-                                <i class="fas fa-phone w-8 text-center text-green-500"></i>
-                                <a href="tel:+96551696595" class="hover:text-blue-600 ltr-text" dir="ltr">+965 5169 6595</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-group bg-gray-50 p-3 rounded">
-                            <p class="font-bold mb-2">الدعم الفني (المطور):</p>
-                            <div class="contact-item flex items-center mb-2">
-                                   <i class="fas fa-envelope w-8 text-center text-blue-500"></i>
-                                   <a href="mailto:marwan.tarek.abosalem@gmail.com" class="hover:text-blue-600 break-all">marwan.tarek.abosalem@gmail.com</a>
-                            </div>
-                            <div class="contact-item flex items-center">
-                                   <i class="fas fa-phone w-8 text-center text-green-500"></i>
-                                   <a href="tel:+96566877036" class="hover:text-blue-600 ltr-text" dir="ltr">+965 6687 7036</a>
-                            </div>
-                        </div>
+                    <div class="contact-info space-y-3 text-gray-700">
+                       <p>يمكنكم التواصل مع إدارة المسجد عبر الوسائل التالية:</p>
+                       <div class="contact-item">
+                        <i class="fas fa-envelope w-6 text-center"></i>
+                        <a href="mailto:n.s.o.mosque1@gmail.com" class="hover:text-blue-600">n.s.o.mosque1@gmail.com</a>
                     </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone w-6 text-center"></i>
+                        <a href="tel:+965 51696595" class="hover:text-blue-600 ltr-text" dir="ltr">+965 5169 6595</a>
+                 </div>
+                    <p>يمكنكم التواصل مع مصمم الموقع الإلكتروني عبر الوسائل التالية:</p>
+                    <div class="contact-item">
+                           <i class="fas fa-envelope w-6 text-center"></i>
+                           <a href="mailto:marwan.tarek.abosalem@gmail.com" class="hover:text-blue-600">marwan.tarek.abosalem@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                           <i class="fas fa-phone w-6 text-center"></i>
+                           <a href="tel:+96566877036" class="hover:text-blue-600 ltr-text" dir="ltr">+965 6687 7036</a>
+                    </div>
+                 </div>
 
-                 <p class="text-gray-700 mt-6 mb-4 border-t pt-4 text-center"> للإقتراحات العامة: </p>
+                 <p class="text-gray-700 mt-6 mb-4 border-t pt-4">
+                     للإقتراحات العامة ، يمكنكم أيضاً استخدام النموذج التالي:
+                 </p>
                  <div class="text-center mt-4">
-                     <a href="https://forms.gle/PrsfSHQJL932aBpZ6" target="_blank" rel="noopener noreferrer" class="border border-blue-600 text-blue-600 px-6 py-2 rounded-full hover:bg-blue-600 hover:text-white transition inline-block">
+                     <a href="https://forms.gle/PrsfSHQJL932aBpZ6" target="_blank" rel="noopener noreferrer" class="action-button inline-block">
                          <i class="fas fa-paper-plane ml-2"></i> نموذج التواصل
                       </a>
                  </div>
+                 <p class="mt-6 text-gray-600">نتطلع إلى تواصلكم واستقبال استفساراتكم وملاحظاتكم.</p>
             </div>
         </div>
     
          <div id="location" class="tab-content hidden">
-              <div class="card animate__animated animate__fadeIn bg-white p-4 rounded-lg shadow">
-                <div class="section-title text-xl font-bold mb-3 border-b pb-2"> <i class="fas fa-map-marker-alt ml-2 text-red-600"></i> موقع المسجد </div>
-                 <div class="map-container relative h-64 md:h-80 w-full overflow-hidden rounded-lg shadow-md bg-gray-200">
-                    <iframe 
-                        src="https://maps.google.com/maps?q=مسجد+نورة+سعد+العبيد&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="absolute top-0 left-0 w-full h-full">
-                    </iframe>
+              <div class="card animate__animated animate__fadeIn">
+                <div class="section-title"> <i class="fas fa-map-marker-alt"></i> موقع المسجد </div>
+                 <div class="map-container relative h-64 md:h-80 w-full overflow-hidden rounded-lg shadow-md">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1462.4208332465132!2d48.08669748843695!3d29.33388750790019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf76193cdeed09%3A0xac50e72d5e143872!2sNoura%20Saad%20Al%20Obeid%20Mosque!5e0!3m2!1sen!2skw!4v1744410938546!5m2!1sen!2skw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="absolute top-0 left-0 w-full h-full"></iframe>
                  </div>
-                 <p class="mt-4 text-center">
-                      <a href="https://goo.gl/maps/YOUR_PLACE_ID_HERE" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-bold"> <i class="fas fa-external-link-alt ml-1"></i> عرض الموقع على تطبيق خرائط جوجل </a>
+                 <p class="mt-3 text-center">
+                      <a href="https://maps.google.com/?q=29.330000,48.000000" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline"> <i class="fas fa-external-link-alt ml-1"></i> عرض الموقع على خرائط جوجل </a>
                  </p>
             </div>
         </div>
-
-    </div> 
-
-    <div class="bottom-nav fixed bottom-0 w-full bg-white border-t flex justify-around py-2 shadow-lg z-40">
-        <a href="javascript:void(0)" onclick="switchTab('home')" class="bottom-nav-item flex flex-col items-center text-gray-500 active:text-blue-600 px-2"> <i class="fas fa-home text-xl mb-1"></i> <span class="text-xs">الرئيسية</span> </a>
-        <a href="javascript:void(0)" onclick="switchTab('prayer')" class="bottom-nav-item flex flex-col items-center text-gray-500 hover:text-blue-600 px-2"> <i class="fas fa-clock text-xl mb-1"></i> <span class="text-xs">المواقيت</span> </a>
-        <a href="javascript:void(0)" onclick="switchTab('quran')" class="bottom-nav-item flex flex-col items-center text-gray-500 hover:text-blue-600 px-2"> <i class="fas fa-book-open text-xl mb-1"></i> <span class="text-xs">المصحف</span> </a>
-        <a href="javascript:void(0)" onclick="switchTab('gallery')" class="bottom-nav-item flex flex-col items-center text-gray-500 hover:text-blue-600 px-2"> <i class="fas fa-images text-xl mb-1"></i> <span class="text-xs">الصور</span> </a>
-        <a href="javascript:void(0)" onclick="openNav()" class="bottom-nav-item flex flex-col items-center text-gray-500 hover:text-blue-600 px-2"> <i class="fas fa-bars text-xl mb-1"></i> <span class="text-xs">المزيد</span> </a>
+        </div> <div class="bottom-nav">
+        <a href="javascript:void(0)" onclick="switchTab('home')" class="bottom-nav-item active"> <i class="fas fa-home"></i> <span class="bottom-nav-text">الرئيسية</span> </a>
+        <a href="javascript:void(0)" onclick="switchTab('prayer')" class="bottom-nav-item"> <i class="fas fa-clock"></i> <span class="bottom-nav-text">المواقيت</span> </a>
+        <a href="javascript:void(0)" onclick="switchTab('quran')" class="bottom-nav-item"> <i class="fas fa-book-open"></i> <span class="bottom-nav-text">المصحف</span> </a>
+        <a href="javascript:void(0)" onclick="switchTab('gallery')" class="bottom-nav-item"> <i class="fas fa-images"></i> <span class="bottom-nav-text">الصور</span> </a>
+        <a href="javascript:void(0)" onclick="openNav()" class="bottom-nav-item"> <i class="fas fa-bars"></i> <span class="bottom-nav-text">المزيد</span> </a>
     </div>
 
-    <div id="imageViewer" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden p-4" onclick="closeImageViewer()">
-        <button class="absolute top-4 right-4 text-white text-4xl cursor-pointer focus:outline-none" onclick="closeImageViewer()">×</button>
-        <img class="max-w-full max-h-full object-contain rounded-md" id="viewedImage" src="" alt="صورة مكبرة" onclick="event.stopPropagation()">
+    <div id="imageViewer" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden p-4" onclick="closeImageViewer()">
+        <span class="absolute top-4 right-4 text-white text-3xl cursor-pointer" onclick="closeImageViewer()">×</span>
+        <img class="max-w-full max-h-full object-contain" id="viewedImage" src="" alt="صورة مكبرة" onclick="event.stopPropagation()">
     </div>
 
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3QN3BKL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="script.js"></script>
 
 </body>
