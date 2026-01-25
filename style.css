@@ -30,6 +30,10 @@
     box-sizing: border-box;
 }
 
+body:not(.loaded) .animate__animated {
+  opacity: 0;
+}
+
 body {
     font-family: 'Tajawal', Arial, sans-serif; /* Default font */
     background-color: var(--light-bg);
@@ -729,4 +733,56 @@ textarea.form-control {
 /* Additional Styles for Notification Toggle (Tailwind handles most of it) */
 #notificationStatus {
     min-height: 1em; /* Reserve space */
+}
+.feature-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+.bottom-nav-item.active {
+  color: #2C3E50;
+  font-weight: 700;
+}
+
+.bottom-nav-item.active i {
+  transform: scale(1.15);
+}
+/* =====================
+   IMAGE PERFORMANCE
+===================== */
+
+.lazy-img {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.lazy-img.loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =====================
+   UI MICRO INTERACTIONS
+===================== */
+
+.feature-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+button:active,
+.feature-card:active {
+  transform: scale(0.97);
+}
+
+.bottom-nav-item.active {
+  font-weight: 700;
 }
