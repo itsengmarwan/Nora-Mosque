@@ -6,12 +6,11 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#F2F2F7",
-  "theme_color": "#007AFF",
+  "background_color": "#F8F9FA",
+  "theme_color": "#2C3E50",
   "orientation": "portrait-primary",
   "lang": "ar",
   "dir": "rtl",
-  "permissions": ["notifications"],
   "icons": [
     {
       "src": "mosque_images/icon-192.png",
