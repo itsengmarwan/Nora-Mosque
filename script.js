@@ -457,6 +457,7 @@ function renderNewsList(news) {
         </div>
         <div id="newsActions-${item.id}"></div>
       </div>
+      ${item.image ? `<div class="mt-3"><img src="${item.image}" alt="" style="max-width:100%;border-radius:8px;"></div>` : ''}
       <p class="mt-3 text-gray-700">${item.content}</p>
     `;
     list.appendChild(el);
@@ -480,6 +481,10 @@ function openCreateNews() {
   modalTitle.textContent = 'إنشاء خبر';
   title.value = '';
   content.value = '';
+  const imageInput = document.getElementById('newsImage');
+  if (imageInput) imageInput.value = '';
+  const preview = document.getElementById('newsImagePreview');
+  if (preview) preview.classList.add('hidden');
   modal.classList.remove('hidden');
 }
 
@@ -498,10 +503,18 @@ async function openEditNews(id) {
     const modal = document.getElementById('newsModal');
     const title = document.getElementById('newsTitle');
     const content = document.getElementById('newsContent');
+    const imageInput = document.getElementById('newsImage');
+    const preview = document.getElementById('newsImagePreview');
     const modalTitle = document.getElementById('newsModalTitle');
     modalTitle.textContent = 'تعديل خبر';
     title.value = item.title;
     content.value = item.content;
+    if (imageInput) imageInput.value = item.image || '';
+    if (item.image && preview) {
+      const img = document.getElementById('newsPreviewImg');
+      img.src = item.image;
+      preview.classList.remove('hidden');
+    } else if (preview) preview.classList.add('hidden');
     modal.classList.remove('hidden');
   } catch (e) {
     console.error(e);
@@ -512,6 +525,7 @@ async function openEditNews(id) {
 async function submitNews() {
   const title = document.getElementById('newsTitle')?.value?.trim();
   const content = document.getElementById('newsContent')?.value?.trim();
+  const image = document.getElementById('newsImage')?.value?.trim();
   const errorEl = document.getElementById('newsModalError');
   if (!title || !content) {
     if (errorEl) { errorEl.textContent = 'يرجى إدخال عنوان ومحتوى'; errorEl.classList.remove('hidden'); }
@@ -525,7 +539,7 @@ async function submitNews() {
     const res = await fetch(url, {
       method,
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-      body: JSON.stringify({ title, content })
+      body: JSON.stringify({ title, content, image })
     });
     if (!res.ok) throw new Error('Request failed');
     closeNewsModal();
@@ -556,6 +570,13 @@ async function loadAdminNews() {
   const controls = document.getElementById('newsControls');
   if (controls) controls.classList.remove('hidden');
   await fetchAndRenderNews();
+}
+
+function logoutAdmin() {
+  sessionStorage.removeItem('adminToken');
+  const controls = document.getElementById('newsControls');
+  if (controls) controls.classList.add('hidden');
+  alert('تم تسجيل الخروج');
 }
 
 // change admin password

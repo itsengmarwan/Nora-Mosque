@@ -54,11 +54,19 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(morgan('combined'));
 
+// Rate limiter for auth endpoints
+const rateLimit = require('express-rate-limit');
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 8, // limit to 8 requests per window per IP
+  message: { error: 'Too many login attempts. Please try again later.' }
+});
+
 // Serve static site
 app.use(express.static(path.join(__dirname)));
 
 // API
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', loginLimiter, async (req, res) => {
   const { username, password } = req.body || {};
   if (!username || !password) return res.status(400).json({ error: 'Missing credentials' });
   const user = db.get('users').find({ username }).value();
@@ -93,10 +101,10 @@ app.get('/api/news', (req, res) => {
 
 // Admin: create news
 app.post('/api/news', auth, (req, res) => {
-  const { title, content } = req.body || {};
+  const { title, content, image } = req.body || {};
   if (!title || !content) return res.status(400).json({ error: 'Missing fields' });
   const id = Date.now();
-  const item = { id, title, content, createdAt: new Date().toISOString() };
+  const item = { id, title, content, image: image || null, createdAt: new Date().toISOString() };
   db.get('news').push(item).write();
   res.json(item);
 });
@@ -104,10 +112,10 @@ app.post('/api/news', auth, (req, res) => {
 // Admin: update
 app.put('/api/news/:id', auth, (req, res) => {
   const id = Number(req.params.id);
-  const { title, content } = req.body || {};
+  const { title, content, image } = req.body || {};
   const item = db.get('news').find({ id }).value();
   if (!item) return res.status(404).json({ error: 'Not found' });
-  db.get('news').find({ id }).assign({ title, content, updatedAt: new Date().toISOString() }).write();
+  db.get('news').find({ id }).assign({ title, content, image: image || null, updatedAt: new Date().toISOString() }).write();
   res.json(db.get('news').find({ id }).value());
 });
 
