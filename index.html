@@ -31,7 +31,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2654036089977891"
     crossorigin="anonymous"></script>
     </head>
-<body class="bg-gray-100">
+<body>
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
@@ -41,6 +41,8 @@
         <a href="javascript:void(0)" onclick="switchTab('gallery')"><i class="fas fa-images w-6 text-center"></i> مكتبة الصور</a>
         <a href="javascript:void(0)" onclick="switchTab('quran')"><i class="fas fa-book-open w-6 text-center"></i> المصحف الشريف</a>
         <a href="javascript:void(0)" onclick="switchTab('quiz')"><i class="fas fa-book w-6 text-center"></i>مسابقات المسجد</a>
+        <a href="javascript:void(0)" onclick="switchTab('donate')"><i class="fas fa-donate w-6 text-center"></i> التبرعات</a>
+        <a href="javascript:void(0)" onclick="openAdminPanel()" title="لوحة الإدارة"><i class="fas fa-user-shield w-6 text-center"></i> لوحة الإدارة</a>
         <!--<a href="javascript:void(0)" onclick="switchTab('library')"><i class="fas fa-book w-6 text-center"></i> حجز المكتبة</a>-->
         <!--<a href="javascript:void(0)" onclick="switchTab('volunteer')"><i class="fas fa-hands-helping w-6 text-center"></i> التطوع بالمسجد</a>-->
         <!--<a href="javascript:void(0)" onclick="switchTab('donate')"><i class="fas fa-donate w-6 text-center"></i> التبرع للمسجد</a>-->
@@ -62,7 +64,7 @@
 
     <div class="main-container pb-20">
 
-        <div id="home" class="tab-content active">
+        <div id="home" class="tab-content active" style="display: block;">
             <img src="mosque_images/outside/outside-3.jpg" alt="مسجد نورة سعد العبيد" class="w-full h-auto rounded-lg shadow-md mb-4 object-cover max-h-60">
 
             <div class="card animate__animated animate__fadeInUp">
@@ -297,17 +299,18 @@
             </div>
         </div>-->
 
-        <!--<div id="donate" class="tab-content hidden">
+        <div id="donate" class="tab-content hidden">
             <div class="card animate__animated animate__fadeIn">
-                <div class="section-title"> <i class="fas fa-donate"></i> التبرع في المسجد </div>
-                <p class="text-gray-700 mb-4"> تساهم تبرعاتكم السخية في استمرارية وتطوير برامج المسجد الدعوية والتعليمية، وصيانة مرافقه، وتوفير احتياجاته المختلفة، لتظل بيوت الله منارات هدى وخير للمجتمع. </p>
-                 <p class="text-gray-700 mb-4"> قال الله تعالى: "مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ فِي كُلِّ سُنبُلَةٍ مِّائَةُ حَبَّةٍ ۗ وَاللَّهُ يُضَاعِفُ لِمَن يَشَاءُ ۗ وَاللَّهُ وَاسِعٌ عَلِيمٌ" [البقرة: 261]. </p>
-                 <div class="text-center mt-5">
-                     <a href="https://forms.gle/CBnLbjtJmqkPHvFD7" target="_blank" rel="noopener noreferrer" class="action-button inline-block"> <i class="fas fa-credit-card ml-2"></i> اضغط هنا للمساهمة في التبرع </a>
-                 </div>
-                 <p class="text-gray-600 mt-4 text-sm"> تقبل الله طاعتكم وجعل ما تقدمونه في ميزان حسناتكم. لمزيد من المعلومات حول أوجه التبرع، يمكنكم التواصل معنا. </p>
+                <div class="section-title"> <i class="fas fa-donate"></i> التبرعات </div>
+                <p class="text-gray-700 mb-4">جزاكم الله خيراً على رغبتكم في دعم المسجد. التبرعات تتم حصراً عبر صندوق التبرعات داخل المسجد.</p>
+                <ul class="activities-list text-gray-700">
+                    <li>موقع صندوق التبرعات: بجانب المدخل الرئيسي داخل ردهة المسجد، بجوار مكتب الاستقبال.</li>
+                    <li>الرجاء وضع التبرعات نقداً داخل المظاريف المخصصة أو المحفظة.</li>
+                    <li>لمزيد من الاستفسارات يُرجى التواصل مع إدارة المسجد أثناء أوقات الدوام.</li>
+                </ul>
+                <p class="mt-4 text-gray-600">نؤكد أنه لا توجد حالياً طرق إلكترونية للتبرع عبر هذا الموقع.</p>
             </div>
-        </div>-->
+        </div>
 
         <div id="azkar" class="tab-content hidden">
             <div class="card animate__animated animate__fadeIn">
@@ -379,6 +382,32 @@
     <div id="imageViewer" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden p-4" onclick="closeImageViewer()">
         <span class="absolute top-4 right-4 text-white text-3xl cursor-pointer" onclick="closeImageViewer()">×</span>
         <img class="max-w-full max-h-full object-contain" id="viewedImage" src="" alt="صورة مكبرة" onclick="event.stopPropagation()">
+    </div>
+    
+    <!-- Adhan audio (use common adhan) -->
+    <audio id="adhanAudio" preload="auto">
+        <source src="https://upload.wikimedia.org/wikipedia/commons/0/09/Adhan_-_Makkah.ogg" type="audio/ogg">
+        متصفحك لا يدعم عنصر الصوت.
+    </audio>
+
+    <!-- Admin modal (simple password-protected panel) -->
+    <div id="adminModal" class="fixed inset-0 flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md" role="dialog" aria-modal="true">
+            <h3 class="text-lg font-semibold mb-4">لوحة الإدارة - تسجيل الدخول</h3>
+            <input id="adminPasswordInput" type="password" placeholder="أدخل كلمة المرور" class="form-control" />
+            <div class="mt-4 flex justify-end gap-2">
+              <button onclick="checkAdminPassword()" class="action-button">دخول</button>
+              <button onclick="closeAdminPanel()" class="action-button" style="background:#ccc;color:#000;">إلغاء</button>
+            </div>
+            <div id="adminError" class="text-red-600 mt-2 hidden">كلمة المرور غير صحيحة</div>
+            <div id="adminPanel" class="hidden mt-4">
+              <h4>مرحباً بك في لوحة الإدارة</h4>
+              <p class="text-sm text-gray-600">لوحة مبسطة مؤقتة - سيتم توسيعها لاحقاً.</p>
+              <div class="mt-4 text-right">
+                <button onclick="closeAdminPanel()" class="action-button">خروج</button>
+              </div>
+            </div>
+        </div>
     </div>
 
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3QN3BKL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
