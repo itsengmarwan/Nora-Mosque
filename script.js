@@ -388,16 +388,219 @@ function checkAdminPassword() {
   const pwdInput = document.getElementById('adminPasswordInput');
   const adminError = document.getElementById('adminError');
   const adminPanel = document.getElementById('adminPanel');
-  const ADMIN_PASSWORD = '5555'; // Provided password (client-side check)
   if (!pwdInput || !adminPanel || !adminError) return;
-  if (pwdInput.value === ADMIN_PASSWORD) {
-    adminError.classList.add('hidden');
-    adminPanel.classList.remove('hidden');
-    // Optionally: mark session
-    sessionStorage.setItem('adminAuthenticated', 'true');
+  const password = pwdInput.value || '';
+  // Call server login
+  fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: 'admin', password })
+  }).then(r => r.json())
+    .then(data => {
+      if (data && data.token) {
+        sessionStorage.setItem('adminToken', data.token);
+        adminError.classList.add('hidden');
+        adminPanel.classList.remove('hidden');
+        // load admin data
+        loadAdminNews();
+      } else {
+        adminError.classList.remove('hidden');
+        adminPanel.classList.add('hidden');
+      }
+    }).catch(err => {
+      console.error('Login error', err);
+      adminError.classList.remove('hidden');
+      adminPanel.classList.add('hidden');
+    });
+}
+
+// ======================
+// NEWS (Client)
+// ======================
+let editingNewsId = null;
+
+async function fetchAndRenderNews() {
+  try {
+    const res = await fetch('/api/news');
+    const news = await res.json();
+    renderNewsList(news);
+  } catch (e) {
+    console.error('Error loading news', e);
+    const list = document.getElementById('newsList');
+    if (list) list.innerHTML = '<div class="text-red-600 text-center py-4">تعذر تحميل الأخبار</div>';
+  }
+}
+
+function renderNewsList(news) {
+  const list = document.getElementById('newsList');
+  const controls = document.getElementById('newsControls');
+  const token = sessionStorage.getItem('adminToken');
+  if (!list) return;
+  if (token) {
+    controls.classList.remove('hidden');
   } else {
-    adminError.classList.remove('hidden');
-    adminPanel.classList.add('hidden');
+    controls.classList.add('hidden');
+  }
+  if (!news || news.length === 0) {
+    list.innerHTML = '<div class="text-center py-6 text-gray-500">لا توجد أخبار حالياً</div>';
+    return;
+  }
+  list.innerHTML = '';
+  news.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'border p-4 rounded-md bg-white';
+    el.innerHTML = `
+      <div class="flex justify-between items-start">
+        <div>
+          <h4 class="font-semibold text-lg">${item.title}</h4>
+          <div class="text-xs text-gray-500">${new Date(item.createdAt).toLocaleString()}</div>
+        </div>
+        <div id="newsActions-${item.id}"></div>
+      </div>
+      <p class="mt-3 text-gray-700">${item.content}</p>
+    `;
+    list.appendChild(el);
+    if (token) {
+      const actions = document.getElementById(`newsActions-${item.id}`);
+      if (actions) {
+        actions.innerHTML = `<button class="action-button" onclick="openEditNews(${item.id})" style="padding:6px 10px;margin-left:6px;">تعديل</button>
+                             <button class="action-button" onclick="deleteNews(${item.id})" style="background:#ff6b6b;padding:6px 10px;">حذف</button>`;
+      }
+    }
+  });
+}
+
+function openCreateNews() {
+  editingNewsId = null;
+  const modal = document.getElementById('newsModal');
+  const title = document.getElementById('newsTitle');
+  const content = document.getElementById('newsContent');
+  const modalTitle = document.getElementById('newsModalTitle');
+  if (!modal || !title || !content || !modalTitle) return;
+  modalTitle.textContent = 'إنشاء خبر';
+  title.value = '';
+  content.value = '';
+  modal.classList.remove('hidden');
+}
+
+function closeNewsModal() {
+  const modal = document.getElementById('newsModal');
+  if (modal) modal.classList.add('hidden');
+}
+
+async function openEditNews(id) {
+  try {
+    const res = await fetch('/api/news');
+    const news = await res.json();
+    const item = news.find(n => n.id === id);
+    if (!item) return alert('الخبر غير موجود');
+    editingNewsId = id;
+    const modal = document.getElementById('newsModal');
+    const title = document.getElementById('newsTitle');
+    const content = document.getElementById('newsContent');
+    const modalTitle = document.getElementById('newsModalTitle');
+    modalTitle.textContent = 'تعديل خبر';
+    title.value = item.title;
+    content.value = item.content;
+    modal.classList.remove('hidden');
+  } catch (e) {
+    console.error(e);
+    alert('خطأ في فتح الخبر');
+  }
+}
+
+async function submitNews() {
+  const title = document.getElementById('newsTitle')?.value?.trim();
+  const content = document.getElementById('newsContent')?.value?.trim();
+  const errorEl = document.getElementById('newsModalError');
+  if (!title || !content) {
+    if (errorEl) { errorEl.textContent = 'يرجى إدخال عنوان ومحتوى'; errorEl.classList.remove('hidden'); }
+    return;
+  }
+  const token = sessionStorage.getItem('adminToken');
+  if (!token) { alert('غير مصرح'); return; }
+  try {
+    const url = editingNewsId ? `/api/news/${editingNewsId}` : '/api/news';
+    const method = editingNewsId ? 'PUT' : 'POST';
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ title, content })
+    });
+    if (!res.ok) throw new Error('Request failed');
+    closeNewsModal();
+    await fetchAndRenderNews();
+    if (typeof loadAdminNews === 'function') loadAdminNews();
+  } catch (e) {
+    console.error(e);
+    if (errorEl) { errorEl.textContent = 'حدث خطأ أثناء الحفظ'; errorEl.classList.remove('hidden'); }
+  }
+}
+
+async function deleteNews(id) {
+  if (!confirm('هل أنت متأكد من حذف هذا الخبر؟')) return;
+  const token = sessionStorage.getItem('adminToken');
+  if (!token) { alert('غير مصرح'); return; }
+  try {
+    const res = await fetch(`/api/news/${id}`, { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + token } });
+    if (!res.ok) throw new Error('delete failed');
+    await fetchAndRenderNews();
+  } catch (e) {
+    console.error(e);
+    alert('فشل حذف الخبر');
+  }
+}
+
+async function loadAdminNews() {
+  // ensure controls visible and refresh list
+  const controls = document.getElementById('newsControls');
+  if (controls) controls.classList.remove('hidden');
+  await fetchAndRenderNews();
+}
+
+// change admin password
+async function changeAdminPassword() {
+  const newPwd = document.getElementById('newAdminPassword')?.value;
+  const msg = document.getElementById('changePwdMsg');
+  const token = sessionStorage.getItem('adminToken');
+  if (!token) { if (msg) msg.textContent = 'غير مصرح'; return; }
+  if (!newPwd || newPwd.length < 4) { if (msg) msg.textContent = 'كلمة المرور قصيرة'; return; }
+  try {
+    const res = await fetch('/api/admin/password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ newPassword: newPwd })
+    });
+    if (!res.ok) throw new Error('failed');
+    if (msg) { msg.textContent = 'تم تغيير كلمة المرور بنجاح'; msg.style.color = 'green'; }
+  } catch (e) {
+    console.error(e);
+    if (msg) { msg.textContent = 'فشل تغيير كلمة المرور'; msg.style.color = 'red'; }
+  }
+}
+
+// upload file
+async function uploadFile() {
+  const input = document.getElementById('uploadFileInput');
+  const msg = document.getElementById('uploadMsg');
+  const token = sessionStorage.getItem('adminToken');
+  if (!token) { if (msg) msg.textContent = 'غير مصرح'; return; }
+  if (!input || !input.files || input.files.length === 0) { if (msg) msg.textContent = 'اختر ملفاً'; return; }
+  const file = input.files[0];
+  const form = new FormData();
+  form.append('file', file);
+  try {
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token },
+      body: form
+    });
+    if (!res.ok) throw new Error('upload failed');
+    const data = await res.json();
+    if (msg) { msg.textContent = 'تم الرفع: ' + data.url; msg.style.color = 'green'; }
+  } catch (e) {
+    console.error(e);
+    if (msg) { msg.textContent = 'فشل الرفع'; msg.style.color = 'red'; }
   }
 }
 
@@ -687,7 +890,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Load initial content
   loadPrayerTimes();
-  
+  // Load news
+  fetchAndRenderNews();
   // Initialize notifications (will be called again after service worker is ready)
   if (document.getElementById('notificationToggle')) {
     initNotifications();
