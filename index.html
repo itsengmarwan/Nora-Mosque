@@ -66,34 +66,44 @@
     <div class="main-container pb-20">
 
         <div id="home" class="tab-content active" style="display: block;">
-            <img src="mosque_images/outside/outside-3.jpg" alt="مسجد نورة سعد العبيد" class="w-full h-auto rounded-lg shadow-md mb-4 object-cover max-h-60">
-
-            <div class="card animate__animated animate__fadeInUp">
-                <div class="section-title">
-                    <i class="fas fa-mosque"></i> أهلا بكم في مسجد نورة سعد العبيد
+            <!-- Hero -->
+            <section class="hero card animate__animated animate__fadeInDown" style="padding:0; overflow:hidden;">
+                <div class="hero-image" style="background-image: url('mosque_images/outside/outside-3.jpg');"></div>
+                <div class="hero-overlay" style="padding:36px;">
+                    <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end;">
+                        <h1 class="hero-title">جامع نورة سعد العبيد</h1>
+                        <p class="hero-subtitle">مرحباً بكم في موقع المسجد — معلومات، مواقيت، ومكتبة صور مصممة لأجهزة الهاتف.</p>
+                        <div class="hero-ctas" style="display:flex;gap:12px;">
+                            <button class="action-button" onclick="switchTab('prayer')">مواقيت الصلاة</button>
+                            <button class="action-button" onclick="switchTab('quran')" style="background:linear-gradient(90deg,var(--ios-blue),var(--secondary-color));">المصحف الشريف</button>
+                            <button class="action-button" onclick="switchTab('gallery')" style="background:rgba(16,185,129,0.95);">معرض الصور</button>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-gray-700">هذا الموقع مخصص لخدمة مسجد نورة سعد العبيد بالكويت، ويقدم معلومات ومزايا متنوعة للمصلين والزوار.</p>
+            </section>
+
+            <!-- Features -->
+            <div class="feature-cards" style="margin-top:20px;">
+                 <a href="javascript:void(0)" onclick="switchTab('prayer')" class="feature-card"> <i class="fas fa-clock"></i> <div class="feature-card-title">مواقيت الصلاة</div> <div class="feature-card-desc">أوقات الصلوات اليومية</div> </a>
+                 <a href="javascript:void(0)" onclick="switchTab('quran')" class="feature-card"> <i class="fas fa-book-open"></i> <div class="feature-card-title">المصحف الشريف</div> <div class="feature-card-desc">قراءة القرآن الكريم</div> </a>
+                 <a href="javascript:void(0)" onclick="switchTab('gallery')" class="feature-card"> <i class="fas fa-images"></i> <div class="feature-card-title">مكتبة الصور</div> <div class="feature-card-desc">معرض صور للمسجد</div> </a>
+                 <a href="javascript:void(0)" onclick="switchTab('contact')" class="feature-card"> <i class="fas fa-envelope"></i> <div class="feature-card-title">تواصل معنا</div> <div class="feature-card-desc">معلومات الاتصال والموقع</div> </a>
             </div>
 
-            <div class="feature-cards">
-                 <a href="javascript:void(0)" onclick="switchTab('prayer')" class="feature-card animate__animated animate__fadeInUp animate__delay-1s"> <i class="fas fa-clock"></i> <div class="feature-card-title">مواقيت الصلاة</div> <div class="feature-card-desc">أوقات الصلوات اليومية</div> </a>
-                 <a href="javascript:void(0)" onclick="switchTab('quran')" class="feature-card animate__animated animate__fadeInUp animate__delay-1s"> <i class="fas fa-book-open"></i> <div class="feature-card-title">المصحف الشريف</div> <div class="feature-card-desc">قراءة القرآن الكريم</div> </a>
-                 <a href="javascript:void(0)" onclick="switchTab('gallery')" class="feature-card animate__animated animate__fadeInUp animate__delay-2s"> <i class="fas fa-images"></i> <div class="feature-card-title">صور المسجد</div> <div class="feature-card-desc">معرض صور متنوع</div> </a>
-                 <a href="javascript:void(0)" onclick="switchTab('quiz')" class="feature-card animate__animated animate__fadeInUp animate__delay-2s"> <i class="fas fa-book"></i> <div class="feature-card-title">مسابقات المسجد</div> <div class="feature-card-desc">مسابقات المسجد</div> </a>
-            </div>
-
-            <div class="card mt-5 animate__animated animate__fadeInUp animate__delay-3s">
+            <!-- Highlights -->
+            <div class="card mt-5 animate__animated animate__fadeInUp">
                 <div class="section-title">
-                    <i class="fas fa-hashtag"></i> تابعونا على
+                    <i class="fas fa-star"></i> لمحة سريعة
                 </div>
-                 <div class="social-links">
-                     <a href="https://chat.whatsapp.com/LuwgLyE5NVf2Hb8Yb6lhS9" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-whatsapp"></i></div> <div class="social-name">واتساب</div> </a>
-                     <a href="https://www.instagram.com/nsom_15?igsh=MWo0d3g2em9heWMwYw==" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-instagram"></i></div> <div class="social-name">إنستجرام</div> </a>
-                     <a href="https://www.tiktok.com/@nsom_15?_t=ZS-8vQHwvIMxqp&_r=1" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-tiktok"></i></div> <div class="social-name">تيكتوك</div> </a>
-                     <a href="https://x.com/nsom_15?t=e5bbi8l3y6ys3lKeC14VXQ&s=08" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-twitter"></i></div> <div class="social-name">اكس</div> </a>
-                     <a href="https://youtube.com/@nsom_15?si=39FLXhqxA1Z3KwKD" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-youtube"></i></div> <div class="social-name">يوتيوب</div> </a>
-                     <a href="https://www.facebook.com/share/12JAF4EbBsd/" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-facebook"></i></div> <div class="social-name">فيسبوك</div> </a>
-                     <a href="https://t.me/nsom_15" target="_blank" rel="noopener noreferrer" class="social-link"> <div class="social-icon"><i class="fab fa-telegram"></i></div> <div class="social-name">تلجرام</div> </a>
+                <div style="display:flex;flex-wrap:wrap;gap:14px;">
+                  <div style="flex:1;min-width:180px">
+                    <h4 style="font-weight:700;color:var(--ios-blue)">خدمات المسجد</h4>
+                    <p class="text-gray-700">إقامة الصلوات، حلقات القرآن، وفعاليات المجتمع.</p>
+                  </div>
+                  <div style="flex:1;min-width:180px">
+                    <h4 style="font-weight:700;color:var(--ios-blue)">موقعنا</h4>
+                    <p class="text-gray-700">السالمية، شارع 8 — قريب من المعالم المحلية.</p>
+                  </div>
                 </div>
             </div>
         </div>
