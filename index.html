@@ -15,9 +15,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
     
-    <meta name="theme-color" content="#064e3b"> <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#064e3b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="mosque_images/mosque-logo.png">
 </head>
 <body>
 
@@ -34,10 +37,15 @@
             <a href="javascript:void(0)" onclick="switchTab('home')"><i class="fas fa-home"></i> الرئيسية</a>
             <a href="javascript:void(0)" onclick="switchTab('prayer')"><i class="fas fa-clock"></i> مواقيت الصلاة</a>
             <a href="javascript:void(0)" onclick="switchTab('quran')"><i class="fas fa-book-open"></i> المصحف الشريف</a>
-            <a href="javascript:void(0)" onclick="switchTab('gallery')"><i class="fas fa-images"></i> معرض الصور</a>
+            <a href="javascript:void(0)" onclick="switchTab('gallery')"><i class="fas fa-images"></i> مكتبة الصور</a>
+            <div class="divider"></div>
+            <a href="javascript:void(0)" onclick="switchTab('quiz')"><i class="fas fa-trophy"></i> المسابقات</a>
+            <a href="javascript:void(0)" onclick="switchTab('azkar')"><i class="fas fa-hands-praying"></i> الأذكار</a>
+            <a href="javascript:void(0)" onclick="switchTab('donate')"><i class="fas fa-hand-holding-heart"></i> التبرعات</a>
             <div class="divider"></div>
             <a href="javascript:void(0)" onclick="switchTab('about')"><i class="fas fa-info-circle"></i> عن المسجد</a>
             <a href="javascript:void(0)" onclick="switchTab('contact')"><i class="fas fa-headset"></i> تواصل معنا</a>
+            <a href="javascript:void(0)" onclick="switchTab('location')"><i class="fas fa-map-marker-alt"></i> الموقع</a>
         </div>
     </div>
 
@@ -59,7 +67,7 @@
                 <div class="hero-overlay">
                     <div class="hero-content text-center">
                         <h1 class="hero-title font-kufi text-gold">جامع نورة سعد العبيد</h1>
-                        <p class="hero-subtitle font-tajawal text-white opacity-90 mt-2">حيث الطمأنينة والسكينة</p>
+                        <p class="hero-subtitle font-tajawal text-white opacity-90 mt-2">مرحباً بكم في الموقع الرسمي للمسجد</p>
                         
                         <div id="heroNextPrayer" class="hero-prayer-timer mt-6 animate__animated animate__fadeInUp animate__delay-1s hidden">
                             <div class="text-sm text-gold opacity-80 mb-1">الصلاة القادمة</div>
@@ -76,20 +84,76 @@
             <div class="quick-links-grid px-4 -mt-8 relative z-10 animate__animated animate__fadeInUp animate__delay-1s">
                  <a href="javascript:void(0)" onclick="switchTab('prayer')" class="quick-link-card">
                      <div class="icon-wrapper"><i class="fas fa-clock"></i></div>
-                     <span class="font-tajawal font-bold">مواقيت الصلاة</span>
+                     <span class="font-tajawal font-bold">المواقيت</span>
                  </a>
                  <a href="javascript:void(0)" onclick="switchTab('quran')" class="quick-link-card">
                      <div class="icon-wrapper"><i class="fas fa-book-open"></i></div>
-                     <span class="font-tajawal font-bold">المصحف الشريف</span>
+                     <span class="font-tajawal font-bold">المصحف</span>
                  </a>
-                 <a href="javascript:void(0)" onclick="switchTab('azkar')" class="quick-link-card">
-                     <div class="icon-wrapper"><i class="fas fa-hands-praying"></i></div>
-                     <span class="font-tajawal font-bold">أذكار المسلم</span>
+                 <a href="javascript:void(0)" onclick="switchTab('gallery')" class="quick-link-card">
+                     <div class="icon-wrapper"><i class="fas fa-images"></i></div>
+                     <span class="font-tajawal font-bold">الصور</span>
                  </a>
                  <a href="javascript:void(0)" onclick="switchTab('quiz')" class="quick-link-card">
                      <div class="icon-wrapper"><i class="fas fa-trophy"></i></div>
                      <span class="font-tajawal font-bold">المسابقات</span>
                  </a>
+            </div>
+
+            <div class="px-4 mt-6">
+                <div class="premium-card animate__animated animate__fadeInUp">
+                    <div class="card-header border-b border-gray-100 pb-3 mb-3">
+                        <h2 class="font-kufi text-lg text-emerald-800 flex items-center">
+                            <i class="fas fa-star text-gold ml-2"></i> لمحة سريعة
+                        </h2>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-emerald-50 p-3 rounded-xl">
+                            <h4 class="font-bold text-emerald-700 text-sm mb-1">خدمات المسجد</h4>
+                            <p class="text-xs text-gray-600 font-tajawal">إقامة الصلوات، حلقات القرآن، وفعاليات المجتمع.</p>
+                        </div>
+                        <div class="bg-emerald-50 p-3 rounded-xl">
+                            <h4 class="font-bold text-emerald-700 text-sm mb-1">موقعنا</h4>
+                            <p class="text-xs text-gray-600 font-tajawal">السالمية، شارع 8 — قريب من المعالم المحلية.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="tab-content hidden px-4 mt-6">
+            <div class="premium-card animate__animated animate__fadeIn">
+                <div class="card-header border-b border-gray-100 pb-4 mb-4">
+                     <h2 class="font-kufi text-xl text-emerald-800 flex items-center">
+                        <i class="fas fa-info-circle text-gold ml-3"></i> عن المسجد
+                    </h2>
+                </div>
+                <div class="mosque-info font-tajawal text-gray-700 space-y-4 leading-relaxed">
+                    <p>يُعتبر جامع نورة سعد العبيد معلماً إسلامياً بارزاً في قلب منطقة السالمية، قطعة 12، شارع 8.</p>
+                    
+                    <div class="staff-box bg-emerald-50 p-5 rounded-xl border border-emerald-100 relative overflow-hidden">
+                        <i class="fas fa-user-tie absolute top-2 left-4 text-emerald-200 text-4xl opacity-50"></i>
+                        <h3 class="font-bold text-emerald-800 mb-3">القائمون على المسجد</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-center"><i class="fas fa-chevron-left text-gold ml-2 text-xs"></i> <strong>الإمام:</strong>&nbsp; الشيخ عبداللّه العازمي</li>
+                            <li class="flex items-center"><i class="fas fa-chevron-left text-gold ml-2 text-xs"></i> <strong>الخطيب:</strong>&nbsp; د. سعد سعد الأحمد</li>
+                            <li class="flex items-center"><i class="fas fa-chevron-left text-gold ml-2 text-xs"></i> <strong>المؤذن:</strong>&nbsp; الشيخ حسن بدري</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="font-bold text-emerald-800 mt-4 border-b border-gray-100 pb-2">الأنشطة والفعاليات</h3>
+                    <ul class="list-disc list-inside text-sm space-y-2 text-gray-600 marker:text-gold">
+                        <li>إقامة الصلوات الخمس جماعة.</li>
+                        <li>حلقات تحفيظ القرآن الكريم.</li>
+                        <li>خطب الجمعة والدروس الدينية.</li>
+                        <li>إحياء ليالي رمضان وصلاة التراويح.</li>
+                    </ul>
+
+                    <div class="bg-gray-50 p-4 rounded-xl mt-4">
+                        <h3 class="font-bold text-gray-800 mb-2 text-sm"><i class="fas fa-question-circle text-gold ml-1"></i> سبب التسمية</h3>
+                        <p class="text-xs text-gray-600">حمل هذا الصرح اسم "نورة سعد العبيد" تكريماً وعرفاناً للسيدة الفاضلة التي كانت سبباً في إنشائه، سائلين المولى أن يجعل ذلك في ميزان حسناتها.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -97,24 +161,82 @@
              <div class="premium-card animate__animated animate__fadeIn">
                 <div class="card-header flex justify-between items-center border-b border-gray-100 pb-4 mb-4">
                     <h2 class="font-kufi text-xl text-emerald-800 flex items-center">
-                        <i class="fas fa-clock text-gold ml-3"></i> مواقيت الصلاة
+                        <i class="fas fa-clock text-gold ml-3"></i> المواقيت
                     </h2>
-                    <span id="hijriDate" class="text-sm font-tajawal font-medium text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">--</span>
+                    <span id="hijriDate" class="text-xs font-tajawal font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">--</span>
                 </div>
                 
                 <div class="prayer-times-list space-y-3" id="prayerTimesContainer">
                     </div>
                 
-                <div class="mt-8 pt-6 border-t border-gray-100">
+                <div class="mt-6 pt-6 border-t border-gray-100">
                     <div class="notification-box bg-gradient-to-r from-emerald-50 to-white p-4 rounded-xl border border-emerald-100 flex items-center justify-between">
                         <div>
-                            <h3 class="font-tajawal font-bold text-emerald-800">تنبيهات الأذان</h3>
-                            <p id="notificationStatus" class="text-xs text-emerald-600 mt-1 font-tajawal">تفعيل التنبيه الصوتي عند وقت الصلاة</p>
+                            <h3 class="font-tajawal font-bold text-emerald-800 text-sm">تنبيهات الأذان</h3>
+                            <p id="notificationStatus" class="text-xs text-emerald-600 mt-1 font-tajawal">تفعيل الصوت عند الصلاة</p>
                         </div>
                         <label class="switch-toggle">
                             <input type="checkbox" id="notificationToggle">
                             <span class="slider round"></span>
                         </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="tab-content hidden px-4 mt-6">
+            <div class="premium-card animate__animated animate__fadeIn">
+                <div class="card-header border-b border-gray-100 pb-4 mb-6">
+                    <h2 class="font-kufi text-xl text-emerald-800 flex items-center">
+                        <i class="fas fa-images text-gold ml-3"></i> معرض الصور
+                    </h2>
+                </div>
+                
+                <div class="gallery-section mb-6">
+                    <h3 class="font-tajawal font-bold text-emerald-700 mb-3 text-sm flex items-center">
+                        <i class="fas fa-camera-retro ml-2 text-gold"></i> الصور الخارجية
+                    </h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img data-src="mosque_images/outside/outside-1.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/outside/outside-2.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/outside/outside-3.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/outside/outside-4.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/outside/outside-5.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                    </div>
+                </div>
+
+                <div class="gallery-section mb-6">
+                    <h3 class="font-tajawal font-bold text-emerald-700 mb-3 text-sm flex items-center">
+                        <i class="fas fa-mosque ml-2 text-gold"></i> الصور الداخلية
+                    </h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img data-src="mosque_images/inside/inside-1.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/inside/inside-2.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/inside/inside-3.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/inside/inside-4.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/inside/inside-9.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                    </div>
+                </div>
+
+                <div class="gallery-section mb-6">
+                    <h3 class="font-tajawal font-bold text-emerald-700 mb-3 text-sm flex items-center">
+                        <i class="fas fa-toilet ml-2 text-gold"></i> المرافق والوضوء
+                    </h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img data-src="mosque_images/7mam/7mam-1.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/7mam/7mam-2.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/7mam/7mam-3.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                    </div>
+                </div>
+
+                <div class="gallery-section">
+                    <h3 class="font-tajawal font-bold text-emerald-700 mb-3 text-sm flex items-center">
+                        <i class="fas fa-book-reader ml-2 text-gold"></i> المكتبة والحلقات
+                    </h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img data-src="mosque_images/mktaba/mktaba.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/7laka/7laka-1.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
+                        <div class="gallery-item"><img data-src="mosque_images/7laka/7laka-2.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)"></div>
                     </div>
                 </div>
             </div>
@@ -136,53 +258,148 @@
             </div>
         </section>
 
-        <section id="gallery" class="tab-content hidden px-4 mt-6">
-            <div class="premium-card animate__animated animate__fadeIn">
-                <div class="card-header border-b border-gray-100 pb-4 mb-6">
-                    <h2 class="font-kufi text-xl text-emerald-800 flex items-center">
-                        <i class="fas fa-images text-gold ml-3"></i> معرض الصور
+        <section id="quiz" class="tab-content hidden px-4 mt-6">
+             <div class="premium-card animate__animated animate__fadeIn text-center">
+                <div class="card-header border-b border-gray-100 pb-4 mb-4">
+                    <h2 class="font-kufi text-xl text-emerald-800 flex items-center justify-center">
+                        <i class="fas fa-trophy text-gold ml-3"></i> مسابقات المسجد
                     </h2>
                 </div>
-                
-                <div class="gallery-section">
-                    <h3 class="font-tajawal font-bold text-emerald-700 mb-4 text-lg position-relative inline-block">
-                        جولة في رحاب المسجد
-                        <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-gold opacity-30 rounded-full"></span>
-                    </h3>
-                    <div class="gallery-grid">
-                        <div class="gallery-item"><img data-src="mosque_images/outside/outside-1.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)" alt="صورة المسجد"></div>
-                        <div class="gallery-item"><img data-src="mosque_images/outside/outside-2.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)" alt="صورة المسجد"></div>
-                        <div class="gallery-item"><img data-src="mosque_images/outside/outside-3.jpg" src="placeholder.svg" class="lazy-img" onclick="openImageViewer(this.dataset.src)" alt="صورة المسجد"></div>
+                <div class="py-4">
+                    <div class="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-emerald-600">
+                        <i class="fas fa-question"></i>
                     </div>
+                    <p class="font-tajawal text-gray-700 mb-6 leading-relaxed">
+                        شارك في مسابقاتنا الدورية (التعليمية والترفيهية) واختبر معلوماتك الإسلامية.
+                        <br><span class="text-sm text-gray-500">جوائز قيمة للفائزين!</span>
+                    </p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScVbSED2Ci1Mw_XbeeW1EG9ATmXG6U82XeJTtGjP9Kxw81FZw/viewform" target="_blank" class="block w-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transform transition hover:-translate-y-1 hover:shadow-xl">
+                        <i class="fas fa-pen-alt ml-2"></i> التسجيل في المسابقة
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="tab-content hidden px-4 mt-6">
+        <section id="donate" class="tab-content hidden px-4 mt-6">
             <div class="premium-card animate__animated animate__fadeIn">
                 <div class="card-header border-b border-gray-100 pb-4 mb-4">
-                     <h2 class="font-kufi text-xl text-emerald-800 flex items-center">
-                        <i class="fas fa-info-circle text-gold ml-3"></i> عن المسجد
+                    <h2 class="font-kufi text-xl text-emerald-800 flex items-center">
+                        <i class="fas fa-hand-holding-heart text-gold ml-3"></i> التبرع للمسجد
                     </h2>
                 </div>
-                <div class="mosque-info font-tajawal text-gray-700 space-y-4 leading-relaxed">
-                    <p>يقع جامع نورة سعد العبيد في قلب منطقة السالمية، قطعة 12، شارع أبو ذر الغفاري (شارع 8 سابقاً)، ليكون منارة هدى ومقصداً للمصلين.</p>
-                    <div class="staff-box bg-emerald-50 p-5 rounded-xl border border-emerald-100 mt-6 relative overflow-hidden">
-                        <i class="fas fa-user-tie absolute top-2 left-4 text-emerald-200 text-4xl opacity-50"></i>
-                        <h3 class="font-bold text-emerald-800 mb-3">القائمون على المسجد</h3>
-                        <ul class="space-y-2">
-                            <li class="flex items-center"><i class="fas fa-chevron-left text-gold ml-2 text-sm"></i> <strong>الإمام:</strong>&nbsp; الشيخ عبداللّه العازمي</li>
-                            <li class="flex items-center"><i class="fas fa-chevron-left text-gold ml-2 text-sm"></i> <strong>الخطيب:</strong>&nbsp; د. سعد سعد الأحمد</li>
-                            <li class="flex items-center"><i class="fas fa-chevron-left text-gold ml-2 text-sm"></i> <strong>المؤذن:</strong>&nbsp; الشيخ حسن بدري</li>
-                        </ul>
+                <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-4 mb-4">
+                    <p class="font-tajawal text-emerald-900 font-bold mb-2">جزاكم الله خيراً</p>
+                    <p class="font-tajawal text-sm text-emerald-800 leading-relaxed">
+                        التبرعات تتم حصراً عبر <strong>صندوق التبرعات</strong> الموجود داخل المسجد بجانب المدخل الرئيسي.
+                    </p>
+                </div>
+                <ul class="font-tajawal text-gray-600 text-sm space-y-3 list-disc list-inside">
+                    <li>يرجى وضع التبرعات النقدية في الأماكن المخصصة (المظاريف).</li>
+                    <li>لا توجد حالياً طرق دفع إلكترونية عبر الموقع.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="azkar" class="tab-content hidden px-4 mt-6">
+            <div class="premium-card animate__animated animate__fadeIn text-center">
+                 <div class="card-header border-b border-gray-100 pb-4 mb-4">
+                    <h2 class="font-kufi text-xl text-emerald-800 flex items-center justify-center">
+                        <i class="fas fa-hands-praying text-gold ml-3"></i> حصن المسلم
+                    </h2>
+                </div>
+                <div class="py-4">
+                    <div class="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-emerald-600">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <p class="font-tajawal text-gray-700 mb-6">
+                        أذكار الصباح والمساء، وأدعية مختارة من الكتاب والسنة.
+                    </p>
+                    <a href="https://alazkar.netlify.app/" target="_blank" class="block w-full bg-gradient-to-r from-yellow-600 to-yellow-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transform transition hover:-translate-y-1 hover:shadow-xl">
+                        <i class="fas fa-book-reader ml-2"></i> فتح كتاب الأذكار
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="tab-content hidden px-4 mt-6">
+            <div class="premium-card animate__animated animate__fadeIn">
+                <div class="card-header border-b border-gray-100 pb-4 mb-4">
+                    <h2 class="font-kufi text-xl text-emerald-800 flex items-center">
+                        <i class="fas fa-envelope text-gold ml-3"></i> تواصل معنا
+                    </h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-3 font-tajawal text-sm bg-gray-50 p-2 rounded inline-block">إدارة المسجد</h3>
+                        <div class="space-y-3">
+                            <a href="mailto:n.s.o.mosque1@gmail.com" class="flex items-center p-3 border border-gray-100 rounded-xl hover:bg-emerald-50 transition group">
+                                <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-200">
+                                    <i class="fas fa-at"></i>
+                                </div>
+                                <div class="mr-3 overflow-hidden">
+                                    <div class="text-xs text-gray-500">البريد الإلكتروني</div>
+                                    <div class="font-tajawal text-sm font-bold text-gray-700 truncate">n.s.o.mosque1@gmail.com</div>
+                                </div>
+                            </a>
+                            <a href="tel:+96551696595" class="flex items-center p-3 border border-gray-100 rounded-xl hover:bg-emerald-50 transition group">
+                                <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-200">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="mr-3">
+                                    <div class="text-xs text-gray-500">رقم الهاتف</div>
+                                    <div class="font-tajawal text-sm font-bold text-gray-700 dir-ltr">+965 5169 6595</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-3 font-tajawal text-sm bg-gray-50 p-2 rounded inline-block">الدعم الفني / المصمم</h3>
+                        <div class="space-y-3">
+                            <a href="mailto:marwan.tarek.abosalem@gmail.com" class="flex items-center p-3 border border-gray-100 rounded-xl hover:bg-blue-50 transition group">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-200">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="mr-3 overflow-hidden">
+                                    <div class="text-xs text-gray-500">مروان طارق</div>
+                                    <div class="font-tajawal text-sm font-bold text-gray-700 truncate">marwan.tarek...</div>
+                                </div>
+                            </a>
+                            <a href="tel:+96566877036" class="flex items-center p-3 border border-gray-100 rounded-xl hover:bg-blue-50 transition group">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-200">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="mr-3">
+                                    <div class="text-xs text-gray-500">رقم الهاتف</div>
+                                    <div class="font-tajawal text-sm font-bold text-gray-700 dir-ltr">+965 6687 7036</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <a href="https://forms.gle/PrsfSHQJL932aBpZ6" target="_blank" class="block text-center p-3 border-2 border-dashed border-gray-300 rounded-xl text-gray-500 hover:border-emerald-500 hover:text-emerald-600 transition">
+                            <i class="fas fa-paper-plane ml-2"></i> لديك اقتراح أو شكوى؟
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
         
-        <div id="quiz" class="tab-content hidden px-4 mt-6"><div class="premium-card">قريباً...</div></div>
-        <div id="azkar" class="tab-content hidden px-4 mt-6"><div class="premium-card">قريباً...</div></div>
-        <div id="contact" class="tab-content hidden px-4 mt-6"><div class="premium-card">قريباً...</div></div>
+        <section id="location" class="tab-content hidden px-4 mt-6">
+            <div class="premium-card animate__animated animate__fadeIn p-0 overflow-hidden">
+                 <div class="p-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+                    <h2 class="font-kufi text-lg text-emerald-800">
+                        <i class="fas fa-map-marked-alt text-gold ml-2"></i> موقع المسجد
+                    </h2>
+                    <a href="https://maps.google.com/?q=29.330000,48.000000" target="_blank" class="text-xs bg-white border px-2 py-1 rounded text-blue-600 hover:bg-blue-50">فتح في Google Maps</a>
+                </div>
+                <div class="h-80 relative">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1462.4208332465132!2d48.08669748843695!3d29.33388750790019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf76193cdeed09%3A0xac50e72d5e143872!2sNoura%20Saad%20Al%20Obeid%20Mosque!5e0!3m2!1sen!2skw!4v1744410938546!5m2!1sen!2skw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -220,11 +437,20 @@
 
     <div id="imageViewer" class="fixed inset-0 bg-black bg-opacity-95 z-[3000] hidden flex items-center justify-center animate__animated animate__fadeIn" onclick="closeImageViewer()">
         <button class="absolute top-6 right-6 text-white text-4xl opacity-70 hover:opacity-100 transition">×</button>
-        <img id="viewedImage" src="" class="max-w-full max-h-[85vh] object-contain px-2 rounded-lg shadow-2xl">
+        <img id="viewedImage" src="" class="max-w-full max-h-[85vh] object-contain px-2 rounded-lg shadow-2xl" onclick="event.stopPropagation()">
     </div>
     
     <audio id="adhanAudio" preload="none"><source src="mosque_images/adhan.mp3" type="audio/mpeg"></audio>
 
     <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker Registered'))
+                    .catch(err => console.log('Service Worker Failed', err));
+            });
+        }
+    </script>
 </body>
 </html>
