@@ -1,681 +1,438 @@
 /* =====================
-   NAVIGATION
-===================== */
-
-function switchTab(tabId) {
-  // Hide all tabs
-  document.querySelectorAll('.tab-content').forEach(tab => {
-    tab.classList.add('hidden');
-    tab.classList.remove('active');
-  });
-
-  // Show selected tab
-  const target = document.getElementById(tabId);
-  if (target) {
-    target.classList.remove('hidden');
-    target.classList.add('active');
-  }
-
-  // Update bottom navigation active state
-  document.querySelectorAll('.bottom-nav-item').forEach(item => {
-    item.classList.remove('active');
-    const onclickAttr = item.getAttribute('onclick');
-    if (onclickAttr && onclickAttr.includes(tabId)) {
-      item.classList.add('active');
-    }
-  });
-
-  closeNav();
-  
-  // Load content when switching to specific tabs
-  if (tabId === 'prayer') {
-    loadPrayerTimes();
-  } else if (tabId === 'quran') {
-    loadQuranSurahs();
-  }
-  
-  // Scroll to top
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function openNav() {
-  const nav = document.getElementById("mySidenav");
-  if (nav) nav.style.width = "280px";
-}
-
-function closeNav() {
-  const nav = document.getElementById("mySidenav");
-  if (nav) nav.style.width = "0";
-}
-
-/* =====================
-   PRAYER TIMES
-===================== */
-
-let prayerTimesData = null;
-let prayerTimesInterval = null;
-
-async function loadPrayerTimes() {
-  try {
-    const response = await fetch('prayer_times.json');
-    prayerTimesData = await response.json();
-    updatePrayerTimes();
-    updateHijriDate();
-    startPrayerTimesUpdate();
-    
-    // Send prayer times to service worker
-    if (serviceWorkerRegistration && serviceWorkerRegistration.active) {
-      serviceWorkerRegistration.active.postMessage({
-        type: 'SET_PRAYER_TIMES',
-        payload: prayerTimesData
-      });
-    }
-  } catch (error) {
-    console.error('Error loading prayer times:', error);
-    const errorElement = document.querySelector('.prayer-error-message');
-    if (errorElement) {
-      errorElement.textContent = 'حدث خطأ في تحميل مواقيت الصلاة';
-    }
-  }
-}
-
-function updatePrayerTimes() {
-  if (!prayerTimesData) return;
-
-  const now = new Date();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
-  
-  const todayTimes = prayerTimesData[month]?.[day];
-  
-  if (!todayTimes) {
-    const errorElement = document.querySelector('.prayer-error-message');
-    if (errorElement) {
-      errorElement.textContent = 'لا توجد بيانات لليوم الحالي';
-    }
-    return;
-  }
-
-  const prayers = [
-    { id: 'fajr', name: 'الفجر', time: todayTimes.fajr },
-    { id: 'sunrise', name: 'الشروق', time: todayTimes.sunrise },
-    { id: 'dhuhr', name: 'الظهر', time: todayTimes.dhuhr },
-    { id: 'asr', name: 'العصر', time: todayTimes.asr },
-    { id: 'maghrib', name: 'المغرب', time: todayTimes.maghrib },
-    { id: 'isha', name: 'العشاء', time: todayTimes.isha }
-  ];
-
-  prayers.forEach(prayer => {
-    const timeElement = document.getElementById(prayer.id + 'Time');
-    if (timeElement) {
-      timeElement.textContent = prayer.time;
-    }
-  });
-
-  highlightNextPrayer(prayers);
-  updateNextPrayerInfo(prayers);
-  
-  // Reschedule notifications when prayer times update
-  if (notificationsEnabled && Notification.permission === 'granted') {
-    schedulePrayerNotifications();
-  }
-}
-
-function highlightNextPrayer(prayers) {
-  const now = new Date();
-  const currentTime = now.getHours() * 60 + now.getMinutes();
-  
-  // Remove all highlights
-  prayers.forEach(prayer => {
-    const item = document.getElementById(prayer.id + 'Item');
-    if (item) {
-      item.classList.remove('next-prayer');
-      const remainingSpan = item.querySelector('.time-remaining');
-      if (remainingSpan) remainingSpan.textContent = '';
-    }
-  });
-
-  // Find next prayer
-  let nextPrayer = null;
-  for (const prayer of prayers) {
-    const [hours, minutes] = prayer.time.split(':').map(Number);
-    const prayerTime = hours * 60 + minutes;
-    
-    if (prayerTime > currentTime) {
-      nextPrayer = { ...prayer, timeInMinutes: prayerTime };
-      break;
-    }
-  }
-
-  // If no prayer found today, use first prayer of next day (Fajr)
-  if (!nextPrayer) {
-    nextPrayer = { ...prayers[0], timeInMinutes: prayers[0].time.split(':').map(Number).reduce((h, m) => h * 60 + m) + 1440 };
-  }
-
-  // Highlight next prayer
-  const nextItem = document.getElementById(nextPrayer.id + 'Item');
-  if (nextItem) {
-    nextItem.classList.add('next-prayer');
-    updateTimeRemaining(nextItem, nextPrayer.timeInMinutes);
-  }
-}
-
-function updateTimeRemaining(element, prayerTimeInMinutes) {
-  const now = new Date();
-  const currentTime = now.getHours() * 60 + now.getMinutes();
-  let remaining = prayerTimeInMinutes - currentTime;
-  
-  if (remaining < 0) remaining += 1440; // Next day
-  
-  const hours = Math.floor(remaining / 60);
-  const minutes = remaining % 60;
-  
-  const remainingSpan = element.querySelector('.time-remaining');
-  if (remainingSpan) {
-    if (hours > 0) {
-      remainingSpan.textContent = `متبقي ${hours} ساعة و ${minutes} دقيقة`;
-    } else {
-      remainingSpan.textContent = `متبقي ${minutes} دقيقة`;
-    }
-  }
-}
-
-function updateNextPrayerInfo(prayers) {
-  const now = new Date();
-  const currentTime = now.getHours() * 60 + now.getMinutes();
-  
-  let nextPrayer = null;
-  for (const prayer of prayers) {
-    const [hours, minutes] = prayer.time.split(':').map(Number);
-    const prayerTime = hours * 60 + minutes;
-    
-    if (prayerTime > currentTime) {
-      nextPrayer = prayer;
-      break;
-    }
-  }
-
-  const infoElement = document.getElementById('nextPrayerInfo');
-  if (infoElement && nextPrayer) {
-    infoElement.textContent = `الصلاة القادمة: ${nextPrayer.name} في ${nextPrayer.time}`;
-  }
-}
-
-function startPrayerTimesUpdate() {
-  if (prayerTimesInterval) {
-    clearInterval(prayerTimesInterval);
-  }
-  
-  prayerTimesInterval = setInterval(() => {
-    updatePrayerTimes();
-  }, 60000); // Update every minute
-}
-
-/* =====================
-   HIJRI DATE
-===================== */
-
-function updateHijriDate() {
-  const now = new Date();
-  const hijriDate = convertToHijri(now);
-  const hijriDateElement = document.getElementById('hijriDate');
-  
-  if (hijriDateElement) {
-    hijriDateElement.textContent = `${hijriDate.day} ${hijriDate.monthName} ${hijriDate.year} هـ`;
-  }
-}
-
-function convertToHijri(gregorianDate) {
-  // Simple conversion (approximate)
-  const hijriMonths = [
-    'محرم', 'صفر', 'ربيع الأول', 'ربيع الثاني', 'جمادى الأولى', 'جمادى الآخرة',
-    'رجب', 'شعبان', 'رمضان', 'شوال', 'ذو القعدة', 'ذو الحجة'
-  ];
-  
-  const year = gregorianDate.getFullYear();
-  const month = gregorianDate.getMonth();
-  const day = gregorianDate.getDate();
-  
-  // Approximate conversion (1 Hijri year ≈ 0.97 Gregorian years)
-  const hijriYear = Math.floor((year - 622) * 0.97) + 1;
-  const hijriMonth = Math.floor((month + day / 30) * 0.97) % 12;
-  const hijriDay = Math.floor(day * 0.97);
-  
-  return {
-    day: hijriDay || day,
-    month: hijriMonth || month,
-    monthName: hijriMonths[hijriMonth] || hijriMonths[month],
-    year: hijriYear
-  };
-}
-
-/* =====================
-   QURAN
-===================== */
-
-let quranData = null;
-
-async function loadQuranSurahs() {
-  const surahListElement = document.getElementById('quranSurahList');
-  if (!surahListElement) return;
-
-  // Check if already loaded
-  if (surahListElement.querySelector('.surah-item')) return;
-
-  try {
-    const response = await fetch('data/surahs.json');
-    quranData = await response.json();
-    
-    surahListElement.innerHTML = '';
-    
-    quranData.chapters.forEach(surah => {
-      const surahItem = document.createElement('div');
-      surahItem.className = 'surah-item';
-      surahItem.onclick = () => loadSurah(surah.id);
-      
-      surahItem.innerHTML = `
-        <div class="surah-details">
-          <div class="surah-number">${surah.id}</div>
-          <div>
-            <div style="font-weight: 600; font-size: 17px; color: var(--ios-label);">${surah.name_arabic}</div>
-            <div style="font-size: 13px; color: var(--ios-secondary-label);">${surah.verses_count} آية</div>
-          </div>
-        </div>
-      `;
-      
-      surahListElement.appendChild(surahItem);
-    });
-  } catch (error) {
-    console.error('Error loading Quran surahs:', error);
-    surahListElement.innerHTML = '<div class="text-center py-5 text-red-600">حدث خطأ في تحميل قائمة السور</div>';
-  }
-}
-
-async function loadSurah(surahId) {
-  try {
-    const response = await fetch(`https://api.alquran.cloud/v1/surah/${surahId}/ar.asad`);
-    const data = await response.json();
-    
-    if (data.code === 200 && data.data) {
-      displaySurah(data.data);
-    } else {
-      alert('حدث خطأ في تحميل السورة');
-    }
-  } catch (error) {
-    console.error('Error loading surah:', error);
-    alert('حدث خطأ في تحميل السورة. يرجى المحاولة لاحقاً.');
-  }
-}
-
-function displaySurah(surahData) {
-  const viewer = document.getElementById('quranViewer');
-  const title = document.getElementById('quranViewerTitle');
-  const content = document.getElementById('quranViewerContent');
-  
-  if (!viewer || !title || !content) return;
-  
-  title.textContent = `سورة ${surahData.name} (${surahData.englishName})`;
-  
-  content.innerHTML = '';
-  
-  surahData.ayahs.forEach(ayah => {
-    const ayahDiv = document.createElement('p');
-    ayahDiv.className = 'quran-ayah';
-    ayahDiv.innerHTML = `
-      <span class="inline">${ayah.text}</span>
-      <span class="ayah-number">${ayah.numberInSurah}</span>
-    `;
-    content.appendChild(ayahDiv);
-  });
-  
-  viewer.classList.remove('hidden');
-  viewer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function closeQuranViewer() {
-  const viewer = document.getElementById('quranViewer');
-  if (viewer) {
-    viewer.classList.add('hidden');
-  }
-}
-
-/* =====================
-   IMAGE VIEWER
-===================== */
-
-function openImageViewer(imageSrc) {
-  const viewer = document.getElementById('imageViewer');
-  const img = document.getElementById('viewedImage');
-  
-  if (viewer && img) {
-    img.src = imageSrc;
-    viewer.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function closeImageViewer() {
-  const viewer = document.getElementById('imageViewer');
-  if (viewer) {
-    viewer.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-}
-
-/* Admin and news functionality removed as requested.
-   All admin/login/upload/news client logic has been deleted.
-*/
-
-/* =====================
-   NOTIFICATIONS
-===================== */
-
-/* =====================
-   NOTIFICATIONS
-===================== */
-
-let notificationsEnabled = false;
-let notificationTimeouts = [];
-let serviceWorkerRegistration = null;
-
-async function initNotifications() {
-  const toggle = document.getElementById('notificationToggle');
-  const statusElement = document.getElementById('notificationStatus');
-  
-  if (!toggle) return;
-  
-  // Register service worker
-  if ('serviceWorker' in navigator) {
-    try {
-      serviceWorkerRegistration = await navigator.serviceWorker.ready;
-    } catch (error) {
-      console.log('Service Worker not ready:', error);
-    }
-  }
-  
-  // Load saved preference
-  const saved = localStorage.getItem('prayerNotifications');
-  notificationsEnabled = saved === 'true';
-  toggle.checked = notificationsEnabled;
-  updateNotificationStatus();
-  
-  // Check notification permission
-  if (Notification.permission === 'granted' && notificationsEnabled) {
-    schedulePrayerNotifications();
-  }
-  
-  toggle.addEventListener('change', async (e) => {
-    if (e.target.checked) {
-      // Request notification permission
-      const permission = await Notification.requestPermission();
-      
-      if (permission === 'granted') {
-        notificationsEnabled = true;
-        localStorage.setItem('prayerNotifications', 'true');
-        updateNotificationStatus();
-        
-        // Send to service worker
-        if (serviceWorkerRegistration && serviceWorkerRegistration.active) {
-          serviceWorkerRegistration.active.postMessage({
-            type: 'SET_NOTIFICATIONS_ENABLED',
-            payload: true
-          });
-        }
-        
-        // Schedule notifications
-        schedulePrayerNotifications();
-      } else {
-        e.target.checked = false;
-        notificationsEnabled = false;
-        updateNotificationStatus();
-        alert('يرجى السماح بالإشعارات من إعدادات المتصفح');
-      }
-    } else {
-      // Cancel all scheduled notifications
-      cancelAllNotifications();
-      notificationsEnabled = false;
-      localStorage.setItem('prayerNotifications', 'false');
-      updateNotificationStatus();
-      
-      // Send to service worker
-      if (serviceWorkerRegistration && serviceWorkerRegistration.active) {
-        serviceWorkerRegistration.active.postMessage({
-          type: 'SET_NOTIFICATIONS_ENABLED',
-          payload: false
-        });
-      }
-    }
-  });
-}
-
-function schedulePrayerNotifications() {
-  // Clear existing notifications
-  cancelAllNotifications();
-  
-  if (!prayerTimesData || !notificationsEnabled) return;
-  
-  const now = new Date();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
-  
-  const todayTimes = prayerTimesData[month]?.[day];
-  if (!todayTimes) return;
-  
-  const prayers = [
-    { name: 'الفجر', time: todayTimes.fajr },
-    { name: 'الظهر', time: todayTimes.dhuhr },
-    { name: 'العصر', time: todayTimes.asr },
-    { name: 'المغرب', time: todayTimes.maghrib },
-    { name: 'العشاء', time: todayTimes.isha }
-  ];
-  
-  prayers.forEach(prayer => {
-    scheduleNotificationForPrayer(prayer.name, prayer.time, now);
-  });
-  
-  // Schedule for tomorrow's Fajr if all prayers passed
-  const lastPrayer = prayers[prayers.length - 1];
-  const [lastHour, lastMinute] = lastPrayer.time.split(':').map(Number);
-  const lastPrayerTime = new Date(now);
-  lastPrayerTime.setHours(lastHour, lastMinute, 0, 0);
-  
-  if (now > lastPrayerTime) {
-    // Schedule tomorrow's Fajr
-    const tomorrow = new Date(now);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const tomorrowMonth = tomorrow.getMonth() + 1;
-    const tomorrowDay = tomorrow.getDate();
-    const tomorrowTimes = prayerTimesData[tomorrowMonth]?.[tomorrowDay];
-    
-    if (tomorrowTimes) {
-      scheduleNotificationForPrayer('الفجر', tomorrowTimes.fajr, tomorrow);
-    }
-  }
-}
-
-function scheduleNotificationForPrayer(prayerName, prayerTime, referenceDate) {
-  const [hours, minutes] = prayerTime.split(':').map(Number);
-  const notificationTime = new Date(referenceDate);
-  notificationTime.setHours(hours, minutes, 0, 0);
-  
-  // If time has passed today, schedule for tomorrow
-  if (notificationTime <= referenceDate) {
-    notificationTime.setDate(notificationTime.getDate() + 1);
-  }
-  
-  const timeUntilPrayer = notificationTime.getTime() - referenceDate.getTime();
-  
-  // Schedule notification 1 minute before prayer time
-  const notificationDelay = Math.max(0, timeUntilPrayer - 60000);
-  
-  const timeoutId = setTimeout(() => {
-    sendPrayerNotification(prayerName, prayerTime);
-  }, notificationDelay);
-  
-  notificationTimeouts.push(timeoutId);
-  
-  console.log(`Scheduled notification for ${prayerName} at ${prayerTime}, delay: ${Math.round(notificationDelay / 1000 / 60)} minutes`);
-}
-
-function sendPrayerNotification(prayerName, prayerTime) {
-  if (!notificationsEnabled) return;
-  
-  const title = `حان الآن وقت صلاة ${prayerName}`;
-  const body = `الأذان حسب توقيت السالمية - الكويت\nالوقت: ${prayerTime}`;
-  
-  // Try to use service worker first (works even when app is closed)
-  if (serviceWorkerRegistration && serviceWorkerRegistration.active) {
-    serviceWorkerRegistration.active.postMessage({
-      type: 'TRIGGER_NOTIFICATION',
-      payload: {
-        name: prayerName,
-        time: prayerTime
-      }
-    });
-  }
-  
-  // Also show browser notification if available (for immediate feedback)
-  if (Notification.permission === 'granted') {
-    try {
-      const notification = new Notification(title, {
-        body: body,
-        icon: '/mosque_images/mosque-logo.png',
-        badge: '/mosque_images/mosque-logo.png',
-        tag: `prayer-${prayerName}-${new Date().toDateString()}`,
-        requireInteraction: false,
-        vibrate: [200, 100, 200, 100, 200],
-        silent: false
-      });
-      
-      notification.onclick = () => {
-        window.focus();
-        notification.close();
-      };
-      
-      // Auto close after 10 seconds
-      setTimeout(() => {
-        notification.close();
-      }, 10000);
-    } catch (error) {
-      console.error('Error showing notification:', error);
-    }
-  }
-  
-  // Play adhan audio in-page if visible
-  try {
-    if (document.visibilityState === 'visible') {
-      const adhan = document.getElementById('adhanAudio');
-      if (adhan && typeof adhan.play === 'function') {
-        adhan.currentTime = 0;
-        adhan.play().catch(err => console.log('Audio play prevented:', err));
-      }
-    }
-  } catch (e) {
-    console.error('Error playing adhan:', e);
-  }
-
-  // Reschedule for next day after a short delay
-  setTimeout(() => {
-    if (notificationsEnabled) {
-      schedulePrayerNotifications();
-    }
-  }, 120000); // Check again after 2 minutes
-}
-
-function cancelAllNotifications() {
-  notificationTimeouts.forEach(timeoutId => {
-    clearTimeout(timeoutId);
-  });
-  notificationTimeouts = [];
-}
-
-function updateNotificationStatus() {
-  const statusElement = document.getElementById('notificationStatus');
-  if (statusElement) {
-    if (notificationsEnabled && Notification.permission === 'granted') {
-      statusElement.textContent = 'التنبيهات مفعلة - سيتم إرسال إشعار قبل كل صلاة بدقيقة';
-      statusElement.style.color = 'var(--ios-blue)';
-    } else if (notificationsEnabled && Notification.permission !== 'granted') {
-      statusElement.textContent = 'يرجى السماح بالإشعارات من إعدادات المتصفح';
-      statusElement.style.color = 'var(--ios-secondary-label)';
-    } else {
-      statusElement.textContent = 'التنبيهات معطلة';
-      statusElement.style.color = 'var(--ios-secondary-label)';
-    }
-  }
-}
-
-/* =====================
-   SERVICE WORKER
-===================== */
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', async () => {
-    try {
-      const registration = await navigator.serviceWorker.register('/sw.js');
-      console.log('Service Worker registered:', registration);
-      
-      // Wait for service worker to be ready
-      await navigator.serviceWorker.ready;
-      serviceWorkerRegistration = registration;
-      
-      // Initialize notifications after service worker is ready
-      if (document.getElementById('notificationToggle')) {
-        initNotifications();
-      }
-    } catch (error) {
-      console.log('Service Worker registration failed:', error);
-    }
-  });
-}
-
-/* =====================
-   INITIALIZATION
+   إدارة التنقل والواجهة
 ===================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize lazy loading for images
-  const images = document.querySelectorAll("img[data-src]");
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.classList.add("loaded");
-        observer.unobserve(img);
-      }
-    });
-  }, {
-    rootMargin: "200px"
-  });
-  images.forEach(img => observer.observe(img));
-  
-  // Load initial content
-  loadPrayerTimes();
-  // Initialize notifications (will be called again after service worker is ready)
-  if (document.getElementById('notificationToggle')) {
-    initNotifications();
-  }
-  
-  // Mark body as loaded for animations
-  document.body.classList.add('loaded');
-  
-  // Set active tab on load
-  const activeTab = document.querySelector('.tab-content.active');
-  if (activeTab) {
-    const tabId = activeTab.id;
-    document.querySelectorAll('.bottom-nav-item').forEach(item => {
-      const onclickAttr = item.getAttribute('onclick');
-      if (onclickAttr && onclickAttr.includes(tabId)) {
-        item.classList.add('active');
-      }
-    });
-  }
-  
-  // Listen for visibility change to reschedule notifications
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && notificationsEnabled && Notification.permission === 'granted') {
-      schedulePrayerNotifications();
+    // تحميل الافتراضيات
+    loadPrayerTimes();
+    updateHijriDate(); // تحديث التاريخ فوراً
+    
+    if (document.getElementById('notificationToggle')) {
+        initNotifications();
     }
-  });
+    
+    // التعامل مع Lazy Loading للصور
+    setupLazyLoading();
+
+    // إخفاء شاشة التحميل إذا كانت موجودة
+    // setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
 });
+
+function setupLazyLoading() {
+    const lazyImages = document.querySelectorAll('img.lazy-img');
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy-img');
+                    img.classList.add('animate__animated', 'animate__fadeIn');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        lazyImages.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback للمتصفحات القديمة
+        lazyImages.forEach(img => img.src = img.dataset.src);
+    }
+}
+
+function switchTab(tabId) {
+    // إخفاء كل المحتويات
+    document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.add('hidden');
+        el.classList.remove('active');
+    });
+    
+    // إظهار المحتوى المطلوب
+    const target = document.getElementById(tabId);
+    if(target) {
+        target.classList.remove('hidden');
+        // إضافة تأخير بسيط للأنيميشن عند التبديل
+        setTimeout(() => target.classList.add('active'), 50);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // تحديث القائمة السفلية الحديثة
+    updateBottomNavUI(tabId);
+
+    // تحديث الروابط السريعة في الرئيسية
+    document.querySelectorAll('.quick-link-card').forEach(link => link.classList.remove('active-tab-link'));
+    const activeQuickLink = document.querySelector(`.quick-link-card[onclick*="${tabId}"]`);
+    if(activeQuickLink && tabId !== 'home') activeQuickLink.classList.add('active-tab-link');
+
+    // إغلاق القائمة الجانبية
+    closeNav();
+
+    // تحميل خاص عند الحاجة
+    if (tabId === 'quran') loadQuranList();
+}
+
+function updateBottomNavUI(tabId) {
+    document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.nav-center-button-container').classList.remove('active');
+
+    if (tabId === 'quran') {
+        document.querySelector('.nav-center-button-container').classList.add('active');
+    } else {
+        const activeNav = document.querySelector(`.nav-item#nav-${tabId}`);
+        if(activeNav) activeNav.classList.add('active');
+    }
+}
+
+function openNav() { document.getElementById("mySidenav").style.width = "280px"; }
+function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+
+/* =====================
+   مواقيت الصلاة والعد التنازلي
+===================== */
+
+let prayerData = null;
+let timerInterval = null;
+let countdownInterval = null;
+let nextPrayerGlobal = null;
+
+async function loadPrayerTimes() {
+    try {
+        const response = await fetch('prayer_times.json');
+        if (!response.ok) throw new Error("File not found");
+        prayerData = await response.json();
+        updatePrayerUI();
+        startMainTimer();
+    } catch (error) {
+        console.error("Error loading prayers:", error);
+        document.getElementById('prayerTimesContainer').innerHTML = 
+            '<div class="p-4 text-center text-red-500 bg-red-50 rounded-lg">تعذر تحميل ملف المواقيت.</div>';
+        // إخفاء عداد الهيرو في حالة الخطأ
+        document.getElementById('heroNextPrayer').classList.add('hidden');
+    }
+}
+
+function updatePrayerUI() {
+    if (!prayerData) return;
+
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    
+    const times = prayerData[month]?.[day];
+    if (!times) return;
+
+    const prayers = [
+        { key: 'fajr', name: 'الفجر', time: times.fajr },
+        { key: 'sunrise', name: 'الشروق', time: times.sunrise },
+        { key: 'dhuhr', name: 'الظهر', time: times.dhuhr },
+        { key: 'asr', name: 'العصر', time: times.asr },
+        { key: 'maghrib', name: 'المغرب', time: times.maghrib },
+        { key: 'isha', name: 'العشاء', time: times.isha }
+    ];
+
+    const container = document.getElementById('prayerTimesContainer');
+    container.innerHTML = ''; 
+
+    prayers.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'prayer-time-item';
+        div.id = `prayer-${p.key}`;
+        // تنسيق الوقت ليكون صباحاً/مساءً (اختياري)
+        const formattedTime = formatTimeAMPM(p.time);
+        
+        div.innerHTML = `
+            <div class="prayer-info">
+                <div class="prayer-name">${p.name}</div>
+                <div class="time-remaining-badge hidden font-tajawal"></div>
+            </div>
+            <div class="prayer-time" dir="ltr">${formattedTime}</div>
+        `;
+        container.appendChild(div);
+    });
+
+    calculateNextPrayer(prayers);
+}
+
+// دالة مساعدة لتنسيق الوقت 12 ساعة
+function formatTimeAMPM(time24) {
+    let [h, m] = time24.split(':');
+    h = parseInt(h);
+    const ampm = h >= 12 ? 'م' : 'ص';
+    h = h % 12;
+    h = h ? h : 12; // الساعة 0 تصبح 12
+    return `${h}:${m} <small>${ampm}</small>`;
+}
+
+function calculateNextPrayer(prayers) {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const currentSeconds = now.getSeconds();
+    const totalCurrentSeconds = currentMinutes * 60 + currentSeconds;
+
+    let nextP = null;
+    let minDiffSeconds = Infinity;
+
+    prayers.forEach(p => {
+        if(p.key === 'sunrise') return; 
+        const [h, m] = p.time.split(':').map(Number);
+        let prayerTotalSeconds = (h * 60 + m) * 60;
+        
+        let diffSeconds = prayerTotalSeconds - totalCurrentSeconds;
+        if (diffSeconds < 0) diffSeconds += (24 * 3600); // لليوم التالي
+
+        if (diffSeconds < minDiffSeconds) {
+            minDiffSeconds = diffSeconds;
+            nextP = { ...p, targetSeconds: prayerTotalSeconds };
+        }
+    });
+
+    nextPrayerGlobal = nextP;
+    updateNextPrayerHighlights();
+    
+    // بدء العداد التنازلي بالثواني
+    if (countdownInterval) clearInterval(countdownInterval);
+    updateCountdown(); // تحديث فوري
+    countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+function updateNextPrayerHighlights() {
+    // إزالة التظليل القديم
+    document.querySelectorAll('.prayer-time-item').forEach(el => {
+        el.classList.remove('next-prayer');
+        el.querySelector('.time-remaining-badge').classList.add('hidden');
+    });
+
+    const heroContainer = document.getElementById('heroNextPrayer');
+
+    if (nextPrayerGlobal) {
+        // تظليل في قائمة الصلوات
+        const el = document.getElementById(`prayer-${nextPrayerGlobal.key}`);
+        if (el) {
+            el.classList.add('next-prayer');
+            el.querySelector('.time-remaining-badge').classList.remove('hidden');
+        }
+        // إظهار عداد الهيرو
+        heroContainer.classList.remove('hidden');
+        document.getElementById('heroPrayerName').textContent = nextPrayerGlobal.name;
+    } else {
+         heroContainer.classList.add('hidden');
+    }
+}
+
+function updateCountdown() {
+    if (!nextPrayerGlobal) return;
+
+    const now = new Date();
+    const totalCurrentSeconds = (now.getHours() * 60 * 60) + (now.getMinutes() * 60) + now.getSeconds();
+    
+    let diff = nextPrayerGlobal.targetSeconds - totalCurrentSeconds;
+    if (diff < 0) diff += (24 * 3600);
+
+    // تحويل الثواني إلى س:د:ث
+    const h = Math.floor(diff / 3600);
+    const m = Math.floor((diff % 3600) / 60);
+    const s = diff % 60;
+
+    const formattedCountdown = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+
+    // تحديث عداد الهيرو
+    document.getElementById('heroCountdown').textContent = formattedCountdown;
+
+    // تحديث بادج القائمة (بدون ثواني)
+    const el = document.querySelector('.prayer-time-item.next-prayer .time-remaining-badge');
+    if (el) {
+        let text = 'متبقي ';
+        if (h > 0) text += `${h} ساعة و `;
+        text += `${m} دقيقة`;
+         // إذا تبقى أقل من دقيقة
+        if (h===0 && m===0 && s>0) text = "حان الوقت تقريباً";
+        el.textContent = text;
+    }
+}
+
+function startMainTimer() {
+    // تحديث البيانات الرئيسية كل دقيقة (للتحقق من دخول وقت جديد أو تغير اليوم)
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        updatePrayerUI();
+        checkNotifications();
+        updateHijriDate();
+    }, 60000); 
+}
+
+function updateHijriDate() {
+    const now = new Date();
+    const hijri = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-civil', {
+        day: 'numeric', month: 'long', year: 'numeric'
+    }).format(now);
+    const el = document.getElementById('hijriDate');
+    if(el) el.textContent = hijri;
+}
+
+/* =====================
+   القرآن الكريم (المحدث)
+===================== */
+
+let isQuranLoaded = false;
+async function loadQuranList() {
+    if (isQuranLoaded) return;
+    const list = document.getElementById('quranSurahList');
+    
+    try {
+        const res = await fetch('data/surahs.json');
+        const data = await res.json();
+        
+        list.innerHTML = '';
+        data.chapters.forEach(surah => {
+            const div = document.createElement('div');
+            div.className = 'surah-item';
+            div.onclick = () => loadSurahText(surah.id);
+            div.innerHTML = `
+                <div class="flex items-center">
+                    <div class="surah-number-box font-tajawal">${surah.id}</div>
+                    <div class="mr-4">
+                        <div class="font-bold text-emerald-800 font-kufi">${surah.name_arabic}</div>
+                        <div class="text-xs text-emerald-600 opacity-70 font-tajawal">${surah.verses_count} آية - ${surah.revelation_place === 'makkah' ? 'مكية' : 'مدنية'}</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-left text-emerald-200 text-sm"></i>
+            `;
+            list.appendChild(div);
+        });
+        isQuranLoaded = true;
+    } catch (e) {
+        list.innerHTML = '<div class="p-6 text-center text-red-500 bg-red-50 rounded-xl mx-4">فشل تحميل قائمة السور. يرجى التحقق من الاتصال.</div>';
+    }
+}
+
+async function loadSurahText(id) {
+    const viewer = document.getElementById('quranViewer');
+    const content = document.getElementById('quranViewerContent');
+    const title = document.getElementById('quranViewerTitle');
+    
+    viewer.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // منع التمرير الخلفي
+    content.innerHTML = '<div class="flex flex-col items-center justify-center h-full text-emerald-600"><i class="fas fa-spinner fa-spin fa-3x mb-4"></i><span class="font-tajawal">جارٍ تحميل الآيات...</span></div>';
+    
+    try {
+        const res = await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
+        const data = await res.json();
+        
+        title.textContent = `سورة ${data.data.name}`;
+        content.innerHTML = '';
+        
+        if (id !== 9) {
+            const basmalah = document.createElement('div');
+            basmalah.className = 'text-center text-2xl mb-8 font-quran text-emerald-800 pt-4';
+            basmalah.innerHTML = "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ";
+            content.appendChild(basmalah);
+        }
+
+        let fullSurahText = "";
+        data.data.ayahs.forEach(ayah => {
+            let text = ayah.text;
+            if (id !== 1 && id !== 9 && ayah.numberInSurah === 1) {
+                text = text.replace("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ", "").trim();
+            }
+            // استخدام رمز Unicode لنهاية الآية
+            fullSurahText += `${text} <span class="ayah-end-symbol">۝</span><span class="text-sm text-emerald-500 ml-1 mr-2">${ayah.numberInSurah.toLocaleString('ar-EG')}</span> `;
+        });
+        
+        const textContainer = document.createElement('div');
+        textContainer.className = 'leading-loose pb-10';
+        textContainer.innerHTML = fullSurahText;
+        content.appendChild(textContainer);
+        
+    } catch (e) {
+        content.innerHTML = '<div class="p-6 text-center text-red-500 bg-red-50 rounded-xl m-4 font-tajawal">تعذر تحميل نص السورة. حاول مرة أخرى.</div>';
+    }
+}
+
+function closeQuranViewer() {
+    document.getElementById('quranViewer').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+/* =====================
+   المرافق (صور، تنبيهات)
+===================== */
+function openImageViewer(src) {
+    const v = document.getElementById('imageViewer');
+    document.getElementById('viewedImage').src = src;
+    v.classList.remove('hidden');
+}
+function closeImageViewer() {
+    document.getElementById('imageViewer').classList.add('hidden');
+}
+
+// (نظام التنبيهات يبقى كما هو في الكود السابق)
+let notifEnabled = localStorage.getItem('notifEnabled') === 'true';
+function initNotifications() {
+    const toggle = document.getElementById('notificationToggle');
+    toggle.checked = notifEnabled;
+    updateNotifStatus();
+
+    toggle.addEventListener('change', async (e) => {
+        if (e.target.checked) {
+            if ('Notification' in window) {
+                 const perm = await Notification.requestPermission();
+                 if (perm === 'granted') {
+                     notifEnabled = true;
+                     playAdhan(true); 
+                 } else {
+                     notifEnabled = false;
+                     e.target.checked = false;
+                     alert('يجب السماح بالإشعارات من إعدادات المتصفح لتفعيل هذه الميزة.');
+                 }
+            } else {
+                alert('متصفحك لا يدعم التنبيهات.');
+                e.target.checked = false;
+            }
+        } else {
+            notifEnabled = false;
+        }
+        localStorage.setItem('notifEnabled', notifEnabled);
+        updateNotifStatus();
+    });
+}
+
+function updateNotifStatus() {
+    const el = document.getElementById('notificationStatus');
+    el.textContent = notifEnabled ? 'التنبيهات مفعلة حالياً' : 'اضغط لتفعيل التنبيه الصوتي عند وقت الصلاة';
+}
+
+function checkNotifications() {
+    if (!notifEnabled || !prayerData) return;
+    
+    const now = new Date();
+    const currentTime = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    // نحتاج الدقيقة الحالية بالضبط لمقارنة وقت JSON
+    
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    const times = prayerData[month]?.[day];
+    if (!times) return;
+
+    // نتحقق إذا كان الوقت الحالي يطابق أي وقت صلاة
+    Object.entries(times).forEach(([key, time]) => {
+        if (key === 'sunrise') return;
+        if (time === currentTime && now.getSeconds() < 2) { // ضمان التشغيل مرة واحدة في الدقيقة
+            new Notification("حان الآن وقت الصلاة", {
+                body: `الساعة الآن ${time}، حي على الصلاة`,
+                icon: 'mosque_images/mosque-logo.png' // تأكد من وجود أيقونة
+            });
+            playAdhan();
+        }
+    });
+}
+
+function playAdhan(silent = false) {
+    const audio = document.getElementById('adhanAudio');
+    if(silent) {
+        audio.volume = 0;
+        audio.play().then(()=> { setTimeout(()=>audio.pause(), 500); audio.volume = 1; })
+             .catch(()=>{});
+    } else {
+        audio.volume = 1;
+        audio.play().catch(e => console.log("Adhan play blocked: " + e));
+    }
+}
