@@ -363,8 +363,8 @@ function closeImageViewer() {
 }
 
 /* =====================
-   ADMIN PANEL (SIMPLE CLIENT-SIDE)
-   NOTE: Client-side password is not secure. This provides basic protection.
+  ADMIN PANEL (SERVER AUTH)
+  Uses /api/login to get JWT and manages news via server endpoints.
 ===================== */
 function openAdminPanel() {
   const modal = document.getElementById('adminModal');
@@ -384,34 +384,47 @@ function closeAdminPanel() {
   modal.classList.add('hidden');
 }
 
-function checkAdminPassword() {
+async function checkAdminPassword() {
   const pwdInput = document.getElementById('adminPasswordInput');
   const adminError = document.getElementById('adminError');
   const adminPanel = document.getElementById('adminPanel');
   if (!pwdInput || !adminPanel || !adminError) return;
   const password = pwdInput.value || '';
-  // Client-side authentication only (server removed)
-  const stored = localStorage.getItem('adminPassword') || '2015';
-  if (password === stored) {
-    sessionStorage.setItem('adminAuthenticated', 'true');
+  if (!password) {
+    adminError.textContent = 'أدخل كلمة المرور';
+    adminError.classList.remove('hidden');
+    return;
+  }
+  try {
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: 'admin', password })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'خطأ في الدخول');
+    sessionStorage.setItem('adminToken', data.token);
     adminError.classList.add('hidden');
     adminPanel.classList.remove('hidden');
-    loadAdminNews();
-  } else {
+    await fetchAndRenderNews();
+  } catch (e) {
+    console.error('Login failed', e);
+    adminError.textContent = 'كلمة المرور غير صحيحة';
     adminError.classList.remove('hidden');
     adminPanel.classList.add('hidden');
   }
 }
 
 // ======================
-// NEWS (Client)
+// NEWS (Server-backed)
 // ======================
 let editingNewsId = null;
 
 async function fetchAndRenderNews() {
   try {
-    const raw = localStorage.getItem('news') || '[]';
-    const news = JSON.parse(raw);
+    const res = await fetch('/api/news');
+    if (!res.ok) throw new Error('Failed to load news');
+    const news = await res.json();
     renderNewsList(news);
   } catch (e) {
     console.error('Error loading news', e);
@@ -484,8 +497,9 @@ function closeNewsModal() {
 
 async function openEditNews(id) {
   try {
-    const raw = localStorage.getItem('news') || '[]';
-    const news = JSON.parse(raw);
+    const res = await fetch('/api/news');
+    if (!res.ok) throw new Error('Failed to load news');
+    const news = await res.json();
     const item = news.find(n => n.id === id);
     if (!item) return alert('الخبر غير موجود');
     editingNewsId = id;
@@ -516,30 +530,35 @@ async function submitNews() {
   const content = document.getElementById('newsContent')?.value?.trim();
   const image = document.getElementById('newsImage')?.value?.trim();
   const errorEl = document.getElementById('newsModalError');
+  const token = sessionStorage.getItem('adminToken');
   if (!title || !content) {
     if (errorEl) { errorEl.textContent = 'يرجى إدخال عنوان ومحتوى'; errorEl.classList.remove('hidden'); }
     return;
   }
-  // client-side persistence via localStorage
+  if (!token) {
+    alert('غير مصرح. سجل الدخول أولاً.');
+    return;
+  }
   try {
-    const raw = localStorage.getItem('news') || '[]';
-    const news = JSON.parse(raw);
+    const payload = { title, content, image: image || null };
+    let res;
     if (editingNewsId) {
-      const idx = news.findIndex(n => n.id === editingNewsId);
-      if (idx !== -1) {
-        news[idx].title = title;
-        news[idx].content = content;
-        news[idx].image = image || null;
-        news[idx].updatedAt = new Date().toISOString();
-      }
+      res = await fetch(`/api/news/${editingNewsId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify(payload)
+      });
     } else {
-      const id = Date.now();
-      news.unshift({ id, title, content, image: image || null, createdAt: new Date().toISOString() });
+      res = await fetch('/api/news', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify(payload)
+      });
     }
-    localStorage.setItem('news', JSON.stringify(news));
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'فشل الحفظ');
     closeNewsModal();
     await fetchAndRenderNews();
-    if (typeof loadAdminNews === 'function') loadAdminNews();
   } catch (e) {
     console.error(e);
     if (errorEl) { errorEl.textContent = 'حدث خطأ أثناء الحفظ'; errorEl.classList.remove('hidden'); }
@@ -548,11 +567,15 @@ async function submitNews() {
 
 async function deleteNews(id) {
   if (!confirm('هل أنت متأكد من حذف هذا الخبر؟')) return;
+  const token = sessionStorage.getItem('adminToken');
+  if (!token) { alert('غير مصرح. سجل الدخول أولاً.'); return; }
   try {
-    const raw = localStorage.getItem('news') || '[]';
-    const news = JSON.parse(raw);
-    const filtered = news.filter(n => n.id !== id);
-    localStorage.setItem('news', JSON.stringify(filtered));
+    const res = await fetch(`/api/news/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'فشل الحذف');
     await fetchAndRenderNews();
   } catch (e) {
     console.error(e);
@@ -578,22 +601,62 @@ function logoutAdmin() {
 async function changeAdminPassword() {
   const newPwd = document.getElementById('newAdminPassword')?.value;
   const msg = document.getElementById('changePwdMsg');
+  const token = sessionStorage.getItem('adminToken');
   if (!newPwd || newPwd.length < 4) { if (msg) msg.textContent = 'كلمة المرور قصيرة'; return; }
-  // store locally
-  localStorage.setItem('adminPassword', newPwd);
-  if (msg) { msg.textContent = 'تم تغيير كلمة المرور محلياً'; msg.style.color = 'green'; }
+  if (!token) { if (msg) msg.textContent = 'غير مسموح - سجل الدخول أولاً'; msg.style.color = 'red'; return; }
+  try {
+    const res = await fetch('/api/admin/password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ newPassword: newPwd })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'فشل تغيير كلمة المرور');
+    if (msg) { msg.textContent = 'تم تغيير كلمة المرور بنجاح'; msg.style.color = 'green'; }
+  } catch (e) {
+    console.error('Change password failed', e);
+    if (msg) { msg.textContent = 'فشل تغيير كلمة المرور'; msg.style.color = 'red'; }
+  }
 }
 
-// upload file
+// upload file (sends to server /api/upload when admin)
 async function uploadFile() {
   const input = document.getElementById('uploadFileInput');
   const msg = document.getElementById('uploadMsg');
+  const token = sessionStorage.getItem('adminToken');
   if (!input || !input.files || input.files.length === 0) { if (msg) msg.textContent = 'اختر ملفاً'; return; }
   const file = input.files[0];
+  // If admin token present, upload to server
+  if (token) {
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` },
+        body: fd
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'فشل رفع الملف');
+      const imageInput = document.getElementById('newsImage');
+      if (imageInput) imageInput.value = data.url;
+      const preview = document.getElementById('newsImagePreview');
+      if (preview) {
+        const img = document.getElementById('newsPreviewImg');
+        img.src = data.url;
+        preview.classList.remove('hidden');
+      }
+      if (msg) { msg.textContent = 'تم رفع الصورة'; msg.style.color = 'green'; }
+    } catch (e) {
+      console.error('Upload failed', e);
+      if (msg) { msg.textContent = 'فشل رفع الملف'; msg.style.color = 'red'; }
+    }
+    return;
+  }
+  // Fallback: read locally as data URL (useful offline)
   const reader = new FileReader();
   reader.onload = function(e) {
     const dataUrl = e.target.result;
-    // set as newsImage value for immediate use
     const imageInput = document.getElementById('newsImage');
     if (imageInput) imageInput.value = dataUrl;
     const preview = document.getElementById('newsImagePreview');
