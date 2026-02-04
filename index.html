@@ -40,10 +40,10 @@
         <a href="javascript:void(0)" onclick="switchTab('prayer')"><i class="fas fa-clock w-6 text-center"></i> مواقيت الصلاة</a>
         <a href="javascript:void(0)" onclick="switchTab('gallery')"><i class="fas fa-images w-6 text-center"></i> مكتبة الصور</a>
         <a href="javascript:void(0)" onclick="switchTab('quran')"><i class="fas fa-book-open w-6 text-center"></i> المصحف الشريف</a>
-        <a href="javascript:void(0)" onclick="switchTab('news')"><i class="fas fa-newspaper w-6 text-center"></i> الأخبار</a>
+        
         <a href="javascript:void(0)" onclick="switchTab('quiz')"><i class="fas fa-book w-6 text-center"></i>مسابقات المسجد</a>
         <a href="javascript:void(0)" onclick="switchTab('donate')"><i class="fas fa-donate w-6 text-center"></i> التبرعات</a>
-        <a href="javascript:void(0)" onclick="openAdminPanel()" title="لوحة الإدارة"><i class="fas fa-user-shield w-6 text-center"></i> لوحة الإدارة</a>
+        
         <!--<a href="javascript:void(0)" onclick="switchTab('library')"><i class="fas fa-book w-6 text-center"></i> حجز المكتبة</a>-->
         <!--<a href="javascript:void(0)" onclick="switchTab('volunteer')"><i class="fas fa-hands-helping w-6 text-center"></i> التطوع بالمسجد</a>-->
         <!--<a href="javascript:void(0)" onclick="switchTab('donate')"><i class="fas fa-donate w-6 text-center"></i> التبرع للمسجد</a>-->
@@ -268,18 +268,7 @@
             </div>
         </div>
 
-        <!-- NEWS TAB -->
-        <div id="news" class="tab-content hidden">
-            <div class="card animate__animated animate__fadeIn">
-                <div class="section-title"> <i class="fas fa-newspaper"></i> أخبار المسجد </div>
-                <div id="newsControls" class="text-right mb-3 hidden">
-                    <button onclick="openCreateNews()" class="action-button">إنشاء خبر جديد</button>
-                </div>
-                <div id="newsList" class="space-y-4">
-                    <div class="text-center py-6 text-gray-500">جارٍ تحميل الأخبار...</div>
-                </div>
-            </div>
-        </div>
+        
 
         <div id="quiz" class="tab-content hidden">
              <div class="card animate__animated animate__fadeIn">
@@ -405,69 +394,9 @@
         متصفحك لا يدعم عنصر الصوت.
     </audio>
 
-    <!-- Admin modal (simple password-protected panel) -->
-    <div id="adminModal" class="fixed inset-0 flex items-center justify-center z-50 hidden p-4">
-        <div class="bg-white rounded-lg p-6 w-full max-w-md" role="dialog" aria-modal="true">
-            <h3 class="text-lg font-semibold mb-4">لوحة الإدارة - تسجيل الدخول</h3>
-            <input id="adminPasswordInput" type="password" placeholder="أدخل كلمة المرور" class="form-control" />
-            <div class="mt-4 flex justify-end gap-2">
-              <button onclick="checkAdminPassword()" class="action-button">دخول</button>
-              <button onclick="closeAdminPanel()" class="action-button" style="background:#ccc;color:#000;">إلغاء</button>
-            </div>
-            <div id="adminError" class="text-red-600 mt-2 hidden">كلمة المرور غير صحيحة</div>
-            <div id="adminPanel" class="hidden mt-4">
-              <h4>مرحباً بك في لوحة الإدارة</h4>
-              <p class="text-sm text-gray-600">لوحة الإدارة - يمكنك إدارة الأخبار وتغيير كلمة المرور ورفع ملفات الصور.</p>
-              
-              <div class="mt-4">
-                <h5 class="font-semibold">الإخبار (إدارة)</h5>
-                <div class="mt-2">
-                  <button onclick="fetchAndRenderNews()" class="action-button">تحديث قائمة الأخبار</button>
-                  <button onclick="openCreateNews()" class="action-button" style="background:#10B981;">إنشاء خبر جديد</button>
-                </div>
-              </div>
-
-              <div class="mt-4">
-                <h5 class="font-semibold">تغيير كلمة المرور</h5>
-                <input id="newAdminPassword" type="password" placeholder="كلمة المرور الجديدة" class="form-control mt-2" />
-                <div class="mt-2">
-                  <button onclick="changeAdminPassword()" class="action-button">تغيير</button>
-                </div>
-                <div id="changePwdMsg" class="text-sm mt-2"></div>
-              </div>
-
-              <div class="mt-4">
-                <h5 class="font-semibold">رفع صورة</h5>
-                <input id="uploadFileInput" type="file" class="form-control mt-2" />
-                <div class="mt-2">
-                  <button onclick="uploadFile()" class="action-button">رفع</button>
-                </div>
-                <div id="uploadMsg" class="text-sm mt-2"></div>
-              </div>
-
-              <div class="mt-4 text-right">
-                <button onclick="logoutAdmin()" class="action-button" style="background:#ef4444;">تسجيل خروج</button>
-                <button onclick="closeAdminPanel()" class="action-button">إغلاق</button>
-              </div>
-            </div>
-        </div>
-    </div>
     
-    <!-- News modal (create / edit) -->
-    <div id="newsModal" class="fixed inset-0 flex items-center justify-center z-50 hidden p-4">
-        <div class="bg-white rounded-lg p-6 w-full max-w-lg" role="dialog" aria-modal="true">
-            <h3 id="newsModalTitle" class="text-lg font-semibold mb-4">إنشاء خبر</h3>
-            <input id="newsTitle" type="text" placeholder="عنوان الخبر" class="form-control" />
-            <textarea id="newsContent" class="form-control mt-3" placeholder="محتوى الخبر"></textarea>
-            <input id="newsImage" type="text" placeholder="رابط صورة (اختياري) ضع رابطاً أو استخدم رفع الملفات في لوحة الإدارة" class="form-control mt-3" />
-            <div id="newsImagePreview" class="mt-3 hidden"><img id="newsPreviewImg" src="" alt="preview" style="max-width:100%;border-radius:8px;" /></div>
-            <div class="mt-4 flex justify-end gap-2">
-              <button onclick="submitNews()" class="action-button">حفظ</button>
-              <button onclick="closeNewsModal()" class="action-button" style="background:#ccc;color:#000;">إلغاء</button>
-            </div>
-            <div id="newsModalError" class="text-red-600 mt-2 hidden">حدث خطأ، حاول لاحقاً.</div>
-        </div>
-    </div>
+    
+    
 
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3QN3BKL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="script.js"></script>
