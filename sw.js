@@ -3,7 +3,7 @@
 ===================== */
 
 // 1. تحديث اسم الكاش لإجبار المتصفح على تحميل التصميم الجديد
-const CACHE_NAME = 'nora-mosque-v2-burgundy'; 
+const CACHE_NAME = 'nora-mosque-v3-burgundy';
 
 // 2. إضافة ملفات البيانات الجديدة للقائمة
 const ASSETS_TO_CACHE = [
@@ -14,7 +14,8 @@ const ASSETS_TO_CACHE = [
   './manifest.json',
   './prayer_times.json',    // هام جداً للمواقيت
   './data/surahs.json',     // هام جداً للقرآن
-  './mosque_images/mosque-logo.png'
+  './mosque_images/mosque-logo.png',
+  './placeholder.svg'
   // يمكنك إضافة مسارات الصور الهامة هنا أيضاً إذا أردت
 ];
 

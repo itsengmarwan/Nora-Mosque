@@ -88,7 +88,11 @@ function closeNav() {
 }
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeNav();
+    if (event.key === 'Escape') {
+        closeNav();
+        closeQuranViewer();
+        closeImageViewer();
+    }
 });
 
 
@@ -320,14 +324,24 @@ async function loadQuranList() {
     
     try {
         // تأكد من مسار الملف الصحيح
-        const res = await fetch('data/surahs.json'); 
+        const res = await fetch('data/surahs.json');
+        if (!res.ok) throw new Error('Surah index request failed');
         const data = await res.json();
         
         list.innerHTML = '';
         data.chapters.forEach(surah => {
             const div = document.createElement('div');
             div.className = 'surah-item';
+            div.dataset.search = `${surah.id} ${surah.name_arabic}`.toLocaleLowerCase('ar');
+            div.setAttribute('role', 'button');
+            div.setAttribute('tabindex', '0');
             div.onclick = () => loadSurahText(surah.id); // عند الضغط حمل النص
+            div.onkeydown = (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    loadSurahText(surah.id);
+                }
+            };
             
             div.innerHTML = `
                 <div class="flex items-center">
@@ -342,10 +356,18 @@ async function loadQuranList() {
             list.appendChild(div);
         });
         isQuranLoaded = true;
+        document.getElementById('quranSearch')?.addEventListener('input', filterSurahs);
     } catch (e) {
         console.error(e);
         list.innerHTML = '<div class="p-6 text-center text-red-500 bg-red-50 rounded-xl mx-4 font-tajawal">فشل تحميل قائمة السور. يرجى التحقق من ملف data/surahs.json</div>';
     }
+}
+
+function filterSurahs(event) {
+    const query = event.target.value.trim().toLocaleLowerCase('ar');
+    document.querySelectorAll('#quranSurahList .surah-item').forEach((item) => {
+        item.classList.toggle('hidden', Boolean(query) && !item.dataset.search.includes(query));
+    });
 }
 
 // جلب نص السورة من API
@@ -369,6 +391,7 @@ async function loadSurahText(id) {
     
     try {
         const res = await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
+        if (!res.ok) throw new Error('Surah request failed');
         const data = await res.json();
         
         if(title) title.textContent = `سورة ${data.data.name}`;
