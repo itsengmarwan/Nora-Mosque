@@ -69,8 +69,27 @@ function updateBottomNavUI(tabId) {
 }
 
 // التحكم في القائمة الجانبية (SideNav)
-function openNav() { document.getElementById("mySidenav").style.width = "280px"; }
-function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+function openNav() {
+    const nav = document.getElementById("mySidenav");
+    const toggle = document.querySelector('.menu-toggle');
+    if (!nav) return;
+    nav.style.width = "280px";
+    nav.setAttribute('aria-hidden', 'false');
+    toggle?.setAttribute('aria-expanded', 'true');
+}
+
+function closeNav() {
+    const nav = document.getElementById("mySidenav");
+    const toggle = document.querySelector('.menu-toggle');
+    if (!nav) return;
+    nav.style.width = "0";
+    nav.setAttribute('aria-hidden', 'true');
+    toggle?.setAttribute('aria-expanded', 'false');
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeNav();
+});
 
 
 /* =========================================

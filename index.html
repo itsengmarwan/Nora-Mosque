@@ -26,7 +26,7 @@
 
     <div class="bg-pattern"></div>
 
-    <div id="mySidenav" class="sidenav">
+    <div id="mySidenav" class="sidenav" aria-hidden="true">
         <div class="sidenav-header">
             <i class="fas fa-mosque fa-2x text-gold"></i>
             <h2 class="font-kufi mt-2">القائمة الرئيسية</h2>
@@ -54,7 +54,7 @@
             <div class="logo-icon"><i class="fas fa-kaaba"></i></div>
             <div class="app-name font-kufi">مسجد نورة العبيد</div>
         </div>
-        <button class="menu-toggle animate__animated animate__fadeInLeft" onclick="openNav()" aria-label="القائمة">
+        <button class="menu-toggle animate__animated animate__fadeInLeft" onclick="openNav()" aria-label="القائمة" aria-expanded="false" aria-controls="mySidenav">
             <i class="fas fa-bars-staggered"></i>
         </button>
     </nav>
